@@ -39,41 +39,42 @@ import br.upe.ppsw.jabberpoint.apresentacao.XMLAccessor;
 @SpringBootApplication
 public class JabberPointApplication implements CommandLineRunner {
 
-  protected static final String IOERR = "IO Error: ";
-  protected static final String JABERR = "Jabberpoint Error ";
-  protected static final String JABVERSION = "Jabberpoint 1.6 -";
+	protected static final String IOERR = "IO Error: ";
+	protected static final String JABERR = "Jabberpoint Error ";
+	protected static final String JABVERSION = "Jabberpoint 1.6 -";
 
-  public static void main(String[] argv) {
-    SpringApplicationBuilder builder = new SpringApplicationBuilder(JabberPointApplication.class);
-    builder.headless(false);
-    builder.web(WebApplicationType.NONE);
-    builder.run(argv);
-  }
+	public static void main(String[] argv) {
+		SpringApplicationBuilder builder = new SpringApplicationBuilder(JabberPointApplication.class);
+		builder.headless(false);
+		builder.web(WebApplicationType.NONE);
+		builder.run(argv);
+	}
 
-  /**
-   * Inicializa os dados da apresentação. Caso não seja informada uma apresentação em específico
-   * através do parâmetro de argumento da aplicação será carregada uma apresentação padrão.
-   */
-  @Override
-  public void run(String... args) throws Exception {
-    Style.createStyles();
+	/**
+	 * Inicializa os dados da apresentação. Caso não seja informada uma apresentação
+	 * em específico através do parâmetro de argumento da aplicação será carregada
+	 * uma apresentação padrão.
+	 */
+	@Override
+	public void run(String... args) throws Exception {
+		Style.createStyles();
 
-    Presentation presentation = new Presentation();
+		Presentation presentation = new Presentation();
 
-    new SlideViewerFrame(JABVERSION, presentation);
+		new SlideViewerFrame(JABVERSION, presentation);
 
-    try {
-      if (args.length == 0) {
-        Accessor.getDemoAccessor().loadFile(presentation, "");
-      } else {
-        new XMLAccessor().loadFile(presentation, args[0]);
-      }
+		try {
+			if (args.length == 0) {
+				Accessor.getDemoAccessor().loadFile(presentation, "");
+			} else {
+				new XMLAccessor().loadFile(presentation, args[0]);
+			}
 
-      presentation.setSlideNumber(0);
+			presentation.setSlideNumber(0);
 
-    } catch (IOException ex) {
-      JOptionPane.showMessageDialog(null, IOERR + ex, JABERR, JOptionPane.ERROR_MESSAGE);
-    }
-  }
+		} catch (IOException ex) {
+			JOptionPane.showMessageDialog(null, IOERR + ex, JABERR, JOptionPane.ERROR_MESSAGE);
+		}
+	}
 
 }

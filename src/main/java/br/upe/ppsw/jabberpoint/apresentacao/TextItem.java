@@ -40,129 +40,130 @@ import java.util.List;
  */
 public class TextItem extends SlideItem {
 
-  private String text;
+	private String text;
 
-  private static final String EMPTYTEXT = "No Text Given";
+	private static final String EMPTYTEXT = "No Text Given";
 
-  /**
-   * Cria uma nova instância de item de slide do tipo texto, indicando sua posição em nível no
-   * slide.
-   * 
-   * @param level o nível ocupado pelo item
-   * @param string o texto associado
-   */
-  public TextItem(int level, String string) {
-    super(level);
-    text = string;
-  }
+	/**
+	 * Cria uma nova instância de item de slide do tipo texto, indicando sua posição
+	 * em nível no slide.
+	 * 
+	 * @param level  o nível ocupado pelo item
+	 * @param string o texto associado
+	 */
+	public TextItem(int level, String string) {
+		super(level);
+		text = string;
+	}
 
-  /**
-   * Inicializa um item do tipo texto no nível mais externo.
-   */
-  public TextItem() {
-    this(0, EMPTYTEXT);
-  }
+	/**
+	 * Inicializa um item do tipo texto no nível mais externo.
+	 */
+	public TextItem() {
+		this(0, EMPTYTEXT);
+	}
 
-  /**
-   * Recupera o texto de um item de slide.
-   * 
-   * @return Uma {@link String} contendo o conteúdo de texto do item.
-   */
-  public String getText() {
-    return text == null ? "" : text;
-  }
+	/**
+	 * Recupera o texto de um item de slide.
+	 * 
+	 * @return Uma {@link String} contendo o conteúdo de texto do item.
+	 */
+	public String getText() {
+		return text == null ? "" : text;
+	}
 
-  /**
-   * Cria uma instãncia de {@link AttributedString} para a interface do usuário de acordo com o
-   * texto e estilo correspondente ao item no {@link Slide}
-   * 
-   * @param style A instância do {@link Style} associado a posição do item no slide.
-   * @param scale A escala de propoção do item
-   * 
-   * @return A instância de {@link AttributedString}
-   */
-  public AttributedString getAttributedString(Style style, float scale) {
-    AttributedString attrStr = new AttributedString(getText());
+	/**
+	 * Cria uma instãncia de {@link AttributedString} para a interface do usuário de
+	 * acordo com o texto e estilo correspondente ao item no {@link Slide}
+	 * 
+	 * @param style A instância do {@link Style} associado a posição do item no
+	 *              slide.
+	 * @param scale A escala de propoção do item
+	 * 
+	 * @return A instância de {@link AttributedString}
+	 */
+	public AttributedString getAttributedString(Style style, float scale) {
+		AttributedString attrStr = new AttributedString(getText());
 
-    attrStr.addAttribute(TextAttribute.FONT, style.getFont(scale), 0, text.length());
+		attrStr.addAttribute(TextAttribute.FONT, style.getFont(scale), 0, text.length());
 
-    return attrStr;
-  }
+		return attrStr;
+	}
 
-  /**
-   * @see SlideItem#getBoundingBox(Graphics, ImageObserver, float, Style)
-   */
-  public Rectangle getBoundingBox(Graphics g, ImageObserver observer, float scale, Style myStyle) {
-    List<TextLayout> layouts = getLayouts(g, myStyle, scale);
+	/**
+	 * @see SlideItem#getBoundingBox(Graphics, ImageObserver, float, Style)
+	 */
+	public Rectangle getBoundingBox(Graphics g, ImageObserver observer, float scale, Style myStyle) {
+		List<TextLayout> layouts = getLayouts(g, myStyle, scale);
 
-    int xsize = 0, ysize = (int) (myStyle.leading * scale);
+		int xsize = 0, ysize = (int) (myStyle.leading * scale);
 
-    Iterator<TextLayout> iterator = layouts.iterator();
+		Iterator<TextLayout> iterator = layouts.iterator();
 
-    while (iterator.hasNext()) {
-      TextLayout layout = iterator.next();
-      Rectangle2D bounds = layout.getBounds();
+		while (iterator.hasNext()) {
+			TextLayout layout = iterator.next();
+			Rectangle2D bounds = layout.getBounds();
 
-      if (bounds.getWidth() > xsize) {
-        xsize = (int) bounds.getWidth();
-      }
+			if (bounds.getWidth() > xsize) {
+				xsize = (int) bounds.getWidth();
+			}
 
-      if (bounds.getHeight() > 0) {
-        ysize += bounds.getHeight();
-      }
-      ysize += layout.getLeading() + layout.getDescent();
-    }
+			if (bounds.getHeight() > 0) {
+				ysize += bounds.getHeight();
+			}
+			ysize += layout.getLeading() + layout.getDescent();
+		}
 
-    return new Rectangle((int) (myStyle.indent * scale), 0, xsize, ysize);
-  }
+		return new Rectangle((int) (myStyle.indent * scale), 0, xsize, ysize);
+	}
 
-  /**
-   * @see SlideItem#draw(int, int, float, Graphics, Style, ImageObserver)
-   */
-  public void draw(int x, int y, float scale, Graphics g, Style myStyle, ImageObserver o) {
-    if (text == null || text.length() == 0) {
-      return;
-    }
+	/**
+	 * @see SlideItem#draw(int, int, float, Graphics, Style, ImageObserver)
+	 */
+	public void draw(int x, int y, float scale, Graphics g, Style myStyle, ImageObserver o) {
+		if (text == null || text.length() == 0) {
+			return;
+		}
 
-    List<TextLayout> layouts = getLayouts(g, myStyle, scale);
-    Point pen = new Point(x + (int) (myStyle.indent * scale), y + (int) (myStyle.leading * scale));
+		List<TextLayout> layouts = getLayouts(g, myStyle, scale);
+		Point pen = new Point(x + (int) (myStyle.indent * scale), y + (int) (myStyle.leading * scale));
 
-    Graphics2D g2d = (Graphics2D) g;
-    g2d.setColor(myStyle.color);
+		Graphics2D g2d = (Graphics2D) g;
+		g2d.setColor(myStyle.color);
 
-    Iterator<TextLayout> it = layouts.iterator();
+		Iterator<TextLayout> it = layouts.iterator();
 
-    while (it.hasNext()) {
-      TextLayout layout = it.next();
+		while (it.hasNext()) {
+			TextLayout layout = it.next();
 
-      pen.y += layout.getAscent();
-      layout.draw(g2d, pen.x, pen.y);
+			pen.y += layout.getAscent();
+			layout.draw(g2d, pen.x, pen.y);
 
-      pen.y += layout.getDescent();
-    }
-  }
+			pen.y += layout.getDescent();
+		}
+	}
 
-  private List<TextLayout> getLayouts(Graphics g, Style s, float scale) {
-    List<TextLayout> layouts = new ArrayList<TextLayout>();
+	private List<TextLayout> getLayouts(Graphics g, Style s, float scale) {
+		List<TextLayout> layouts = new ArrayList<TextLayout>();
 
-    AttributedString attrStr = getAttributedString(s, scale);
-    Graphics2D g2d = (Graphics2D) g;
+		AttributedString attrStr = getAttributedString(s, scale);
+		Graphics2D g2d = (Graphics2D) g;
 
-    FontRenderContext frc = g2d.getFontRenderContext();
-    LineBreakMeasurer measurer = new LineBreakMeasurer(attrStr.getIterator(), frc);
+		FontRenderContext frc = g2d.getFontRenderContext();
+		LineBreakMeasurer measurer = new LineBreakMeasurer(attrStr.getIterator(), frc);
 
-    float wrappingWidth = (Slide.WIDTH - s.indent) * scale;
+		float wrappingWidth = (Slide.WIDTH - s.indent) * scale;
 
-    while (measurer.getPosition() < getText().length()) {
-      TextLayout layout = measurer.nextLayout(wrappingWidth);
-      layouts.add(layout);
-    }
+		while (measurer.getPosition() < getText().length()) {
+			TextLayout layout = measurer.nextLayout(wrappingWidth);
+			layouts.add(layout);
+		}
 
-    return layouts;
-  }
+		return layouts;
+	}
 
-  public String toString() {
-    return "TextItem[" + getLevel() + "," + getText() + "]";
-  }
+	public String toString() {
+		return "TextItem[" + getLevel() + "," + getText() + "]";
+	}
 
 }
