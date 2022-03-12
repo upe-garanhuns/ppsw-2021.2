@@ -37,7 +37,7 @@ import org.xml.sax.SAXException;
 /**
  * Representação XML de um arquivo de {@link Presentation}
  */
-public class XMLAccessor extends Accessor {
+public class XMLAccessor implements Accessor {
 
   protected static final String DEFAULT_API_TO_USE = "dom";
 

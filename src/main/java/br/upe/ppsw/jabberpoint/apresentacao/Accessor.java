@@ -25,10 +25,8 @@ import java.io.IOException;
 /**
  * Representação mais abstrata de um arquivo que armazena os dados de uma {@link Presentation}
  */
-public abstract class Accessor {
+interface Accessor {
 
-
-  public Accessor() {}
 
   /**
    * Implementa a recuperação de dados salvas no arquivo que serão carregadas na apresentação.
