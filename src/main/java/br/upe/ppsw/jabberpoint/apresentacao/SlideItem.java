@@ -37,8 +37,8 @@ public abstract class SlideItem {
    * 
    * @param lev
    */
-  public SlideItem(int lev) {
-    level = lev;
+  public SlideItem(int level) {
+    this.level = level;
   }
 
   /**
