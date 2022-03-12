@@ -28,16 +28,6 @@ import java.io.IOException;
 public abstract class Accessor {
 
 
-  /**
-   * Inicializa uma apresentação padrão de demonstração.
-   * 
-   * @return uma instância de {@link Accessor} que contém os dados de uma {@link Presentation}
-   *         configurada com os dados armazenados pelo {@link Accessor}.
-   */
-  public static Accessor getDemoAccessor() {
-    return new DemoPresentation();
-  }
-
   public Accessor() {}
 
   /**
