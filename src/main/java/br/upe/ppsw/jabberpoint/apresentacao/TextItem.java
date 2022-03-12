@@ -151,7 +151,7 @@ public class TextItem extends SlideItem {
     FontRenderContext frc = g2d.getFontRenderContext();
     LineBreakMeasurer measurer = new LineBreakMeasurer(attrStr.getIterator(), frc);
 
-    float wrappingWidth = (Slide.WIDTH - s.indent) * scale;
+    float wrappingWidth = (SlideViewerFrame.WIDTH - s.indent) * scale;
 
     while (measurer.getPosition() < getText().length()) {
       TextLayout layout = measurer.nextLayout(wrappingWidth);

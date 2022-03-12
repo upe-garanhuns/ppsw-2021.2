@@ -66,7 +66,7 @@ public class SlideViewerComponent extends JComponent {
    * @return {@link Dimension} A instãncia com as dimensões preferidas de exibição.
    */
   public Dimension getPreferredSize() {
-    return new Dimension(Slide.WIDTH, Slide.HEIGHT);
+    return new Dimension(SlideViewerFrame.WIDTH, SlideViewerFrame.HEIGHT);
   }
 
   /**
