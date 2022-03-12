@@ -50,8 +50,8 @@ public class MenuController extends MenuBar {
   protected static final String NEW = "Novo";
   protected static final String NEXT = "Próximo";
   protected static final String OPEN = "Abrir";
-  protected static final String PAGENR = "Npumero do Slide?";
-  protected static final String PREV = "Anteior";
+  protected static final String PAGENR = "Número do Slide";
+  protected static final String PREV = "Anterior";
   protected static final String SAVE = "Salvar";
   protected static final String VIEW = "Visualizar";
 
