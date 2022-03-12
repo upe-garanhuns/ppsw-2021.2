@@ -36,8 +36,8 @@ public class KeyController extends KeyAdapter {
    * 
    * @param p A instância de {@link Presentation} que será controlada.
    */
-  public KeyController(Presentation p) {
-    presentation = p;
+  public KeyController(Presentation presentation) {
+    this.presentation = presentation;
   }
 
   /**

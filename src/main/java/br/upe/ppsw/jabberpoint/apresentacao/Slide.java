@@ -110,29 +110,29 @@ public class Slide {
   /**
    * Desenha todos os itens do slide na interface com o usuário.
    * 
-   * @param g A instância de {@link Graphics} que vai receber o desenho slide.
+   * @param graphics A instância de {@link Graphics} que vai receber o desenho slide.
    * @param area a instância de {@link Rectangle} que irá receber os {@link SlideItem}
-   * @param view A instância de {@link ImageObserver}, o observer que recebe as notificações dos
+   * @param imageObserver A instância de {@link ImageObserver}, o observer que recebe as notificações dos
    *        itens que são desenhados na interface.
    */
-  public void draw(Graphics g, Rectangle area, ImageObserver view) {
+  public void draw(Graphics graphics, Rectangle area, ImageObserver imageObserver) {
     float scale = getScale(area);
 
     int y = area.y;
 
     SlideItem slideItem = this.title;
     Style style = Style.getStyle(slideItem.getLevel());
-    slideItem.draw(area.x, y, scale, g, style, view);
+    slideItem.draw(area.x, y, scale, graphics, style, imageObserver);
 
-    y += slideItem.getBoundingBox(g, view, scale, style).height;
+    y += slideItem.getBoundingBox(graphics, imageObserver, scale, style).height;
 
     for (int number = 0; number < getSize(); number++) {
       slideItem = (SlideItem) getSlideItems().elementAt(number);
 
       style = Style.getStyle(slideItem.getLevel());
-      slideItem.draw(area.x, y, scale, g, style, view);
+      slideItem.draw(area.x, y, scale, graphics, style, imageObserver);
 
-      y += slideItem.getBoundingBox(g, view, scale, style).height;
+      y += slideItem.getBoundingBox(graphics, imageObserver, scale, style).height;
     }
   }
 

@@ -39,8 +39,6 @@ public class MenuController extends MenuBar {
 
   private static final long serialVersionUID = 227L;
 
-  private Frame parent;
-  private Presentation presentation;
 
   protected static final String ABOUT = "Sobre";
   protected static final String FILE = "Arquivo";
@@ -68,9 +66,7 @@ public class MenuController extends MenuBar {
    * @param frame A instância de {@link Frame} que contém os dados exibidos ao usuário.
    * @param pres A instância da {@link Presentation} que está sendo exibida
    */
-  public MenuController(Frame frame, Presentation pres) {
-    parent = frame;
-    presentation = pres;
+  public MenuController(Frame frame, Presentation presentation) {
 
     MenuItem menuItem;
 
@@ -86,10 +82,10 @@ public class MenuController extends MenuBar {
           xmlAccessor.loadFile(presentation, ResourceUtils.getFile(TESTFILE).getAbsolutePath());
           presentation.setSlideNumber(0);
         } catch (IOException exc) {
-          JOptionPane.showMessageDialog(parent, IOEX + exc, LOADERR, JOptionPane.ERROR_MESSAGE);
+          JOptionPane.showMessageDialog(frame, IOEX + exc, LOADERR, JOptionPane.ERROR_MESSAGE);
         }
 
-        parent.repaint();
+        frame.repaint();
       }
     });
 
@@ -98,7 +94,7 @@ public class MenuController extends MenuBar {
     menuItem.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent actionEvent) {
         presentation.clear();
-        parent.repaint();
+        frame.repaint();
       }
     });
 
@@ -110,7 +106,7 @@ public class MenuController extends MenuBar {
         try {
           xmlAccessor.saveFile(presentation, SAVEFILE);
         } catch (IOException exc) {
-          JOptionPane.showMessageDialog(parent, IOEX + exc, SAVEERR, JOptionPane.ERROR_MESSAGE);
+          JOptionPane.showMessageDialog(frame, IOEX + exc, SAVEERR, JOptionPane.ERROR_MESSAGE);
         }
       }
     });
@@ -161,7 +157,7 @@ public class MenuController extends MenuBar {
 
     menuItem.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent actionEvent) {
-        AboutBox.show(parent);
+        AboutBox.show(frame);
       }
     });
 

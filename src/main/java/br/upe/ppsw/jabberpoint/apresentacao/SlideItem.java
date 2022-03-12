@@ -60,7 +60,7 @@ public abstract class SlideItem {
   /**
    * Obriga os itens de slide a especificarem suas "fronteiras"
    * 
-   * @param g A instância de {@link Graphics} que receberá o desenho do item do slide.
+   * @param graphics A instância de {@link Graphics} que receberá o desenho do item do slide.
    * @param observer A instância de {@link ImageObserver} recebe as notificações de alterações de
    *        itens da interface com o usuário
    * @param scale A escala de proporção para desenhar os itens na tela.
@@ -69,7 +69,7 @@ public abstract class SlideItem {
    * 
    * @return Uma instância de {@link Rectangle} contendo os itens {@link SlideItem} do {@link Slide}
    */
-  public abstract Rectangle getBoundingBox(Graphics g, ImageObserver observer, float scale,
+  public abstract Rectangle getBoundingBox(Graphics graphics, ImageObserver observer, float scale,
       Style style);
 
   /**
@@ -78,11 +78,11 @@ public abstract class SlideItem {
    * @param x posição horizontal do item
    * @param y posição vertical do item
    * @param scale escala do item
-   * @param g a instância que receberá o desenho do item
+   * @param graphics a instância que receberá o desenho do item
    * @param style o estilo a ser aplicado ao item
    * @param observer o observer que receberá a notificação do item.
    */
-  public abstract void draw(int x, int y, float scale, Graphics g, Style style,
+  public abstract void draw(int x, int y, float scale, Graphics graphics, Style style,
       ImageObserver observer);
 
 }

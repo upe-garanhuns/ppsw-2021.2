@@ -53,9 +53,9 @@ public class SlideViewerComponent extends JComponent {
    * @param pres a instância de {@link Presentation} contendo os dados da apresentação
    * @param frame A instância de {@link JFrame} que ira receber os itens do {@link Slide}
    */
-  public SlideViewerComponent(Presentation pres, JFrame frame) {
+  public SlideViewerComponent(Presentation presentation, JFrame frame) {
     setBackground(BGCOLOR);
-    presentation = pres;
+    this.presentation = presentation;
     labelFont = new Font(FONTNAME, FONTSTYLE, FONTHEIGHT);
     this.frame = frame;
   }
@@ -76,14 +76,14 @@ public class SlideViewerComponent extends JComponent {
    * @param presentation A instância de {@link Presentation} que contém os dados da apresentação
    * @param data A instância de {@link Slide} que representa o slide atual.
    */
-  public void update(Presentation presentation, Slide data) {
-    if (data == null) {
+  public void update(Presentation presentation, Slide slide) {
+    if (slide == null) {
       repaint();
       return;
     }
 
     this.presentation = presentation;
-    this.slide = data;
+    this.slide = slide;
     repaint();
     frame.setTitle(presentation.getTitle());
   }
@@ -93,22 +93,22 @@ public class SlideViewerComponent extends JComponent {
    * 
    * @param g A instância que receberá os itens do slide a serem exibidos na tela.
    */
-  public void paintComponent(Graphics g) {
-    g.setColor(BGCOLOR);
-    g.fillRect(0, 0, getSize().width, getSize().height);
+  public void paintComponent(Graphics graphics) {
+    graphics.setColor(BGCOLOR);
+    graphics.fillRect(0, 0, getSize().width, getSize().height);
 
     if (presentation.getSlideNumber() < 0 || slide == null) {
       return;
     }
 
-    g.setFont(labelFont);
-    g.setColor(COLOR);
-    g.drawString("Slide " + (1 + presentation.getSlideNumber()) + " of " + presentation.getSize(),
+    graphics.setFont(labelFont);
+    graphics.setColor(COLOR);
+    graphics.drawString("Slide " + (1 + presentation.getSlideNumber()) + " of " + presentation.getSize(),
         XPOS, YPOS);
 
     Rectangle area = new Rectangle(0, YPOS, getWidth(), (getHeight() - YPOS));
 
-    slide.draw(g, area, this);
+    slide.draw(graphics, area, this);
   }
 
 }
