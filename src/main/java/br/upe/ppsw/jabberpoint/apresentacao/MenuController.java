@@ -81,7 +81,7 @@ public class MenuController extends MenuBar {
       public void actionPerformed(ActionEvent actionEvent) {
         presentation.clear();
 
-        DataKeeperPresentation xmlAccessor = new XMLAccessor();
+        DataKeeperPresentation xmlAccessor = new XMLDataKeeper();
         try {
           xmlAccessor.loadFile(presentation, ResourceUtils.getFile(TESTFILE).getAbsolutePath());
           presentation.setSlideNumber(0);
@@ -106,7 +106,7 @@ public class MenuController extends MenuBar {
 
     menuItem.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
-        DataKeeperPresentation xmlAccessor = new XMLAccessor();
+        DataKeeperPresentation xmlAccessor = new XMLDataKeeper();
         try {
           xmlAccessor.saveFile(presentation, SAVEFILE);
         } catch (IOException exc) {
