@@ -26,7 +26,7 @@ import org.springframework.util.ResourceUtils;
 /**
  * Representa os dados de uma {@link Presentation} de demonstração.
  */
-public class DemoPresentation extends Accessor {
+public class DemoPresentation extends DataKeeperPresentation {
 
   public void loadFile(Presentation presentation, String unusedFilename)
       throws FileNotFoundException {
@@ -78,10 +78,10 @@ public class DemoPresentation extends Accessor {
 /**
  * Inicializa uma apresentação padrão de demonstração.
  * 
- * @return uma instância de {@link Accessor} que contém os dados de uma {@link Presentation}
- *         configurada com os dados armazenados pelo {@link Accessor}.
+ * @return uma instância de {@link DataKeeperPresentation} que contém os dados de uma {@link Presentation}
+ *         configurada com os dados armazenados pelo {@link DataKeeperPresentation}.
  */
-public static Accessor getDemoAccessor() {
+public static DataKeeperPresentation getDemoAccessor() {
   return new DemoPresentation();
 }
 

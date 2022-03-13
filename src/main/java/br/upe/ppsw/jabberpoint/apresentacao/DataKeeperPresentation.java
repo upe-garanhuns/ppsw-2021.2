@@ -25,12 +25,12 @@ import java.io.IOException;
 /**
  * Representação mais abstrata de um arquivo que armazena os dados de uma {@link Presentation}
  */
-public abstract class Accessor {
+public abstract class DataKeeperPresentation {
 
   public static final String DEMO_NAME = "Apresentação de Demonstração";
   public static final String DEFAULT_EXTENSION = ".xml";
 
-  public Accessor() {}
+  public DataKeeperPresentation() {}
 
   /**
    * Implementa a recuperação de dados salvas no arquivo que serão carregadas na apresentação.
@@ -55,4 +55,5 @@ public abstract class Accessor {
    */
   abstract public void saveFile(Presentation presentation, String fileName) throws IOException;
 
+  /* Antigo Accessor */
 }
