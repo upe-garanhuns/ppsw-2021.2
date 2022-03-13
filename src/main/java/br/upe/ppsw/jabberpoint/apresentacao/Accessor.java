@@ -30,16 +30,6 @@ public abstract class Accessor {
   public static final String DEMO_NAME = "Apresentação de Demonstração";
   public static final String DEFAULT_EXTENSION = ".xml";
 
-  /**
-   * Inicializa uma apresentação padrão de demonstração.
-   * 
-   * @return uma instância de {@link Accessor} que contém os dados de uma {@link Presentation}
-   *         configurada com os dados armazenados pelo {@link Accessor}.
-   */
-  public static Accessor getDemoAccessor() {
-    return new DemoPresentation();
-  }
-
   public Accessor() {}
 
   /**
