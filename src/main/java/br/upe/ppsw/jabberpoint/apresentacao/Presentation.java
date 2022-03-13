@@ -72,11 +72,11 @@ public class Presentation {
 
   /**
    * Atualiza os dados do título do slide.
-   * 
-   * @param nt
+   * (Era nt)
+   * @param changeTitle
    */
-  public void setTitle(String nt) {
-    title = nt;
+  public void setTitle(String changeTitle) {
+    title = changeTitle;
   }
 
   /**
