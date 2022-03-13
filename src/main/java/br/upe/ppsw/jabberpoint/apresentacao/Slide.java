@@ -50,7 +50,7 @@ public class Slide {
 	 * @param anItem A instância de {@link SlideItem} contendo os dados do item de
 	 *               slide.
 	 */
-	public void append(SlideItem anItem) {
+	public void appendSlideItem(SlideItem anItem) {
 		items.addElement(anItem);
 	}
 
@@ -78,8 +78,8 @@ public class Slide {
 	 * @param level   O nível de identação do texto
 	 * @param message O conteúdo do texto
 	 */
-	public void append(int level, String message) {
-		append(new TextItem(level, message));
+	public void appendTextItem(int level, String message) {
+		appendSlideItem(new TextItem(level, message));
 	}
 
 	/**

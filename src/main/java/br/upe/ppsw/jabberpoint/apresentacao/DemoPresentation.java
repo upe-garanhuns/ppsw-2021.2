@@ -36,36 +36,36 @@ public class DemoPresentation extends Accessor {
 		slide = new Slide();
 
 		slide.setTitle("JabberPoint");
-		slide.append(1, "Ferramenta de Apresentação de Slides");
-		slide.append(2, "Copyright (c) 1996-now: Ian Darwin");
-		slide.append(2, "Copyright (c) 2021-now:");
-		slide.append(2, "Helaine Barreiros");
-		slide.append(4, "JabberPoint execução de demonstração sem arquivos persistidos");
-		slide.append(4, "exibição de apresentação com dados apenas em memória");
-		slide.append(1, "Navegação:");
-		slide.append(3, "Próximo slide: PgDn ou Enter");
-		slide.append(3, "Slide Anterior: PgUp ou up-arrow");
-		slide.append(3, "Parar: q ou Q");
+		slide.appendTextItem(1, "Ferramenta de Apresentação de Slides");
+		slide.appendTextItem(2, "Copyright (c) 1996-now: Ian Darwin");
+		slide.appendTextItem(2, "Copyright (c) 2021-now:");
+		slide.appendTextItem(2, "Helaine Barreiros");
+		slide.appendTextItem(4, "JabberPoint execução de demonstração sem arquivos persistidos");
+		slide.appendTextItem(4, "exibição de apresentação com dados apenas em memória");
+		slide.appendTextItem(1, "Navegação:");
+		slide.appendTextItem(3, "Próximo slide: PgDn ou Enter");
+		slide.appendTextItem(3, "Slide Anterior: PgUp ou up-arrow");
+		slide.appendTextItem(3, "Parar: q ou Q");
 		presentation.append(slide);
 
 		slide = new Slide();
 		slide.setTitle("Demonstração dos níveis e estilos de uma apresentação");
-		slide.append(1, "Nível 1");
-		slide.append(2, "Nível 2");
-		slide.append(1, "Novamente um item de Nível 1");
-		slide.append(1, "Nível 1 tem Estilo número 1");
-		slide.append(2, "Nível 2 tem Estilo número 2");
-		slide.append(3, "Este é um ítem de Nível 3");
-		slide.append(4, "E este é um ítem de Nível 4");
+		slide.appendTextItem(1, "Nível 1");
+		slide.appendTextItem(2, "Nível 2");
+		slide.appendTextItem(1, "Novamente um item de Nível 1");
+		slide.appendTextItem(1, "Nível 1 tem Estilo número 1");
+		slide.appendTextItem(2, "Nível 2 tem Estilo número 2");
+		slide.appendTextItem(3, "Este é um ítem de Nível 3");
+		slide.appendTextItem(4, "E este é um ítem de Nível 4");
 		presentation.append(slide);
 
 		slide = new Slide();
 		slide.setTitle("Terceiro Slide");
-		slide.append(1, "Para abrir uma nova apresentação,");
-		slide.append(2, "utilize o menu File->Open.");
-		slide.append(1, " ");
-		slide.append(1, "Fim da Apresentação");
-		slide.append(new BitmapItem(1, ResourceUtils.getFile("classpath:JabberPoint.jpg").getAbsolutePath()));
+		slide.appendTextItem(1, "Para abrir uma nova apresentação,");
+		slide.appendTextItem(2, "utilize o menu File->Open.");
+		slide.appendTextItem(1, " ");
+		slide.appendTextItem(1, "Fim da Apresentação");
+		slide.appendSlideItem(new BitmapItem(1, ResourceUtils.getFile("classpath:JabberPoint.jpg").getAbsolutePath()));
 		presentation.append(slide);
 	}
 
