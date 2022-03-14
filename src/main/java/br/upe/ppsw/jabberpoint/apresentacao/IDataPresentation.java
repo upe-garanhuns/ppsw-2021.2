@@ -25,7 +25,7 @@ import java.io.IOException;
 /**
  * Representação mais abstrata de um arquivo que armazena os dados de uma {@link Presentation}
  */
-interface IDataPresentations {
+interface IDataPresentation {
 
 
   /**

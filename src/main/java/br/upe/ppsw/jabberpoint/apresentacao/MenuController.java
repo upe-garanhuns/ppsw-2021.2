@@ -25,8 +25,6 @@ import java.awt.Menu;
 import java.awt.MenuBar;
 import java.awt.MenuItem;
 import java.awt.MenuShortcut;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 import javax.swing.JOptionPane;
 import org.springframework.util.ResourceUtils;
@@ -121,9 +119,9 @@ public class MenuController extends MenuBar {
     menuItem.addActionListener(ActionEvent -> {
       presentation.clear();
 
-      Accessor xmlAcessor = new XMLAccessor();
+      IDataPresentation XMLDataPresentation = new XMLDataPresentation();
       try{
-        xmlAcessor.loadFile(presentation, ResourceUtils.getFile(TESTFILE).getAbsolutePath());
+        XMLDataPresentation.loadFile(presentation, ResourceUtils.getFile(TESTFILE).getAbsolutePath());
       } catch (IOException exc) {
         JOptionPane.showMessageDialog(frame, IOEX + exc, LOADERR, JOptionPane.ERROR_MESSAGE);
       }
@@ -138,7 +136,7 @@ public class MenuController extends MenuBar {
     menu.add(menuItem = mkMenuItem(SAVE));
 
     menuItem.addActionListener(ActionEvent -> {
-      Accessor xmlAcessor = new XMLAccessor();
+      IDataPresentation xmlAcessor = new XMLDataPresentation();
       try {
         xmlAcessor.saveFile(presentation, SAVEFILE);
       }catch (IOException exc) {

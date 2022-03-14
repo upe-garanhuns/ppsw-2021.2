@@ -31,7 +31,7 @@ import br.upe.ppsw.jabberpoint.apresentacao.DemoPresentation;
 import br.upe.ppsw.jabberpoint.apresentacao.Presentation;
 import br.upe.ppsw.jabberpoint.apresentacao.SlideViewerFrame;
 import br.upe.ppsw.jabberpoint.apresentacao.Style;
-import br.upe.ppsw.jabberpoint.apresentacao.XMLAccessor;
+import br.upe.ppsw.jabberpoint.apresentacao.XMLDataPresentation;
 
 /**
  * Classe principal que inicializa a aplicação de apresentação de slides
@@ -66,7 +66,7 @@ public class JabberPointApplication implements CommandLineRunner {
       if (args.length == 0) {
         new DemoPresentation().loadFile(presentation, "");
       } else {
-        new XMLAccessor().loadFile(presentation, args[0]);
+        new XMLDataPresentation().loadFile(presentation, args[0]);
       }
 
       presentation.setSlideNumber(0);

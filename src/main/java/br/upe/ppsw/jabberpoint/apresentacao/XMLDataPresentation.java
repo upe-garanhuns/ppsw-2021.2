@@ -37,7 +37,7 @@ import org.xml.sax.SAXException;
 /**
  * Representação XML de um arquivo de {@link Presentation}
  */
-public class XMLIDataPresentation implements IDataPresentation {
+public class XMLDataPresentation implements IDataPresentation {
 
   protected static final String DEFAULT_API_TO_USE = "dom";
 

@@ -91,7 +91,7 @@ public class SlideViewerComponent extends JComponent {
   /**
    * Renderiza os elementos do componente com os dados do slide atual.
    * 
-   * @param g A instância que receberá os itens do slide a serem exibidos na tela.
+   * @param graphics A instância que receberá os itens do slide a serem exibidos na tela.
    */
   public void paintComponent(Graphics graphics) {
     graphics.setColor(BGCOLOR);
