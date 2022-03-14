@@ -37,7 +37,7 @@ import org.xml.sax.SAXException;
 /**
  * Representação XML de um arquivo de {@link Presentation}
  */
-public class XMLAccessor implements Accessor {
+public class XMLIDataPresentation implements IDataPresentation {
 
   protected static final String DEFAULT_API_TO_USE = "dom";
 
@@ -63,7 +63,7 @@ public class XMLAccessor implements Accessor {
   }
 
   /**
-   * @see Accessor#loadFile(Presentation, String)
+   * @see IDataPresentation#loadFile(Presentation, String)
    */
   public void loadFile(Presentation presentation, String filename) throws IOException {
     int slideNumber, itemNumber, max = 0, maxItems = 0;
@@ -133,7 +133,7 @@ public class XMLAccessor implements Accessor {
   }
 
   /**
-   * @see Accessor#saveFile(Presentation, String)
+   * @see IDataPresentation#saveFile(Presentation, String)
    */
   public void saveFile(Presentation presentation, String filename) throws IOException {
     PrintWriter out = new PrintWriter(new FileWriter(filename));
