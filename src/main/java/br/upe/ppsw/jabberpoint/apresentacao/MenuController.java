@@ -142,6 +142,9 @@ public class MenuController extends MenuBar {
 				int pageNumber = Integer.parseInt(pageNumberStr);
 				if (pageNumber <= presentation.getSize()) {
 					presentation.setSlideNumber(pageNumber - 1);					
+				} else {
+					JOptionPane.showMessageDialog(parent, "Não é possível navegar para esse slide.",
+							"Operação inválida", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
