@@ -22,16 +22,16 @@ package br.upe.ppsw.jabberpoint.apresentacao;
 
 import java.io.IOException;
 
-public abstract class Accessor {
+public abstract class DataAccessor {
 
 	public static final String DEMO_NAME = "Apresentação de Demonstração";
 	public static final String DEFAULT_EXTENSION = ".xml";
 
-	public static Accessor getDemoAccessor() {
-		return new DemoPresentation();
+	public static DataAccessor getDemoAccessor() {
+		return new DemoData();
 	}
 
-	public Accessor() {
+	public DataAccessor() {
 	}
 
 	abstract public void loadFile(Presentation presentation, String fileName) throws IOException;

@@ -34,7 +34,7 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-public class XMLAccessor extends Accessor {
+public class XMLAccessor extends DataAccessor {
 
 	protected static final String DEFAULT_API_TO_USE = "dom";
 
