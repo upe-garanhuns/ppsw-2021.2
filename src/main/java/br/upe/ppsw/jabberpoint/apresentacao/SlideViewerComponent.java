@@ -25,13 +25,11 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.awt.image.ImageObserver;
+
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 
-/**
- * Representa o componente de apresentação dos {@link Slide} de uma
- * {@link Presentation}.
- */
 public class SlideViewerComponent extends JComponent {
 	private static final long serialVersionUID = 227L;
 
@@ -48,15 +46,6 @@ public class SlideViewerComponent extends JComponent {
 	private Presentation presentation = null;
 	private JFrame frame = null;
 
-	/**
-	 * Inicializa o mecanismo de visualização dos {@link Slide} de uma
-	 * {@link Presentation}.
-	 * 
-	 * @param pres  a instância de {@link Presentation} contendo os dados da
-	 *              apresentação
-	 * @param frame A instância de {@link JFrame} que ira receber os itens do
-	 *              {@link Slide}
-	 */
 	public SlideViewerComponent(Presentation pres, JFrame frame) {
 		setBackground(BGCOLOR);
 		presentation = pres;
@@ -64,27 +53,10 @@ public class SlideViewerComponent extends JComponent {
 		this.frame = frame;
 	}
 
-	/**
-	 * Realiza o ajuste de exibição do componente de acordo com as dimensões
-	 * especificadas.
-	 * 
-	 * @return {@link Dimension} A instãncia com as dimensões preferidas de
-	 *         exibição.
-	 */
 	public Dimension getPreferredSize() {
 		return new Dimension(1200, 800);
 	}
 
-	/**
-	 * Atualiza os dados de visualização de um {@link Slide} de uma
-	 * {@link Presentation}. Caso o slide atual não seja informado a apresentação é
-	 * inicializada.
-	 * 
-	 * @param presentation A instância de {@link Presentation} que contém os dados
-	 *                     da apresentação
-	 * @param data         A instância de {@link Slide} que representa o slide
-	 *                     atual.
-	 */
 	public void update(Presentation presentation, Slide data) {
 		if (data == null) {
 			repaint();
@@ -97,11 +69,6 @@ public class SlideViewerComponent extends JComponent {
 		frame.setTitle(presentation.getTitle());
 	}
 
-	/**
-	 * Renderiza os elementos do componente com os dados do slide atual.
-	 * 
-	 * @param g A instância que receberá os itens do slide a serem exibidos na tela.
-	 */
 	public void paintComponent(Graphics g) {
 		g.setColor(BGCOLOR);
 		g.fillRect(0, 0, getSize().width, getSize().height);
@@ -116,7 +83,32 @@ public class SlideViewerComponent extends JComponent {
 
 		Rectangle area = new Rectangle(0, YPOS, getWidth(), (getHeight() - YPOS));
 
-		slide.draw(g, area, this);
+		drawSlide(g, area, this);
+	}
+	
+	public void drawSlide(Graphics g, Rectangle area, ImageObserver view) {
+		float scale = getScale(area);
+
+		int y = area.y;
+
+		SlideItem slideItem = slide.getTitle();
+		Style style = Style.getStyle(slideItem.getLevel());
+		slideItem.draw(area.x, y, scale, g, style, view);
+
+		y += slideItem.getBoundingBox(g, view, scale, style).height;
+
+		for (int number = 0; number < slide.getSize(); number++) {
+			slideItem = (SlideItem) slide.getSlideItems().elementAt(number);
+
+			style = Style.getStyle(slideItem.getLevel());
+			slideItem.draw(area.x, y, scale, g, style, view);
+
+			y += slideItem.getBoundingBox(g, view, scale, style).height;
+		}
+	}
+	
+	private float getScale(Rectangle area) {
+		return Math.min(((float) area.width) / ((float) 1200), ((float) area.height) / ((float) 800));
 	}
 
 }
