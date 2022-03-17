@@ -34,9 +34,6 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-/**
- * Representação XML de um arquivo de {@link Presentation}
- */
 public class XMLAccessor extends Accessor {
 
 	protected static final String DEFAULT_API_TO_USE = "dom";
@@ -61,9 +58,6 @@ public class XMLAccessor extends Accessor {
 
 	}
 
-	/**
-	 * @see Accessor#loadFile(Presentation, String)
-	 */
 	public void loadFile(Presentation presentation, String filename) throws IOException {
 		int slideNumber, itemNumber, max = 0, maxItems = 0;
 
@@ -131,9 +125,6 @@ public class XMLAccessor extends Accessor {
 		}
 	}
 
-	/**
-	 * @see Accessor#saveFile(Presentation, String)
-	 */
 	public void saveFile(Presentation presentation, String filename) throws IOException {
 		PrintWriter out = new PrintWriter(new FileWriter(filename));
 

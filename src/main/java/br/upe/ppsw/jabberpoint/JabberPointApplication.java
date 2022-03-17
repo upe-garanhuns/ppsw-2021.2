@@ -33,9 +33,6 @@ import br.upe.ppsw.jabberpoint.apresentacao.SlideViewerFrame;
 import br.upe.ppsw.jabberpoint.apresentacao.Style;
 import br.upe.ppsw.jabberpoint.apresentacao.XMLAccessor;
 
-/**
- * Classe principal que inicializa a aplicação de apresentação de slides
- */
 @SpringBootApplication
 public class JabberPointApplication implements CommandLineRunner {
 
@@ -50,11 +47,6 @@ public class JabberPointApplication implements CommandLineRunner {
 		builder.run(argv);
 	}
 
-	/**
-	 * Inicializa os dados da apresentação. Caso não seja informada uma apresentação
-	 * em específico através do parâmetro de argumento da aplicação será carregada
-	 * uma apresentação padrão.
-	 */
 	@Override
 	public void run(String... args) throws Exception {
 		Style.createStyles();

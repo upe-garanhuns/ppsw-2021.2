@@ -23,9 +23,6 @@ package br.upe.ppsw.jabberpoint.apresentacao;
 import java.io.FileNotFoundException;
 import org.springframework.util.ResourceUtils;
 
-/**
- * Representa os dados de uma {@link Presentation} de demonstração.
- */
 public class DemoPresentation extends Accessor {
 
 	public void loadFile(Presentation presentation, String unusedFilename) throws FileNotFoundException {

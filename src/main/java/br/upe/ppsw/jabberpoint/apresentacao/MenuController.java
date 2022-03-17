@@ -31,10 +31,6 @@ import java.io.IOException;
 import javax.swing.JOptionPane;
 import org.springframework.util.ResourceUtils;
 
-/**
- * Implementação dos mecanismos de controle navegacional através de um menu
- * superior de uma {@link Presentation}.
- */
 public class MenuController extends MenuBar {
 
 	private static final long serialVersionUID = 227L;
@@ -62,13 +58,6 @@ public class MenuController extends MenuBar {
 	protected static final String LOADERR = "Erro ao carregar";
 	protected static final String SAVEERR = "Erro ao salvar";
 
-	/**
-	 * Representa o menu superior da tela de {@link Presentation}
-	 * 
-	 * @param frame A instância de {@link Frame} que contém os dados exibidos ao
-	 *              usuário.
-	 * @param pres  A instância da {@link Presentation} que está sendo exibida
-	 */
 	public MenuController(Frame frame, Presentation pres) {
 		parent = frame;
 		presentation = pres;

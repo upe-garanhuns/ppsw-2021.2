@@ -23,36 +23,14 @@ package br.upe.ppsw.jabberpoint.apresentacao;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-/**
- * Implementação dos mecanismos de controle navegacional entre os {@link Slide}
- * de uma {@link Presentation} através do teclado.
- */
 public class KeyController extends KeyAdapter {
 
 	private Presentation presentation;
 
-	/**
-	 * Inicializa o mecnismo de controle através de teclado associado a uma
-	 * {@link Presentation}
-	 * 
-	 * @param p A instância de {@link Presentation} que será controlada.
-	 */
 	public KeyController(Presentation p) {
 		presentation = p;
 	}
 
-	/**
-	 * Intepreta o comando de teclado recebido e delega a exibição de itens de uma
-	 * apresentação. Os comandos aceitos são:
-	 * 
-	 * {@link KeyEvent#VK_PAGE_DOWN}, {@link KeyEvent#VK_DOWN},
-	 * {@link KeyEvent#VK_ENTER} para avançar para o próximo slide
-	 * {@link KeyEvent#VK_PAGE_UP}, {@link KeyEvent#VK_UP} e '-' para voltar ao
-	 * slide anterior 'Q' e 'q' para finalizar a apresentação.
-	 * 
-	 * @param a instância de {@link KeyEvent} que contém os dados da tecla
-	 *          pressionada pelo usuário
-	 */
 	public void keyPressed(KeyEvent keyEvent) {
 		switch (keyEvent.getKeyCode()) {
 		case KeyEvent.VK_PAGE_DOWN:
