@@ -54,8 +54,6 @@ public class JabberPointApplication implements CommandLineRunner {
 
 		Presentation presentation = new Presentation();
 
-		new SlideViewerFrame(JABVERSION, presentation);
-
 		try {
 			if (args.length == 0) {
 				DataAccessor.getDemoAccessor().loadFile(presentation, "");
@@ -64,6 +62,8 @@ public class JabberPointApplication implements CommandLineRunner {
 			}
 
 			presentation.setSlideNumber(0);
+			
+			new SlideViewerFrame(JABVERSION, presentation);
 
 		} catch (IOException ex) {
 			JOptionPane.showMessageDialog(null, IOERR + ex, JABERR, JOptionPane.ERROR_MESSAGE);
