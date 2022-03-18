@@ -18,30 +18,21 @@
  * 
  * @author Ian F. Darwin, hbarreiros
  */
-package br.upe.ppsw.jabberpoint.apresentacao;
+package br.upe.ppsw.jabberpoint.apresentacao.view;
 
-import java.awt.Graphics;
-import java.awt.Rectangle;
-import java.awt.image.ImageObserver;
+import java.awt.Frame;
+import javax.swing.JOptionPane;
 
-public abstract class SlideItem {
 
-	private int level = 0;
+public class AboutBox {
 
-	public SlideItem(int lev) {
-		level = lev;
+	public static void show(Frame parent) {
+		JOptionPane.showMessageDialog(parent,
+				"JabberPoint é um programa de apresentação de slides básico escrito em Java(tm).\n"
+						+ "Ele é disponibilizado como uma cópia livre desde que você mantenha esta informação de splash screen intacta.\n"
+						+ "Copyright (c) 1995-now by Ian F. Darwin, ian@darwinsys.com.\n"
+						+ "Adaptada por Helaine Barreiros fpara Universidade de Pernambuco, 2021 -- now.\n"
+						+ "A cópia original do autor está disponível em http://www.darwinsys.com/",
+				"Sobre JabberPoint", JOptionPane.INFORMATION_MESSAGE);
 	}
-
-	public SlideItem() {
-		this(0);
-	}
-
-	public int getLevel() {
-		return level;
-	}
-
-	public abstract Rectangle getBoundingBox(Graphics g, ImageObserver observer, float scale, Style style);
-
-	public abstract void draw(int x, int y, float scale, Graphics g, Style style, ImageObserver observer);
-
 }

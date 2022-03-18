@@ -18,9 +18,11 @@
  * 
  * @author Ian F. Darwin, hbarreiros
  */
-package br.upe.ppsw.jabberpoint.apresentacao;
+package br.upe.ppsw.jabberpoint.apresentacao.model;
 
 import java.util.ArrayList;
+
+import br.upe.ppsw.jabberpoint.apresentacao.view.SlideViewerComponent;
 
 public class Presentation {
 
@@ -78,7 +80,7 @@ public class Presentation {
 		}
 	}
 
-	void clear() {
+	public void clear() {
 		showList = new ArrayList<Slide>();
 		setSlideNumber(-1);
 	}

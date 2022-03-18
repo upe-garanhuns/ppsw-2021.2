@@ -18,7 +18,7 @@
  * 
  * @author Ian F. Darwin, hbarreiros
  */
-package br.upe.ppsw.jabberpoint.apresentacao;
+package br.upe.ppsw.jabberpoint.apresentacao.view;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -29,6 +29,10 @@ import java.awt.image.ImageObserver;
 
 import javax.swing.JComponent;
 import javax.swing.JFrame;
+
+import br.upe.ppsw.jabberpoint.apresentacao.model.Presentation;
+import br.upe.ppsw.jabberpoint.apresentacao.model.Slide;
+import br.upe.ppsw.jabberpoint.apresentacao.model.SlideItem;
 
 public class SlideViewerComponent extends JComponent {
 	private static final long serialVersionUID = 227L;

@@ -18,7 +18,7 @@
  * 
  * @author Ian F. Darwin, hbarreiros
  */
-package br.upe.ppsw.jabberpoint.apresentacao;
+package br.upe.ppsw.jabberpoint.apresentacao.view;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -28,11 +28,11 @@ public class Style {
 	private static Style[] styles;
 
 	private static final String FONTNAME = "Helvetica";
-	int indent;
-	Color color;
+	public int indent; //fazer get
+	public Color color; //fazer get
 	Font font;
 	int fontSize;
-	int leading;
+	public int leading; //fazer get
 
 	public static void createStyles() {
 		styles = new Style[5];
