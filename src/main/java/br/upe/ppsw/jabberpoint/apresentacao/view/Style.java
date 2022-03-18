@@ -28,11 +28,11 @@ public class Style {
 	private static Style[] styles;
 
 	private static final String FONTNAME = "Helvetica";
-	public int indent; //fazer get
-	public Color color; //fazer get
+	private int indent; //fazer get
+	private Color color; //fazer get
 	Font font;
 	int fontSize;
-	public int leading; //fazer get
+	private int leading; //fazer get
 
 	public static void createStyles() {
 		styles = new Style[5];
@@ -65,5 +65,17 @@ public class Style {
 
 	public Font getFont(float scale) {
 		return font.deriveFont(fontSize * scale);
+	}
+
+	public int getIndent() {
+		return indent;
+	}
+
+	public Color getColor() {
+		return color;
+	}
+
+	public int getLeading() {
+		return leading;
 	}
 }
