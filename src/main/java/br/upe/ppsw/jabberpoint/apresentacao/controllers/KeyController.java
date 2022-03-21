@@ -18,7 +18,10 @@
  * 
  * @author Ian F. Darwin, hbarreiros
  */
-package br.upe.ppsw.jabberpoint.apresentacao;
+package br.upe.ppsw.jabberpoint.apresentacao.controllers;
+
+import br.upe.ppsw.jabberpoint.apresentacao.models.Slide;
+import br.upe.ppsw.jabberpoint.apresentacao.models.Presentation;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;

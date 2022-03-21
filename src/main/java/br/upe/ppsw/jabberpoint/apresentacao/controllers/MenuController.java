@@ -18,7 +18,7 @@
  * 
  * @author Ian F. Darwin, hbarreiros
  */
-package br.upe.ppsw.jabberpoint.apresentacao;
+package br.upe.ppsw.jabberpoint.apresentacao.controllers;
 
 import java.awt.Frame;
 import java.awt.Menu;
@@ -27,6 +27,11 @@ import java.awt.MenuItem;
 import java.awt.MenuShortcut;
 import java.io.IOException;
 import javax.swing.JOptionPane;
+
+import br.upe.ppsw.jabberpoint.apresentacao.views.AboutBox;
+import br.upe.ppsw.jabberpoint.apresentacao.views.XMLDataPresentation;
+import br.upe.ppsw.jabberpoint.apresentacao.models.IDataPresentation;
+import br.upe.ppsw.jabberpoint.apresentacao.models.Presentation;
 import org.springframework.util.ResourceUtils;
 
 /**
@@ -104,10 +109,10 @@ public class MenuController extends MenuBar {
 
   private void addNewInFile(Menu menu){
 
-    menu.add(this.menuItem = mkMenuItem(NEW));
-    this.menuItem.addActionListener(actionEvent -> {
-      this.presentation.clear();
-      this.frame.repaint();
+    menu.add(menuItem = mkMenuItem(NEW));
+    menuItem.addActionListener(actionEvent -> {
+      presentation.clear();
+      frame.repaint();
     });
 
   }
@@ -182,8 +187,8 @@ public class MenuController extends MenuBar {
 
     menuItem.addActionListener(ActionEvent -> {
       String pageNumberStr = JOptionPane.showInputDialog((Object) PAGENR);
-      int pageNuber = Integer.parseInt(pageNumberStr);
-      presentation.setSlideNumber(pageNuber - 1);
+      int pageNumber = Integer.parseInt(pageNumberStr);
+      if (pageNumber <= presentation.getSize()) { presentation.setSlideNumber(pageNumber - 1); }
     });
 
   }

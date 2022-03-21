@@ -18,14 +18,14 @@
  * 
  * @author Ian F. Darwin, hbarreiros
  */
-package br.upe.ppsw.jabberpoint.apresentacao;
+package br.upe.ppsw.jabberpoint.apresentacao.models;
 
 import java.io.IOException;
 
 /**
  * Representação mais abstrata de um arquivo que armazena os dados de uma {@link Presentation}
  */
-interface IDataPresentation {
+public interface IDataPresentation {
 
 
   /**

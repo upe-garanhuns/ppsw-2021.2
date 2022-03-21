@@ -18,7 +18,9 @@
  * 
  * @author Ian F. Darwin, hbarreiros
  */
-package br.upe.ppsw.jabberpoint.apresentacao;
+package br.upe.ppsw.jabberpoint.apresentacao.models;
+
+import br.upe.ppsw.jabberpoint.apresentacao.views.SlideViewerFrame;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -165,4 +167,31 @@ public class TextItem extends SlideItem {
     return "TextItem[" + getLevel() + "," + getText() + "]";
   }
 
+    /**
+     * Desenha todos os itens do slide na interface com o usuário.
+     *  @param graphics A instância de {@link Graphics} que vai receber o desenho slide.
+     * @param area a instância de {@link Rectangle} que irá receber os {@link SlideItem}
+     * @param imageObserver A instância de {@link ImageObserver}, o observer que recebe as notificações dos
+     * @param slide
+     */
+    public void draw(Graphics graphics, Rectangle area, ImageObserver imageObserver, Slide slide) {
+      float scale = SlideViewerFrame.getScale(area);
+
+      int y = area.y;
+
+      SlideItem slideItem = this;
+      Style style = Style.getStyle(slideItem.getLevel());
+      slideItem.draw(area.x, y, scale, graphics, style, imageObserver);
+
+      y += slideItem.getBoundingBox(graphics, imageObserver, scale, style).height;
+
+      for (int number = 0; number < slide.getSize(); number++) {
+        slideItem = (SlideItem) slide.getSlideItems().elementAt(number);
+
+        style = Style.getStyle(slideItem.getLevel());
+        slideItem.draw(area.x, y, scale, graphics, style, imageObserver);
+
+        y += slideItem.getBoundingBox(graphics, imageObserver, scale, style).height;
+      }
+    }
 }

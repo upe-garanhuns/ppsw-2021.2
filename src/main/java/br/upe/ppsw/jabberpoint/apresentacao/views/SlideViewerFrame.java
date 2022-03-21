@@ -18,9 +18,14 @@
  * 
  * @author Ian F. Darwin, hbarreiros
  */
-package br.upe.ppsw.jabberpoint.apresentacao;
+package br.upe.ppsw.jabberpoint.apresentacao.views;
 
-import java.awt.Dimension;
+import br.upe.ppsw.jabberpoint.apresentacao.controllers.KeyController;
+import br.upe.ppsw.jabberpoint.apresentacao.controllers.MenuController;
+import br.upe.ppsw.jabberpoint.apresentacao.models.Presentation;
+import br.upe.ppsw.jabberpoint.apresentacao.models.Slide;
+
+import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
@@ -68,6 +73,18 @@ public class SlideViewerFrame extends JFrame {
     setSize(new Dimension(WIDTH, HEIGHT));
 
     setVisible(true);
+  }
+
+  /**
+   * Obtém uma escala de proporção em função da altura, largura e tamanho da apresentação para
+   * exibição dos slides.
+   *
+   * @param area um {@link Rectangle} contendo os dados de tamanho da apresentação.
+   * @return um float com a proporção calculada.
+   */
+  public static float getScale(Rectangle area) {
+    return Math.min(((float) area.width) / ((float) SlideViewerFrame.WIDTH),
+            ((float) area.height) / ((float) SlideViewerFrame.HEIGHT));
   }
 
 }

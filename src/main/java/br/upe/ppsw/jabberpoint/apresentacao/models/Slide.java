@@ -18,11 +18,8 @@
  * 
  * @author Ian F. Darwin, hbarreiros
  */
-package br.upe.ppsw.jabberpoint.apresentacao;
+package br.upe.ppsw.jabberpoint.apresentacao.models;
 
-import java.awt.Graphics;
-import java.awt.Rectangle;
-import java.awt.image.ImageObserver;
 import java.util.Vector;
 
 /**
@@ -31,7 +28,7 @@ import java.util.Vector;
  */
 public class Slide {
 
-  protected TextItem title;
+  public TextItem title;
   protected Vector<SlideItem> items;
 
   /**
@@ -107,44 +104,4 @@ public class Slide {
     return items.size();
   }
 
-  /**
-   * Desenha todos os itens do slide na interface com o usuário.
-   * 
-   * @param graphics A instância de {@link Graphics} que vai receber o desenho slide.
-   * @param area a instância de {@link Rectangle} que irá receber os {@link SlideItem}
-   * @param imageObserver A instância de {@link ImageObserver}, o observer que recebe as notificações dos
-   *        itens que são desenhados na interface.
-   */
-  public void draw(Graphics graphics, Rectangle area, ImageObserver imageObserver) {
-    float scale = getScale(area);
-
-    int y = area.y;
-
-    SlideItem slideItem = this.title;
-    Style style = Style.getStyle(slideItem.getLevel());
-    slideItem.draw(area.x, y, scale, graphics, style, imageObserver);
-
-    y += slideItem.getBoundingBox(graphics, imageObserver, scale, style).height;
-
-    for (int number = 0; number < getSize(); number++) {
-      slideItem = (SlideItem) getSlideItems().elementAt(number);
-
-      style = Style.getStyle(slideItem.getLevel());
-      slideItem.draw(area.x, y, scale, graphics, style, imageObserver);
-
-      y += slideItem.getBoundingBox(graphics, imageObserver, scale, style).height;
-    }
-  }
-
-  /**
-   * Obtém uma escala de proporção em função da altura, largura e tamanho da apresentação para
-   * exibição dos slides.
-   * 
-   * @param area um {@link Rectangle} contendo os dados de tamanho da apresentação.
-   * @return um float com a proporção calculada.
-   */
-  private float getScale(Rectangle area) {
-    return Math.min(((float) area.width) / ((float) SlideViewerFrame.WIDTH),
-        ((float) area.height) / ((float) SlideViewerFrame.HEIGHT));
-  }
 }

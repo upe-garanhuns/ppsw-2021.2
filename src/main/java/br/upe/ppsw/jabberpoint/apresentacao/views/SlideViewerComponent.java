@@ -18,7 +18,10 @@
  * 
  * @author Ian F. Darwin, hbarreiros
  */
-package br.upe.ppsw.jabberpoint.apresentacao;
+package br.upe.ppsw.jabberpoint.apresentacao.views;
+
+import br.upe.ppsw.jabberpoint.apresentacao.models.Presentation;
+import br.upe.ppsw.jabberpoint.apresentacao.models.Slide;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -108,7 +111,7 @@ public class SlideViewerComponent extends JComponent {
 
     Rectangle area = new Rectangle(0, YPOS, getWidth(), (getHeight() - YPOS));
 
-    slide.draw(graphics, area, this);
+    slide.title.draw(graphics, area, this, slide);
   }
 
 }
