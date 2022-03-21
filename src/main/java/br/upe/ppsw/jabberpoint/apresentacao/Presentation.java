@@ -75,8 +75,8 @@ public class Presentation {
    * 
    * @param nt
    */
-  public void setTitle(String nt) {
-    title = nt;
+  public void setTitle(String title) {
+    this.title = title;
   }
 
   /**

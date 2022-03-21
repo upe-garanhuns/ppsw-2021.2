@@ -50,8 +50,8 @@ public class MenuController extends MenuBar {
   protected static final String NEW = "Novo";
   protected static final String NEXT = "Próximo";
   protected static final String OPEN = "Abrir";
-  protected static final String PAGENR = "Npumero do Slide?";
-  protected static final String PREV = "Anteior";
+  protected static final String PAGENR = "Número do Slide?";
+  protected static final String PREV = "Anterior";
   protected static final String SAVE = "Salvar";
   protected static final String VIEW = "Visualizar";
 
@@ -68,9 +68,9 @@ public class MenuController extends MenuBar {
    * @param frame A instância de {@link Frame} que contém os dados exibidos ao usuário.
    * @param pres A instância da {@link Presentation} que está sendo exibida
    */
-  public MenuController(Frame frame, Presentation pres) {
+  public MenuController(Frame frame, Presentation presentation) {
     parent = frame;
-    presentation = pres;
+    this.presentation = presentation;
 
     MenuItem menuItem;
 
@@ -81,12 +81,12 @@ public class MenuController extends MenuBar {
       public void actionPerformed(ActionEvent actionEvent) {
         presentation.clear();
 
-        Accessor xmlAccessor = new XMLAccessor();
+        XMLPresentation xmlPresentation = new XMLPresentation();
         try {
-          xmlAccessor.loadFile(presentation, ResourceUtils.getFile(TESTFILE).getAbsolutePath());
+          xmlPresentation.loadFile(presentation, ResourceUtils.getFile(TESTFILE).getAbsolutePath());
           presentation.setSlideNumber(0);
-        } catch (IOException exc) {
-          JOptionPane.showMessageDialog(parent, IOEX + exc, LOADERR, JOptionPane.ERROR_MESSAGE);
+        } catch (IOException exception) {
+          JOptionPane.showMessageDialog(parent, IOEX + exception, LOADERR, JOptionPane.ERROR_MESSAGE);
         }
 
         parent.repaint();
@@ -105,12 +105,12 @@ public class MenuController extends MenuBar {
     fileMenu.add(menuItem = mkMenuItem(SAVE));
 
     menuItem.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        Accessor xmlAccessor = new XMLAccessor();
+      public void actionPerformed(ActionEvent event) {
+        XMLPresentation xmlPresentation = new XMLPresentation();
         try {
-          xmlAccessor.saveFile(presentation, SAVEFILE);
-        } catch (IOException exc) {
-          JOptionPane.showMessageDialog(parent, IOEX + exc, SAVEERR, JOptionPane.ERROR_MESSAGE);
+          xmlPresentation.saveFile(presentation, SAVEFILE);
+        } catch (IOException exception) {
+          JOptionPane.showMessageDialog(parent, IOEX + exception, SAVEERR, JOptionPane.ERROR_MESSAGE);
         }
       }
     });
@@ -172,3 +172,5 @@ public class MenuController extends MenuBar {
     return new MenuItem(name, new MenuShortcut(name.charAt(0)));
   }
 }
+
+

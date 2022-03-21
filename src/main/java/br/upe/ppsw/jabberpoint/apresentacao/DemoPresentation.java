@@ -26,7 +26,7 @@ import org.springframework.util.ResourceUtils;
 /**
  * Representa os dados de uma {@link Presentation} de demonstração.
  */
-public class DemoPresentation extends Accessor {
+public class DemoPresentation implements Accessor {
 
   public void loadFile(Presentation presentation, String unusedFilename)
       throws FileNotFoundException {
