@@ -57,9 +57,9 @@ public class SlideViewerComponent extends JComponent {
 		this.frame = frame;
 	}
 
-	public Dimension getPreferredSize() {
-		return new Dimension(1200, 800);
-	}
+//	public Dimension getPreferredSize() {
+//		return new Dimension(1200, 800);
+//	}
 
 	public void update() {
 		this.slide = presentation.getCurrentSlide();
