@@ -18,10 +18,14 @@
  * 
  * @author Ian F. Darwin, hbarreiros
  */
-package br.upe.ppsw.jabberpoint.apresentacao.model;
+package br.upe.ppsw.jabberpoint.apresentacao.controller;
 
 import java.io.FileNotFoundException;
 import org.springframework.util.ResourceUtils;
+
+import br.upe.ppsw.jabberpoint.apresentacao.model.BitmapItem;
+import br.upe.ppsw.jabberpoint.apresentacao.model.Presentation;
+import br.upe.ppsw.jabberpoint.apresentacao.model.Slide;
 
 public class DemoData extends DataAccessor {
 

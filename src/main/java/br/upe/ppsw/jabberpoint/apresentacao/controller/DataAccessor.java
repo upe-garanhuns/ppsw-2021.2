@@ -18,9 +18,11 @@
  * 
  * @author Ian F. Darwin, hbarreiros
  */
-package br.upe.ppsw.jabberpoint.apresentacao.model;
+package br.upe.ppsw.jabberpoint.apresentacao.controller;
 
 import java.io.IOException;
+
+import br.upe.ppsw.jabberpoint.apresentacao.model.Presentation;
 
 public abstract class DataAccessor {
 
