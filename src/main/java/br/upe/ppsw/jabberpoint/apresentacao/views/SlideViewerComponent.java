@@ -22,12 +22,15 @@ package br.upe.ppsw.jabberpoint.apresentacao.views;
 
 import br.upe.ppsw.jabberpoint.apresentacao.models.Presentation;
 import br.upe.ppsw.jabberpoint.apresentacao.models.Slide;
+import br.upe.ppsw.jabberpoint.apresentacao.models.SlideItem;
+import br.upe.ppsw.jabberpoint.apresentacao.models.TextItem;
 
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.awt.image.ImageObserver;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 
@@ -79,14 +82,14 @@ public class SlideViewerComponent extends JComponent {
    * @param presentation A instância de {@link Presentation} que contém os dados da apresentação
    * @param data A instância de {@link Slide} que representa o slide atual.
    */
-  public void update(Presentation presentation, Slide slide) {
-    if (slide == null) {
-      repaint();
-      return;
-    }
+  public void update(/*Presentation presentation, Slide slide*/) {
+//    if (slide == null) {
+//      repaint();
+//      return;
+//    }
 
-    this.presentation = presentation;
-    this.slide = slide;
+    //this.presentation = presentation;
+    this.slide = presentation.getCurrentSlide();
     repaint();
     frame.setTitle(presentation.getTitle());
   }
@@ -111,7 +114,33 @@ public class SlideViewerComponent extends JComponent {
 
     Rectangle area = new Rectangle(0, YPOS, getWidth(), (getHeight() - YPOS));
 
-    slide.title.draw(graphics, area, this, slide);
+    draw(graphics, area, this, presentation.getCurrentSlide());
+  }
+
+  public void draw(Graphics graphics, Rectangle area, ImageObserver imageObserver, Slide slide) {
+    float scale = getScale(area);
+
+    int y = area.y;
+
+    SlideItem slideItem = slide.getTitleItem();
+    Style style = Style.getStyle(slideItem.getLevel());
+    slideItem.draw(area.x, y, scale, graphics, style, imageObserver);
+
+    y += slideItem.getBoundingBox(graphics, imageObserver, scale, style).height;
+
+    for (int number = 0; number < slide.getSize(); number++) {
+      slideItem = (SlideItem) slide.getSlideItems().elementAt(number);
+
+      style = Style.getStyle(slideItem.getLevel());
+      slideItem.draw(area.x, y, scale, graphics, style, imageObserver);
+
+      y += slideItem.getBoundingBox(graphics, imageObserver, scale, style).height;
+    }
+  }
+
+  private float getScale(Rectangle area) {
+    return Math.min(((float) area.width) / ((float) SlideViewerFrame.WIDTH),
+            ((float) area.height) / ((float) SlideViewerFrame.HEIGHT));
   }
 
 }

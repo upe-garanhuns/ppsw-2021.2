@@ -27,9 +27,7 @@ import java.awt.image.ImageObserver;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
-import br.upe.ppsw.jabberpoint.apresentacao.models.Slide;
-import br.upe.ppsw.jabberpoint.apresentacao.models.SlideItem;
-import br.upe.ppsw.jabberpoint.apresentacao.models.Style;
+import br.upe.ppsw.jabberpoint.apresentacao.views.Style;
 import org.springframework.util.ResourceUtils;
 
 /**

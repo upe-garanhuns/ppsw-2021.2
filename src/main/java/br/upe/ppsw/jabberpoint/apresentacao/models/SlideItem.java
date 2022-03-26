@@ -20,6 +20,8 @@
  */
 package br.upe.ppsw.jabberpoint.apresentacao.models;
 
+import br.upe.ppsw.jabberpoint.apresentacao.views.Style;
+
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.ImageObserver;
@@ -78,7 +80,7 @@ public abstract class SlideItem {
    * @param x posição horizontal do item
    * @param y posição vertical do item
    * @param scale escala do item
-   * @param graphics a instância que receberá o desenho do item
+   * @param graphics instância que receberá o desenho do item
    * @param style o estilo a ser aplicado ao item
    * @param observer o observer que receberá a notificação do item.
    */

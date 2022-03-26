@@ -29,9 +29,8 @@ import java.io.IOException;
 import javax.swing.JOptionPane;
 
 import br.upe.ppsw.jabberpoint.apresentacao.views.AboutBox;
-import br.upe.ppsw.jabberpoint.apresentacao.views.XMLDataPresentation;
-import br.upe.ppsw.jabberpoint.apresentacao.models.IDataPresentation;
 import br.upe.ppsw.jabberpoint.apresentacao.models.Presentation;
+import br.upe.ppsw.jabberpoint.apresentacao.views.SlideViewerComponent;
 import org.springframework.util.ResourceUtils;
 
 /**
@@ -43,6 +42,7 @@ public class MenuController extends MenuBar {
   private Frame frame;
   private Presentation presentation;
   private MenuItem menuItem;
+  private SlideViewerComponent slideViewerComponent;
 
   private static final long serialVersionUID = 227L;
 
@@ -73,10 +73,11 @@ public class MenuController extends MenuBar {
    * @param frame A instância de {@link Frame} que contém os dados exibidos ao usuário.
    * @param presentation A instância da {@link Presentation} que está sendo exibida
    */
-  public MenuController(Frame frame, Presentation presentation) {
+  public MenuController(Frame frame, Presentation presentation, SlideViewerComponent slideViewerComponent) {
 
     this.frame = frame;
     this.presentation = presentation;
+    this.slideViewerComponent = slideViewerComponent;
 
     Menu fileMenu = new Menu(FILE);
     addOpenInFile(fileMenu);
@@ -156,7 +157,7 @@ public class MenuController extends MenuBar {
     menu.add(menuItem = mkMenuItem(EXIT));
 
     menuItem.addActionListener(ActionEvent -> {
-      presentation.exit(0);
+     System.exit(0);
     });
 
   }
@@ -167,6 +168,7 @@ public class MenuController extends MenuBar {
 
     menuItem.addActionListener(ActionEvent -> {
       presentation.nextSlide();
+      slideViewerComponent.update();
     });
 
   }
@@ -177,6 +179,7 @@ public class MenuController extends MenuBar {
 
     menuItem.addActionListener(ActionEvent -> {
       presentation.prevSlide();
+      slideViewerComponent.update();
     });
 
   }
@@ -188,7 +191,7 @@ public class MenuController extends MenuBar {
     menuItem.addActionListener(ActionEvent -> {
       String pageNumberStr = JOptionPane.showInputDialog((Object) PAGENR);
       int pageNumber = Integer.parseInt(pageNumberStr);
-      if (pageNumber >= 1 && pageNumber <= presentation.getSize()) { presentation.setSlideNumber(pageNumber - 1); }
+      if (pageNumber >= 1 && pageNumber <= presentation.getSize()) { presentation.setSlideNumber(pageNumber - 1); slideViewerComponent.update(); }
     });
 
   }

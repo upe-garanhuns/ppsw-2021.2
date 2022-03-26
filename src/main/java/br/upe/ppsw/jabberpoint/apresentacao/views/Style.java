@@ -18,7 +18,11 @@
  * 
  * @author Ian F. Darwin, hbarreiros
  */
-package br.upe.ppsw.jabberpoint.apresentacao.models;
+package br.upe.ppsw.jabberpoint.apresentacao.views;
+
+import br.upe.ppsw.jabberpoint.apresentacao.models.Presentation;
+import br.upe.ppsw.jabberpoint.apresentacao.models.Slide;
+import br.upe.ppsw.jabberpoint.apresentacao.models.SlideItem;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -32,11 +36,11 @@ public class Style {
   private static Style[] styles;
 
   private static final String FONTNAME = "Helvetica";
-  int indent;
-  Color color;
+  public int indent; //FIXME: tirar publico no futuro
+  public Color color; //FIXME: tirar publico no futuro
   Font font;
   int fontSize;
-  int leading;
+  public int leading;
 
   public static void createStyles() {
     styles = new Style[5];

@@ -18,7 +18,9 @@
  * 
  * @author Ian F. Darwin, hbarreiros
  */
-package br.upe.ppsw.jabberpoint.apresentacao.models;
+package br.upe.ppsw.jabberpoint.apresentacao.controllers;
+
+import br.upe.ppsw.jabberpoint.apresentacao.models.Presentation;
 
 import java.io.IOException;
 

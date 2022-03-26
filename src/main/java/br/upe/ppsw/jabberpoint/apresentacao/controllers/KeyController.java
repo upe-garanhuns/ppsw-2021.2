@@ -22,6 +22,7 @@ package br.upe.ppsw.jabberpoint.apresentacao.controllers;
 
 import br.upe.ppsw.jabberpoint.apresentacao.models.Slide;
 import br.upe.ppsw.jabberpoint.apresentacao.models.Presentation;
+import br.upe.ppsw.jabberpoint.apresentacao.views.SlideViewerComponent;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -33,14 +34,17 @@ import java.awt.event.KeyEvent;
 public class KeyController extends KeyAdapter {
 
   private Presentation presentation;
+  private SlideViewerComponent slideViewerComponent;
+
 
   /**
    * Inicializa o mecnismo de controle através de teclado associado a uma {@link Presentation}
    * 
    * @param p A instância de {@link Presentation} que será controlada.
    */
-  public KeyController(Presentation presentation) {
+  public KeyController(Presentation presentation, SlideViewerComponent slideViewerComponent) {
     this.presentation = presentation;
+    this.slideViewerComponent = slideViewerComponent;
   }
 
   /**
@@ -60,11 +64,13 @@ public class KeyController extends KeyAdapter {
       case KeyEvent.VK_ENTER:
       case '+':
         presentation.nextSlide();
+        slideViewerComponent.update();
         break;
       case KeyEvent.VK_PAGE_UP:
       case KeyEvent.VK_UP:
       case '-':
         presentation.prevSlide();
+        slideViewerComponent.update();
         break;
       case 'q':
       case 'Q':

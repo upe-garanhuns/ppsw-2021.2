@@ -18,13 +18,12 @@
  * 
  * @author Ian F. Darwin, hbarreiros
  */
-package br.upe.ppsw.jabberpoint.apresentacao.views;
+package br.upe.ppsw.jabberpoint.apresentacao.controllers;
 
 import java.io.FileNotFoundException;
 
 import br.upe.ppsw.jabberpoint.apresentacao.models.BitmapItem;
 import br.upe.ppsw.jabberpoint.apresentacao.models.Slide;
-import br.upe.ppsw.jabberpoint.apresentacao.models.IDataPresentation;
 import br.upe.ppsw.jabberpoint.apresentacao.models.Presentation;
 import org.springframework.util.ResourceUtils;
 

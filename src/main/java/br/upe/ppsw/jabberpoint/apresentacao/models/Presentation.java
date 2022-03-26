@@ -32,14 +32,14 @@ public class Presentation {
 
   private String title;
   private ArrayList<Slide> showList = null;
-  private SlideViewerComponent slideViewComponent = null;
+//  private SlideViewerComponent slideViewComponent = null;
   private int currentSlideNumber = 0;
 
   /**
    * Inicializa uma apresentação.
    */
   public Presentation() {
-    slideViewComponent = null;
+//    slideViewComponent = null;
     clear();
   }
 
@@ -49,10 +49,10 @@ public class Presentation {
    * @param slideViewerComponent A instância do {@link SlideViewerComponent} a ser utilizada na
    *        apresentação.
    */
-  public Presentation(SlideViewerComponent slideViewerComponent) {
-    this.slideViewComponent = slideViewerComponent;
-    clear();
-  }
+//  public Presentation(SlideViewerComponent slideViewerComponent) {
+//    this.slideViewComponent = slideViewerComponent;
+//    clear();
+//  }
 
   /**
    * Obtém a quantidade de slides da apresentação.
@@ -86,9 +86,9 @@ public class Presentation {
    * 
    * @param slideViewerComponent A instância a ser atualizada.
    */
-  public void setShowView(SlideViewerComponent slideViewerComponent) {
-    this.slideViewComponent = slideViewerComponent;
-  }
+//  public void setShowView(SlideViewerComponent slideViewerComponent) {
+//    this.slideViewComponent = slideViewerComponent;
+//  }
 
   /**
    * Obtém o número do slide atual
@@ -107,9 +107,9 @@ public class Presentation {
    */
   public void setSlideNumber(int number) {
     currentSlideNumber = number;
-    if (slideViewComponent != null) {
-      slideViewComponent.update(this, getCurrentSlide());
-    }
+//    if (slideViewComponent != null) {
+//      slideViewComponent.update(this, getCurrentSlide());
+//    }
   }
 
   /**
@@ -171,12 +171,4 @@ public class Presentation {
     return getSlide(currentSlideNumber);
   }
 
-  /**
-   * Finaliza a execução da máquina virtual, parando a execução do sistema.
-   * 
-   * @param n O código de retorno da execução do sistema. Ver {@link System}
-   */
-  public void exit(int n) {
-    System.exit(n);
-  }
 }

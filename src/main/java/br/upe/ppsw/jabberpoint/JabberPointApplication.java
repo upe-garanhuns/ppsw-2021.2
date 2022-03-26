@@ -27,11 +27,11 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
-import br.upe.ppsw.jabberpoint.apresentacao.views.DemoPresentation;
+import br.upe.ppsw.jabberpoint.apresentacao.controllers.DemoPresentation;
 import br.upe.ppsw.jabberpoint.apresentacao.models.Presentation;
 import br.upe.ppsw.jabberpoint.apresentacao.views.SlideViewerFrame;
-import br.upe.ppsw.jabberpoint.apresentacao.models.Style;
-import br.upe.ppsw.jabberpoint.apresentacao.views.XMLDataPresentation;
+import br.upe.ppsw.jabberpoint.apresentacao.views.Style;
+import br.upe.ppsw.jabberpoint.apresentacao.controllers.XMLDataPresentation;
 
 /**
  * Classe principal que inicializa a aplicação de apresentação de slides
@@ -60,8 +60,6 @@ public class JabberPointApplication implements CommandLineRunner {
 
     Presentation presentation = new Presentation();
 
-    new SlideViewerFrame(JABVERSION, presentation);
-
     try {
       if (args.length == 0) {
         new DemoPresentation().loadFile(presentation, "");
@@ -70,6 +68,8 @@ public class JabberPointApplication implements CommandLineRunner {
       }
 
       presentation.setSlideNumber(0);
+
+      new SlideViewerFrame(JABVERSION, presentation); //FIXME: ver se ta certo dps
 
     } catch (IOException ex) {
       JOptionPane.showMessageDialog(null, IOERR + ex, JABERR, JOptionPane.ERROR_MESSAGE);

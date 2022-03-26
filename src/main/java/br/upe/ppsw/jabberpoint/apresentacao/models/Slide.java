@@ -56,6 +56,8 @@ public class Slide {
     return title.getText();
   }
 
+  public TextItem getTitleItem() { return title; } // FIXME: REVER ESTE METODO
+
   /**
    * Altera o título do {@link Slide}.
    * 

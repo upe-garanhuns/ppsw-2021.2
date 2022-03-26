@@ -18,7 +18,7 @@
  * 
  * @author Ian F. Darwin, hbarreiros
  */
-package br.upe.ppsw.jabberpoint.apresentacao.views;
+package br.upe.ppsw.jabberpoint.apresentacao.controllers;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -32,7 +32,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import br.upe.ppsw.jabberpoint.apresentacao.models.BitmapItem;
 import br.upe.ppsw.jabberpoint.apresentacao.models.SlideItem;
 import br.upe.ppsw.jabberpoint.apresentacao.models.TextItem;
-import br.upe.ppsw.jabberpoint.apresentacao.models.IDataPresentation;
+import br.upe.ppsw.jabberpoint.apresentacao.controllers.IDataPresentation;
 import br.upe.ppsw.jabberpoint.apresentacao.models.Presentation;
 import br.upe.ppsw.jabberpoint.apresentacao.models.Slide;
 import org.w3c.dom.Document;

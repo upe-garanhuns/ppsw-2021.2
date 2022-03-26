@@ -46,7 +46,7 @@ public class SlideViewerFrame extends JFrame {
     super(title);
 
     SlideViewerComponent slideViewerComponent = new SlideViewerComponent(presentation, this);
-    presentation.setShowView(slideViewerComponent);
+//    presentation.setShowView(slideViewerComponent);
 
     setupWindow(slideViewerComponent, presentation);
   }
@@ -68,10 +68,10 @@ public class SlideViewerFrame extends JFrame {
     });
 
     getContentPane().add(slideViewerComponent);
-    addKeyListener(new KeyController(presentation));
-    setMenuBar(new MenuController(this, presentation));
+    addKeyListener(new KeyController(presentation, slideViewerComponent));
+    setMenuBar(new MenuController(this, presentation, slideViewerComponent));
     setSize(new Dimension(WIDTH, HEIGHT));
-
+    slideViewerComponent.update();
     setVisible(true);
   }
 
@@ -82,9 +82,5 @@ public class SlideViewerFrame extends JFrame {
    * @param area um {@link Rectangle} contendo os dados de tamanho da apresentação.
    * @return um float com a proporção calculada.
    */
-  public static float getScale(Rectangle area) {
-    return Math.min(((float) area.width) / ((float) SlideViewerFrame.WIDTH),
-            ((float) area.height) / ((float) SlideViewerFrame.HEIGHT));
-  }
 
 }
