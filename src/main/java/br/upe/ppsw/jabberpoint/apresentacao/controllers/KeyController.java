@@ -40,7 +40,7 @@ public class KeyController extends KeyAdapter {
   /**
    * Inicializa o mecnismo de controle através de teclado associado a uma {@link Presentation}
    * 
-   * @param p A instância de {@link Presentation} que será controlada.
+   * @param presentation A instância de {@link Presentation} que será controlada.
    */
   public KeyController(Presentation presentation, SlideViewerComponent slideViewerComponent) {
     this.presentation = presentation;
@@ -55,19 +55,19 @@ public class KeyController extends KeyAdapter {
    * para o próximo slide {@link KeyEvent#VK_PAGE_UP}, {@link KeyEvent#VK_UP} e '-' para voltar ao
    * slide anterior 'Q' e 'q' para finalizar a apresentação.
    * 
-   * @param a instância de {@link KeyEvent} que contém os dados da tecla pressionada pelo usuário
    */
+
   public void keyPressed(KeyEvent keyEvent) {
     switch (keyEvent.getKeyCode()) {
       case KeyEvent.VK_PAGE_DOWN:
-      case KeyEvent.VK_DOWN:
+      case KeyEvent.VK_RIGHT:
       case KeyEvent.VK_ENTER:
       case '+':
         presentation.nextSlide();
         slideViewerComponent.update();
         break;
       case KeyEvent.VK_PAGE_UP:
-      case KeyEvent.VK_UP:
+      case KeyEvent.VK_LEFT:
       case '-':
         presentation.prevSlide();
         slideViewerComponent.update();
