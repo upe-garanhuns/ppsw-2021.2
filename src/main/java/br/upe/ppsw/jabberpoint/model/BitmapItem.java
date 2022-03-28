@@ -18,7 +18,7 @@
  * 
  * @author Ian F. Darwin, hbarreiros
  */
-package br.upe.ppsw.jabberpoint.apresentacao;
+package br.upe.ppsw.jabberpoint.model;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
@@ -27,6 +27,8 @@ import java.awt.image.ImageObserver;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import org.springframework.util.ResourceUtils;
+
+import br.upe.ppsw.jabberpoint.view.Style;
 
 /**
  * Representa um item de {@link Slide} do tipo imagem.
@@ -97,5 +99,17 @@ public class BitmapItem extends SlideItem {
 
   public String toString() {
     return "BitmapItem[" + getLevel() + "," + imageName + "]";
+  }
+
+  @Override
+  public Rectangle getBoundingBox(Graphics g, ImageObserver observer, float scale, Style style) {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public void draw(int x, int y, float scale, Graphics g, Style style, ImageObserver observer) {
+    // TODO Auto-generated method stub
+    
   }
 }

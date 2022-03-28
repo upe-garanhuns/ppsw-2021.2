@@ -18,10 +18,13 @@
  * 
  * @author Ian F. Darwin, hbarreiros
  */
-package br.upe.ppsw.jabberpoint.apresentacao;
+package br.upe.ppsw.jabberpoint.controller;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+
+import br.upe.ppsw.jabberpoint.model.Presentation;
+import br.upe.ppsw.jabberpoint.model.Slide;
 
 /**
  * Implementação dos mecanismos de controle navegacional entre os {@link Slide} de uma

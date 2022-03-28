@@ -18,11 +18,13 @@
  * 
  * @author Ian F. Darwin, hbarreiros
  */
-package br.upe.ppsw.jabberpoint.apresentacao;
+package br.upe.ppsw.jabberpoint.model;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.ImageObserver;
+
+import br.upe.ppsw.jabberpoint.view.Style;
 
 /**
  * Representação abstrata de um item de {@link Slide} em uma {@link Presentation}

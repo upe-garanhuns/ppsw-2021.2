@@ -18,7 +18,7 @@
  * 
  * @author Ian F. Darwin, hbarreiros
  */
-package br.upe.ppsw.jabberpoint.apresentacao;
+package br.upe.ppsw.jabberpoint.controller;
 
 import java.awt.Frame;
 import java.awt.Menu;
@@ -30,6 +30,9 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import javax.swing.JOptionPane;
 import org.springframework.util.ResourceUtils;
+
+import br.upe.ppsw.jabberpoint.model.Presentation;
+import br.upe.ppsw.jabberpoint.view.AboutBox;
 
 /**
  * Implementação dos mecanismos de controle navegacional através de um menu superior de uma

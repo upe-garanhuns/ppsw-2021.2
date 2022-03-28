@@ -18,12 +18,17 @@
  * 
  * @author Ian F. Darwin, hbarreiros
  */
-package br.upe.ppsw.jabberpoint.apresentacao;
+package br.upe.ppsw.jabberpoint.view;
 
 import java.awt.Dimension;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
+
+import br.upe.ppsw.jabberpoint.controller.KeyController;
+import br.upe.ppsw.jabberpoint.controller.MenuController;
+import br.upe.ppsw.jabberpoint.model.Presentation;
+import br.upe.ppsw.jabberpoint.model.Slide;
 
 /**
  * Representa a janela de exibição ao usuário dos {@link Slide} de uma {@link Presentation};
