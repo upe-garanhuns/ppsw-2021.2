@@ -55,7 +55,7 @@ public class MenuController extends MenuBar {
   protected static final String NEW = "Novo";
   protected static final String NEXT = "Próximo";
   protected static final String OPEN = "Abrir";
-  protected static final String PAGENR = "Numero do Slide";
+  protected static final String PAGENR = "Número do Slide";
   protected static final String PREV = "Anterior";
   protected static final String SAVE = "Salvar";
   protected static final String VIEW = "Visualizar";
@@ -66,6 +66,7 @@ public class MenuController extends MenuBar {
   protected static final String IOEX = "IO Exception: ";
   protected static final String LOADERR = "Erro ao carregar";
   protected static final String SAVEERR = "Erro ao salvar";
+  protected static final String GOTOERR = "Só é aceito números";
 
   /**
    * Representa o menu superior da tela de {@link Presentation}
@@ -98,11 +99,11 @@ public class MenuController extends MenuBar {
     setHelpMenu(helpMenu);
   }
 
-  public MenuItem mkMenuItem(String name) {
-    return new MenuItem(name, new MenuShortcut(name.charAt(0)));
+  public MenuItem mkMenuItem(String name, String letraAtalho) {
+    return new MenuItem(name, new MenuShortcut(letraAtalho.charAt(0)));
   }
 
-  /**
+  /**x
    *
    * Funcões para adicionar itens ao menu
    *
@@ -110,7 +111,7 @@ public class MenuController extends MenuBar {
 
   private void addNewInFile(Menu menu){
 
-    menu.add(menuItem = mkMenuItem(NEW));
+    menu.add(menuItem = mkMenuItem(NEW, "N"));
     menuItem.addActionListener(actionEvent -> {
       presentation.clear();
       frame.repaint();
@@ -120,7 +121,7 @@ public class MenuController extends MenuBar {
 
   private void addOpenInFile(Menu menu) {
 
-    menu.add(this.menuItem = mkMenuItem(OPEN));
+    menu.add(this.menuItem = mkMenuItem(OPEN, "O"));
 
     menuItem.addActionListener(ActionEvent -> {
       presentation.clear();
@@ -133,13 +134,14 @@ public class MenuController extends MenuBar {
       }
 
       frame.repaint();
+      presentation.nextSlide();
     });
 
   }
 
   private void addSaveInFile(Menu menu) {
 
-    menu.add(menuItem = mkMenuItem(SAVE));
+    menu.add(menuItem = mkMenuItem(SAVE, "S"));
 
     menuItem.addActionListener(ActionEvent -> {
       IDataPresentation xmlAcessor = new XMLDataPresentation();
@@ -154,7 +156,7 @@ public class MenuController extends MenuBar {
 
   private void addExitInFile(Menu menu) {
 
-    menu.add(menuItem = mkMenuItem(EXIT));
+    menu.add(menuItem = mkMenuItem(EXIT, "T"));
 
     menuItem.addActionListener(ActionEvent -> {
      System.exit(0);
@@ -164,7 +166,7 @@ public class MenuController extends MenuBar {
 
   private void addNextInView(Menu menu) {
 
-    menu.add(menuItem = mkMenuItem(NEXT));
+    menu.add(menuItem = mkMenuItem(NEXT, "D"));
 
     menuItem.addActionListener(ActionEvent -> {
       presentation.nextSlide();
@@ -175,7 +177,7 @@ public class MenuController extends MenuBar {
 
   private void addPrevInView(Menu menu) {
 
-    menu.add(menuItem = mkMenuItem(PREV));
+    menu.add(menuItem = mkMenuItem(PREV, "A"));
 
     menuItem.addActionListener(ActionEvent -> {
       presentation.prevSlide();
@@ -186,7 +188,7 @@ public class MenuController extends MenuBar {
 
   private void addGoToInView(Menu menu) {
 
-    menu.add(menuItem = mkMenuItem(GOTO));
+    menu.add(menuItem = mkMenuItem(GOTO, "G"));
 
     menuItem.addActionListener(ActionEvent -> {
       String pageNumberStr = JOptionPane.showInputDialog((Object) PAGENR);
@@ -198,7 +200,7 @@ public class MenuController extends MenuBar {
 
   private void addAboutInHelp(Menu menu){
 
-    menu.add(menuItem = mkMenuItem(ABOUT));
+    menu.add(menuItem = mkMenuItem(ABOUT, "K"));
 
     menuItem.addActionListener(ActionEvent -> {
       AboutBox.show(frame);
