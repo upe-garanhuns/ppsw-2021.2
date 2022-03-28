@@ -44,7 +44,6 @@ public class XMLAccessor extends DataAccessor {
 
 	protected static final String DEFAULT_API_TO_USE = "dom";
 
-	/** nomeclatura dos itens de um slide */
 	protected static final String SHOWTITLE = "showtitle";
 	protected static final String SLIDETITLE = "title";
 	protected static final String SLIDE = "slide";
