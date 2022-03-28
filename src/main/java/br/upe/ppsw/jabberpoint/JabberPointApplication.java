@@ -22,16 +22,19 @@
 package br.upe.ppsw.jabberpoint;
 
 import java.io.IOException;
+
 import javax.swing.JOptionPane;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
-import br.upe.ppsw.jabberpoint.apresentacao.Accessor;
-import br.upe.ppsw.jabberpoint.apresentacao.Presentation;
-import br.upe.ppsw.jabberpoint.apresentacao.SlideViewerFrame;
-import br.upe.ppsw.jabberpoint.apresentacao.Style;
-import br.upe.ppsw.jabberpoint.apresentacao.XMLAccessor;
+
+import br.upe.ppsw.jabberpoint.apresentacao.Controllers.DemoPresentation;
+import br.upe.ppsw.jabberpoint.apresentacao.Controllers.XMLPresentation;
+import br.upe.ppsw.jabberpoint.apresentacao.Models.Presentation;
+import br.upe.ppsw.jabberpoint.apresentacao.Views.SlideViewerFrame;
+import br.upe.ppsw.jabberpoint.apresentacao.Views.Style;
 
 /**
  * Classe principal que inicializa a aplicação de apresentação de slides
@@ -64,9 +67,9 @@ public class JabberPointApplication implements CommandLineRunner {
 
     try {
       if (args.length == 0) {
-        Accessor.getDemoAccessor().loadFile(presentation, "");
+        new DemoPresentation().loadFile(presentation, "");
       } else {
-        new XMLAccessor().loadFile(presentation, args[0]);
+        new XMLPresentation().loadFile(presentation, args[0]);
       }
 
       presentation.setSlideNumber(0);
