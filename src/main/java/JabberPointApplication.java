@@ -19,7 +19,6 @@
  * @author Ian F. Darwin, hbarreiros
  */
 
-package br.upe.ppsw.jabberpoint;
 
 import java.io.IOException;
 import javax.swing.JOptionPane;
@@ -27,11 +26,10 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
-import br.upe.ppsw.jabberpoint.apresentacao.DemoPresentation;
-import br.upe.ppsw.jabberpoint.apresentacao.Presentation;
-import br.upe.ppsw.jabberpoint.apresentacao.SlideViewerFrame;
-import br.upe.ppsw.jabberpoint.apresentacao.Style;
-import br.upe.ppsw.jabberpoint.apresentacao.XMLPresentation;
+
+import br.upe.ppsw.jabberpoint.apresentacao.model.XMLPresentation;
+import br.upe.ppsw.jabberpoint.apresentacao.view.DemoPresentation;
+import br.upe.ppsw.jabberpoint.apresentacao.view.Style;
 
 /**
  * Classe principal que inicializa a aplicação de apresentação de slides

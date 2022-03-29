@@ -18,12 +18,14 @@
  * 
  * @author Ian F. Darwin, hbarreiros
  */
-package br.upe.ppsw.jabberpoint.apresentacao;
+package br.upe.ppsw.jabberpoint.apresentacao.model;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.ImageObserver;
 import java.util.Vector;
+
+import br.upe.ppsw.jabberpoint.apresentacao.view.Style;
 
 /**
  * Representa os dados de um slide de uma {@link Presentation} composta por uma lista de
