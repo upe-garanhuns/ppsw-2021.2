@@ -27,6 +27,8 @@ import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 
+import br.upe.ppsw.jabberpoint.apresentacao.controller.SlideViewerFrame;
+import br.upe.ppsw.jabberpoint.apresentacao.model.Presentation;
 import br.upe.ppsw.jabberpoint.apresentacao.model.XMLPresentation;
 import br.upe.ppsw.jabberpoint.apresentacao.view.DemoPresentation;
 import br.upe.ppsw.jabberpoint.apresentacao.view.Style;
