@@ -9,9 +9,9 @@
 		<item kind="text"  level="2">Reescrito por</item>
 		<item kind="text"  level="2">Helaine Barreiros</item>
 		<item kind="text"  level="1">Navegação:</item>
-		<item kind="text"  level="2">Próximo Slide: PgDn ou Enter</item>
-		<item kind="text"  level="2">Slide Anterior: PgUp ou up-arrow</item>
-		<item kind="text"  level="2">Parar: q ou Q</item>
+		<item kind="text"  level="2">Próximo Slide: Right, PGDown ou Enter</item>
+		<item kind="text"  level="2">Slide Anterior: Left, PgUp ou up-arrow</item>
+		<item kind="text"  level="2">Parar: q, Q ou ctrl(command) T</item>
 	</slide>
 	<slide>
 		<title>Exemplo de um Slide vazio</title>

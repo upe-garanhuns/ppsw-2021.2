@@ -28,7 +28,6 @@ import java.awt.MenuShortcut;
 import java.io.IOException;
 import javax.swing.JOptionPane;
 
-import br.upe.ppsw.jabberpoint.apresentacao.views.AboutBox;
 import br.upe.ppsw.jabberpoint.apresentacao.models.Presentation;
 import br.upe.ppsw.jabberpoint.apresentacao.views.SlideViewerComponent;
 import org.springframework.util.ResourceUtils;
@@ -61,12 +60,11 @@ public class MenuController extends MenuBar {
   protected static final String VIEW = "Visualizar";
 
   protected static final String TESTFILE = "classpath:test.xml";
-  protected static final String SAVEFILE = "classpath:dump.xml";
+  protected static final String SAVEFILE = "dump.xml";
 
   protected static final String IOEX = "IO Exception: ";
   protected static final String LOADERR = "Erro ao carregar";
   protected static final String SAVEERR = "Erro ao salvar";
-  protected static final String GOTOERR = "Só é aceito números";
 
   /**
    * Representa o menu superior da tela de {@link Presentation}
@@ -127,6 +125,7 @@ public class MenuController extends MenuBar {
       presentation.clear();
 
       IDataPresentation XMLDataPresentation = new XMLDataPresentation();
+
       try{
         XMLDataPresentation.loadFile(presentation, ResourceUtils.getFile(TESTFILE).getAbsolutePath());
       } catch (IOException exc) {
@@ -146,7 +145,11 @@ public class MenuController extends MenuBar {
     menuItem.addActionListener(ActionEvent -> {
       IDataPresentation xmlAcessor = new XMLDataPresentation();
       try {
-        xmlAcessor.saveFile(presentation, SAVEFILE);
+        if(presentation.getSize() > 0) {
+          xmlAcessor.saveFile(this.presentation, SAVEFILE);
+        } else {
+          JOptionPane.showMessageDialog(frame, "Não há slides para salvar", SAVEERR, JOptionPane.ERROR_MESSAGE);
+        }
       }catch (IOException exc) {
         JOptionPane.showMessageDialog(frame, IOEX + exc, SAVEERR, JOptionPane.ERROR_MESSAGE);
       }
@@ -192,8 +195,13 @@ public class MenuController extends MenuBar {
 
     menuItem.addActionListener(ActionEvent -> {
       String pageNumberStr = JOptionPane.showInputDialog((Object) PAGENR);
-      int pageNumber = Integer.parseInt(pageNumberStr);
-      if (pageNumber >= 1 && pageNumber <= presentation.getSize()) { presentation.setSlideNumber(pageNumber - 1); slideViewerComponent.update(); }
+      try {
+        int pageNumber = Integer.parseInt(pageNumberStr);
+        if (pageNumber >= 1 && pageNumber <= presentation.getSize()) { presentation.setSlideNumber(pageNumber - 1); slideViewerComponent.update(); }
+        else { JOptionPane.showMessageDialog(frame, "Não é possível acessar este slide", "ERROR", JOptionPane.ERROR_MESSAGE); }
+      }catch (NumberFormatException exc) {
+        JOptionPane.showMessageDialog(frame, PAGENR + " deve ser um número inteiro", "Erro", JOptionPane.ERROR_MESSAGE);
+      }
     });
 
   }
@@ -203,8 +211,13 @@ public class MenuController extends MenuBar {
     menu.add(menuItem = mkMenuItem(ABOUT, "K"));
 
     menuItem.addActionListener(ActionEvent -> {
-      AboutBox.show(frame);
-    });
+      JOptionPane.showMessageDialog(frame,
+              "JabberPoint é um programa de apresentação de slides básico escrito em Java(tm).\n"
+                      + "Ele é disponibilizado como uma cópia livre desde que você mantenha esta informação de splash screen intacta.\n"
+                      + "Copyright (c) 1995-now by Ian F. Darwin, ian@darwinsys.com.\n"
+                      + "Adaptada por Helaine Barreiros para Universidade de Pernambuco, 2021 -- now.\n"
+                      + "A cópia original do autor está disponível em http://www.darwinsys.com/",
+              "Sobre JabberPoint", JOptionPane.INFORMATION_MESSAGE); });
 
   }
 

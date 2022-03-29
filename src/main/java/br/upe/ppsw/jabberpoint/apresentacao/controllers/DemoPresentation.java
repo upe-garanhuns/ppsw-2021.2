@@ -27,9 +27,6 @@ import br.upe.ppsw.jabberpoint.apresentacao.models.Slide;
 import br.upe.ppsw.jabberpoint.apresentacao.models.Presentation;
 import org.springframework.util.ResourceUtils;
 
-/**
- * Representa os dados de uma {@link Presentation} de demonstração.
- */
 public class DemoPresentation implements IDataPresentation {
 
   public void loadFile(Presentation presentation, String unusedFilename)

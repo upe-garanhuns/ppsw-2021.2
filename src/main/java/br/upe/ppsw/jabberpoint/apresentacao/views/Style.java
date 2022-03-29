@@ -20,17 +20,9 @@
  */
 package br.upe.ppsw.jabberpoint.apresentacao.views;
 
-import br.upe.ppsw.jabberpoint.apresentacao.models.Presentation;
-import br.upe.ppsw.jabberpoint.apresentacao.models.Slide;
-import br.upe.ppsw.jabberpoint.apresentacao.models.SlideItem;
-
 import java.awt.Color;
 import java.awt.Font;
 
-/**
- * Representa uma folha de estilos que é aplicado aos {@link SlideItem} dos {@link Slide} de uma
- * {@link Presentation}
- */
 public class Style {
 
   private static Style[] styles;

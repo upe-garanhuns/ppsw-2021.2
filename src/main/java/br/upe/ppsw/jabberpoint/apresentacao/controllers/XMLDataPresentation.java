@@ -32,7 +32,6 @@ import javax.xml.parsers.ParserConfigurationException;
 import br.upe.ppsw.jabberpoint.apresentacao.models.BitmapItem;
 import br.upe.ppsw.jabberpoint.apresentacao.models.SlideItem;
 import br.upe.ppsw.jabberpoint.apresentacao.models.TextItem;
-import br.upe.ppsw.jabberpoint.apresentacao.controllers.IDataPresentation;
 import br.upe.ppsw.jabberpoint.apresentacao.models.Presentation;
 import br.upe.ppsw.jabberpoint.apresentacao.models.Slide;
 import org.w3c.dom.Document;
@@ -41,14 +40,10 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-/**
- * Representação XML de um arquivo de {@link Presentation}
- */
+
 public class XMLDataPresentation implements IDataPresentation {
 
-  protected static final String DEFAULT_API_TO_USE = "dom";
 
-  /** nomeclatura dos itens de um slide */
   protected static final String SHOWTITLE = "showtitle";
   protected static final String SLIDETITLE = "title";
   protected static final String SLIDE = "slide";
@@ -69,9 +64,7 @@ public class XMLDataPresentation implements IDataPresentation {
 
   }
 
-  /**
-   * @see IDataPresentation#loadFile(Presentation, String)
-   */
+
   public void loadFile(Presentation presentation, String filename) throws IOException {
     int slideNumber, itemNumber, max = 0, maxItems = 0;
 
@@ -139,9 +132,6 @@ public class XMLDataPresentation implements IDataPresentation {
     }
   }
 
-  /**
-   * @see IDataPresentation#saveFile(Presentation, String)
-   */
   public void saveFile(Presentation presentation, String filename) throws IOException {
     PrintWriter out = new PrintWriter(new FileWriter(filename));
 

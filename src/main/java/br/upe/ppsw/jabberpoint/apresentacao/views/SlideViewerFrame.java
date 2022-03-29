@@ -23,16 +23,12 @@ package br.upe.ppsw.jabberpoint.apresentacao.views;
 import br.upe.ppsw.jabberpoint.apresentacao.controllers.KeyController;
 import br.upe.ppsw.jabberpoint.apresentacao.controllers.MenuController;
 import br.upe.ppsw.jabberpoint.apresentacao.models.Presentation;
-import br.upe.ppsw.jabberpoint.apresentacao.models.Slide;
 
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 
-/**
- * Representa a janela de exibição ao usuário dos {@link Slide} de uma {@link Presentation};
- */
 public class SlideViewerFrame extends JFrame {
 
   private static final long serialVersionUID = 3227L;
@@ -46,18 +42,9 @@ public class SlideViewerFrame extends JFrame {
     super(title);
 
     SlideViewerComponent slideViewerComponent = new SlideViewerComponent(presentation, this);
-//    presentation.setShowView(slideViewerComponent);
-
     setupWindow(slideViewerComponent, presentation);
   }
 
-  /**
-   * Configura a interface com o usuário para a exibição de uma {@link Presentation}
-   * 
-   * @param slideViewerComponent A instância de {@link SlideViewerComponent}, o componente de
-   *        controle da visualização e navegação dos {@link Slide} de uma {@link Presentation}
-   * @param presentation A instância de {@link Presentation} que contém os dados da apresentação.
-   */
   public void setupWindow(SlideViewerComponent slideViewerComponent, Presentation presentation) {
     setTitle(JABTITLE);
 
@@ -74,13 +61,5 @@ public class SlideViewerFrame extends JFrame {
     slideViewerComponent.update();
     setVisible(true);
   }
-
-  /**
-   * Obtém uma escala de proporção em função da altura, largura e tamanho da apresentação para
-   * exibição dos slides.
-   *
-   * @param area um {@link Rectangle} contendo os dados de tamanho da apresentação.
-   * @return um float com a proporção calculada.
-   */
 
 }
