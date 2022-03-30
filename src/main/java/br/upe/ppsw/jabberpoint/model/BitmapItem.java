@@ -100,16 +100,17 @@ public class BitmapItem extends SlideItem {
   public String toString() {
     return "BitmapItem[" + getLevel() + "," + imageName + "]";
   }
+  
 
-  @Override
-  public Rectangle getBoundingBox(Graphics g, ImageObserver observer, float scale, Style style) {
+ // @Override
+  //public Rectangle getBoundingBox(Graphics g, ImageObserver observer, float scale, Style style) {
     // TODO Auto-generated method stub
-    return null;
-  }
+//  return null;
+  //}
 
-  @Override
-  public void draw(int x, int y, float scale, Graphics g, Style style, ImageObserver observer) {
+ // @Override
+ // public void draw(int x, int y, float scale, Graphics g, Style style, ImageObserver observer) {
     // TODO Auto-generated method stub
     
-  }
+  
 }

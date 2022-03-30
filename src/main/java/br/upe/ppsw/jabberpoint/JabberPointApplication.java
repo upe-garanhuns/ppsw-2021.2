@@ -22,7 +22,9 @@
 package br.upe.ppsw.jabberpoint;
 
 import java.io.IOException;
+
 import javax.swing.JOptionPane;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
