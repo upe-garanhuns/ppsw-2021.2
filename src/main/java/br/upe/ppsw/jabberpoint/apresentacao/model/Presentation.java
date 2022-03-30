@@ -50,7 +50,7 @@ public class Presentation {
    *        apresentação.
    */
   public Presentation(SlideViewerComponent slideViewerComponent) {
-    this.slideViewComponent = slideViewerComponent;
+   this.slideViewComponent = slideViewerComponent;
     clear();
   }
 

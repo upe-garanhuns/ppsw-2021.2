@@ -20,12 +20,7 @@
  */
 package br.upe.ppsw.jabberpoint.apresentacao.model;
 
-import java.awt.Graphics;
-import java.awt.Rectangle;
-import java.awt.image.ImageObserver;
 import java.util.Vector;
-
-import br.upe.ppsw.jabberpoint.apresentacao.view.Style;
 
 /**
  * Representa os dados de um slide de uma {@link Presentation} composta por uma lista de
@@ -33,8 +28,8 @@ import br.upe.ppsw.jabberpoint.apresentacao.view.Style;
  */
 public class Slide {
 
-  public final static int WIDTH = 1200;
-  public final static int HEIGHT = 800;
+ // public final static int WIDTH = 1200;
+ // public final static int HEIGHT = 800;
 
   protected TextItem title;
   protected Vector<SlideItem> items;
@@ -62,8 +57,12 @@ public class Slide {
    */
   public String getTitle() {
     return title.getText();
+    
   }
-
+  
+  public TextItem getTextTitle() {
+	  return this.title;
+  }
   /**
    * Altera o título do {@link Slide}.
    * 
@@ -120,26 +119,8 @@ public class Slide {
    * @param view A instância de {@link ImageObserver}, o observer que recebe as notificações dos
    *        itens que são desenhados na interface.
    */
-  public void draw(Graphics graphics, Rectangle area, ImageObserver view) {
-    float scale = getScale(area);
-
-    int y = area.y;
-
-    SlideItem slideItem = this.title;
-    Style style = Style.getStyle(slideItem.getLevel());
-    slideItem.draw(area.x, y, scale, graphics, style, view);
-
-    y += slideItem.getBoundingBox(graphics, view, scale, style).height;
-
-    for (int number = 0; number < getSize(); number++) {
-      slideItem = (SlideItem) getSlideItems().elementAt(number);
-
-      style = Style.getStyle(slideItem.getLevel());
-      slideItem.draw(area.x, y, scale, graphics, style, view);
-
-      y += slideItem.getBoundingBox(graphics, view, scale, style).height;
-    }
-  }
+  
+  
 
   /**
    * Obtém uma escala de proporção em função da altura, largura e tamanho da apresentação para
@@ -148,8 +129,5 @@ public class Slide {
    * @param area um {@link Rectangle} contendo os dados de tamanho da apresentação.
    * @return um float com a proporção calculada.
    */
-  private float getScale(Rectangle area) {
-    return Math.min(((float) area.width) / ((float) WIDTH),
-        ((float) area.height) / ((float) HEIGHT));
-  }
+ 
 }

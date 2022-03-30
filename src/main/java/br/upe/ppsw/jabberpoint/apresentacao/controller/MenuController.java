@@ -32,7 +32,6 @@ import javax.swing.JOptionPane;
 import org.springframework.util.ResourceUtils;
 
 import br.upe.ppsw.jabberpoint.apresentacao.model.Presentation;
-import br.upe.ppsw.jabberpoint.apresentacao.model.XMLPresentation;
 
 /**
  * Implementação dos mecanismos de controle navegacional através de um menu superior de uma

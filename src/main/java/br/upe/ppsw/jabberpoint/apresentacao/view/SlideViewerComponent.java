@@ -25,11 +25,14 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.awt.image.ImageObserver;
+
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 
 import br.upe.ppsw.jabberpoint.apresentacao.model.Presentation;
 import br.upe.ppsw.jabberpoint.apresentacao.model.Slide;
+import br.upe.ppsw.jabberpoint.apresentacao.model.SlideItem;
 
 /**
  * Representa o componente de apresentação dos {@link Slide} de uma {@link Presentation}.
@@ -69,7 +72,7 @@ public class SlideViewerComponent extends JComponent {
    * @return {@link Dimension} A instãncia com as dimensões preferidas de exibição.
    */
   public Dimension getPreferredSize() {
-    return new Dimension(Slide.WIDTH, Slide.HEIGHT);
+    return new Dimension(1200, 800);
   }
 
   /**
@@ -111,7 +114,35 @@ public class SlideViewerComponent extends JComponent {
 
     Rectangle area = new Rectangle(0, YPOS, getWidth(), (getHeight() - YPOS));
 
-    slide.draw(graphics, area, this);
+    draw(graphics, area, this);
+  }
+  
+  public void draw(Graphics graphics, Rectangle area, ImageObserver view) {
+	    float scale = getScale(area);
+
+	    int y = area.y;
+
+	    SlideItem slideItem = slide.getTextTitle();
+	    Style style = Style.getStyle(slideItem.getLevel());
+	    slideItem.draw(area.x, y, scale, graphics, style, view);
+
+	    y += slideItem.getBoundingBox(graphics, view, scale, style).height;
+
+	    for (int number = 0; number < slide.getSize(); number++) {
+	      slideItem = (SlideItem) slide.getSlideItems().elementAt(number);
+
+	      style = Style.getStyle(slideItem.getLevel());
+	      slideItem.draw(area.x, y, scale, graphics, style, view);
+
+	      y += slideItem.getBoundingBox(graphics, view, scale, style).height;
+	    }
   }
 
+  private float getScale(Rectangle area) {
+	    return Math.min(((float) area.width) / ((float) 1200),
+	        ((float) area.height) / ((float) 800));
+	  } 
+  
 }
+
+

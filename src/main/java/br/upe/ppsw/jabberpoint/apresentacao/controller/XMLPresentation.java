@@ -18,7 +18,7 @@
  * 
  * @author Ian F. Darwin, hbarreiros
  */
-package br.upe.ppsw.jabberpoint.apresentacao.model;
+package br.upe.ppsw.jabberpoint.apresentacao.controller;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -33,6 +33,12 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
+
+import br.upe.ppsw.jabberpoint.apresentacao.model.BitmapItem;
+import br.upe.ppsw.jabberpoint.apresentacao.model.Presentation;
+import br.upe.ppsw.jabberpoint.apresentacao.model.Slide;
+import br.upe.ppsw.jabberpoint.apresentacao.model.SlideItem;
+import br.upe.ppsw.jabberpoint.apresentacao.model.TextItem;
 
 /**
  * Representação XML de um arquivo de {@link Presentation}
