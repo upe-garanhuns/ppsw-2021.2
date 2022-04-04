@@ -27,7 +27,7 @@ import br.upe.ppsw.jabberpoint.apresentacao.model.BitmapItem;
 import br.upe.ppsw.jabberpoint.apresentacao.model.Presentation;
 import br.upe.ppsw.jabberpoint.apresentacao.model.Slide;
 
-public class DemoData extends DataAccessor {
+public class DemoPresentation extends DataAccessor {
 
 	public void loadFile(Presentation presentation, String unusedFilename) throws FileNotFoundException {
 

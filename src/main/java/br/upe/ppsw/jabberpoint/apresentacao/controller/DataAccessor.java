@@ -30,7 +30,7 @@ public abstract class DataAccessor {
 	public static final String DEFAULT_EXTENSION = ".xml";
 
 	public static DataAccessor getDemoAccessor() {
-		return new DemoData();
+		return new DemoPresentation();
 	}
 
 	public DataAccessor() {
