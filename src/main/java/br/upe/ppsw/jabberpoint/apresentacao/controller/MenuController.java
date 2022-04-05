@@ -71,9 +71,9 @@ public class MenuController extends MenuBar {
 
 		MenuItem menuItem;
 
-		Menu fileMenu = new Menu(FILE);
+		Menu fileMenu = new Menu(FILE); 
 		fileMenu.add(menuItem = mkMenuItem(OPEN));
-
+		
 		menuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
 				presentation.clear();
@@ -91,16 +91,16 @@ public class MenuController extends MenuBar {
 		});
 
 		fileMenu.add(menuItem = mkMenuItem(NEW));
-
+		
 		menuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
 				presentation.clear();
 				parent.repaint();
 			}
 		});
-
+		
 		fileMenu.add(menuItem = mkMenuItem(SAVE));
-
+		
 		menuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DataAccessor xmlAccessor = new XMLAccessor();
@@ -115,7 +115,7 @@ public class MenuController extends MenuBar {
 		fileMenu.addSeparator();
 
 		fileMenu.add(menuItem = mkMenuItem(EXIT));
-
+		
 		menuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
 				System.exit(0);
@@ -126,32 +126,29 @@ public class MenuController extends MenuBar {
 
 		Menu viewMenu = new Menu(VIEW);
 		viewMenu.add(menuItem = mkMenuItem(NEXT));
-
+		
 		menuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
-				presentation.nextSlide();
-				slideViewerComponent.update();
+				IController.next(pres, slideViewerComponent);
 			}
 		});
 
 		viewMenu.add(menuItem = mkMenuItem(PREV));
-
+		
 		menuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
-				presentation.prevSlide();
-				slideViewerComponent.update();
+				IController.prev(pres, slideViewerComponent);
 			}
 		});
 
 		viewMenu.add(menuItem = mkMenuItem(GOTO));
-
+		
 		menuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
 				String pageNumberStr = JOptionPane.showInputDialog((Object) PAGENR);
 				int pageNumber = Integer.parseInt(pageNumberStr);
 				if (pageNumber <= presentation.getSize() && pageNumber >= 0) {
-					presentation.setSlideNumber(pageNumber - 1);
-					slideViewerComponent.update();
+					IController.goTo(pres, slideViewerComponent, pageNumber);
 				} else {
 					JOptionPane.showMessageDialog(parent, "Não é possível navegar para esse slide.",
 							"Operação inválida", JOptionPane.ERROR_MESSAGE);
