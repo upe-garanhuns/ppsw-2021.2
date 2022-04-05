@@ -118,7 +118,7 @@ public class MenuController extends MenuBar {
 		
 		menuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
-				System.exit(0);
+				IController.exitPresentation();
 			}
 		});
 

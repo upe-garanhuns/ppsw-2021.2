@@ -50,7 +50,7 @@ public class KeyController extends KeyAdapter {
 			break;
 		case 'q':
 		case 'Q':
-			System.exit(0);
+			IController.exitPresentation();
 			break; // fix?
 		default:
 			break;

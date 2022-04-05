@@ -4,7 +4,7 @@ import br.upe.ppsw.jabberpoint.apresentacao.model.Presentation;
 import br.upe.ppsw.jabberpoint.apresentacao.view.SlideViewerComponent;
 
 public interface IController {
-	
+		
 	static void next(Presentation presentation, SlideViewerComponent slideViewerComponent) {
 		presentation.nextSlide();
 		slideViewerComponent.update();
@@ -19,4 +19,9 @@ public interface IController {
 		presentation.setSlideNumber(pageNumber - 1);
 		slideViewerComponent.update();
 	}
+	
+	static void exitPresentation() {
+		System.exit(0);
+	}
+	
 }
