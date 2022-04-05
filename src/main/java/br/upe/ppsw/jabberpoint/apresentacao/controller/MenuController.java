@@ -177,6 +177,8 @@ public class MenuController extends MenuBar {
 	}
 
 	public MenuItem mkMenuItem(String name) {
-		return new MenuItem(name, new MenuShortcut(name.charAt(0)));
+		return new MenuItem(name);
+		//Retirando shortcut até pensar na solução desse problema...
+		//return new MenuItem(name, new MenuShortcut(name.charAt(0)));
 	}
 }
