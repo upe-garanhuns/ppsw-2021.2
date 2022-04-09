@@ -18,40 +18,39 @@
  * 
  * @author Ian F. Darwin, hbarreiros
  */
-package br.upe.ppsw.jabberpoint.apresentacao.controller;
+package br.upe.ppsw.jabberpoint.controle;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import br.upe.ppsw.jabberpoint.apresentacao.model.Presentation;
-import br.upe.ppsw.jabberpoint.apresentacao.view.SlideViewerComponent;;
+
+import br.upe.ppsw.jabberpoint.apresentacao.visualizador.PresentationViewer;
 
 public class KeyController extends KeyAdapter {
 
-	private Presentation presentation;
-	private SlideViewerComponent slideViewerComponent;
+	private PresentationViewer parent;
 
-	public KeyController(Presentation p, SlideViewerComponent slideViewerComponent) {
-		this.presentation = p;
-		this.slideViewerComponent = slideViewerComponent;
+	public KeyController(PresentationViewer parent) {
+		this.parent = parent;
 	}
 
+	@Override
 	public void keyPressed(KeyEvent keyEvent) {
 		switch (keyEvent.getKeyCode()) {
 		case KeyEvent.VK_PAGE_DOWN:
 		case KeyEvent.VK_DOWN:
 		case KeyEvent.VK_ENTER:
 		case '+':
-			IController.next(presentation, slideViewerComponent);
+			parent.nextSlide();
 			break;
 		case KeyEvent.VK_PAGE_UP:
 		case KeyEvent.VK_UP:
 		case '-':
-			IController.prev(presentation, slideViewerComponent);
+			parent.previousSlide();
 			break;
 		case 'q':
 		case 'Q':
-			IController.exitPresentation();
-			break; // fix?
+			System.exit(0);
+			break;
 		default:
 			break;
 		}

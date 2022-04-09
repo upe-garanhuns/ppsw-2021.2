@@ -18,32 +18,36 @@
  * 
  * @author Ian F. Darwin, hbarreiros
  */
-package br.upe.ppsw.jabberpoint.apresentacao.model;
+package br.upe.ppsw.jabberpoint.modelo;
 
-import java.awt.Graphics;
-import java.awt.Rectangle;
-import java.awt.image.ImageObserver;
+import lombok.Data;
 
-import br.upe.ppsw.jabberpoint.apresentacao.view.Style;
-
-public abstract class SlideItem {
+@Data
+public class SlideItem {
 
 	private int level = 0;
+	private String text;
+	private SlideItemType type;
+	private byte[] media;
 
-	public SlideItem(int lev) {
-		level = lev;
+	public SlideItem(int level) {
+		this.level = level;
+		this.text = "";
+		this.type = SlideItemType.TEXT;
 	}
 
-	public SlideItem() {
-		this(0);
+	public SlideItem(int level, String text) {
+		this.level = level;
+		this.text = text;
+		this.type = SlideItemType.TEXT;
 	}
 
-	public int getLevel() {
-		return level;
+	public SlideItem(int level, String caption, byte[] image) {
+		this(level);
+
+		this.text = caption;
+		this.type = SlideItemType.IMAGE;
+		this.media = image;
 	}
-
-	public abstract Rectangle getBoundingBox(Graphics g, ImageObserver observer, float scale, Style style);
-
-	public abstract void draw(int x, int y, float scale, Graphics g, Style style, ImageObserver observer);
 
 }

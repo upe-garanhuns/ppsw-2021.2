@@ -18,49 +18,40 @@
  * 
  * @author Ian F. Darwin, hbarreiros
  */
-package br.upe.ppsw.jabberpoint.apresentacao.model;
+package br.upe.ppsw.jabberpoint.modelo;
 
-import java.util.Vector;
+import java.util.LinkedList;
+import lombok.Data;
 
+@Data
 public class Slide {
-	
-	protected TextItem title;
-	protected Vector<SlideItem> items;
+
+	protected String title;
+	protected LinkedList<SlideItem> items;
 
 	public Slide() {
-		items = new Vector<SlideItem>();
+		this.items = new LinkedList<>();
 	}
 
-	public void appendSlideItem(SlideItem anItem) {
-		items.addElement(anItem);
+	public Slide(String title) {
+		this();
+		this.title = title;
 	}
 
-	public String getTitleText() {
-		return title.getText();
-	}
-	
-	public TextItem getTitle() {
-		return this.title;
+	public void append(SlideItem item) {
+		this.items.addLast(item);
 	}
 
-	public void setTitle(String newTitle) {
-		title = new TextItem(0, newTitle);
-	}
-
-	public void appendTextItem(int level, String message) {
-		appendSlideItem(new TextItem(level, message));
+	public void add(int level, SlideItem item) {
+		this.items.add(level, item);
 	}
 
 	public SlideItem getSlideItem(int number) {
-		return (SlideItem) items.elementAt(number);
+		return items.get(number);
 	}
 
-	public Vector<SlideItem> getSlideItems() {
-		return items;
-	}
-
-	public int getSize() {
-		return items.size();
+	public int getItemsSize() {
+		return this.items.size();
 	}
 
 }

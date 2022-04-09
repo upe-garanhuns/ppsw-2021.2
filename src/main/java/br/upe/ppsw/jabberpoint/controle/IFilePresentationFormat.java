@@ -18,26 +18,14 @@
  * 
  * @author Ian F. Darwin, hbarreiros
  */
-package br.upe.ppsw.jabberpoint.apresentacao.controller;
+package br.upe.ppsw.jabberpoint.controle;
 
-import java.io.IOException;
+import br.upe.ppsw.jabberpoint.modelo.Presentation;
 
-import br.upe.ppsw.jabberpoint.apresentacao.model.Presentation;
+public interface IFilePresentationFormat {
 
-public abstract class DataAccessor {
+	Presentation load(String fileName);
 
-	public static final String DEMO_NAME = "Apresentação de Demonstração";
-	public static final String DEFAULT_EXTENSION = ".xml";
-
-	public static DataAccessor getDemoAccessor() {
-		return new DemoPresentation();
-	}
-
-	public DataAccessor() {
-	}
-
-	abstract public void loadFile(Presentation presentation, String fileName) throws IOException;
-
-	abstract public void saveFile(Presentation presentation, String fileName) throws IOException;
+	void save(Presentation presentation, String fileName);
 
 }

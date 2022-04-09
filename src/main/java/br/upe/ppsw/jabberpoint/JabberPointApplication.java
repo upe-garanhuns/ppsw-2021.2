@@ -21,53 +21,66 @@
 
 package br.upe.ppsw.jabberpoint;
 
-import java.io.IOException;
 import javax.swing.JOptionPane;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
-
-import br.upe.ppsw.jabberpoint.apresentacao.controller.DataAccessor;
-import br.upe.ppsw.jabberpoint.apresentacao.controller.XMLAccessor;
-import br.upe.ppsw.jabberpoint.apresentacao.model.Presentation;
-import br.upe.ppsw.jabberpoint.apresentacao.view.SlideViewerFrame;
-import br.upe.ppsw.jabberpoint.apresentacao.view.Style;
+import org.springframework.util.StringUtils;
+import br.upe.ppsw.jabberpoint.apresentacao.Style;
+import br.upe.ppsw.jabberpoint.apresentacao.visualizador.PresentationViewer;
+import br.upe.ppsw.jabberpoint.controle.IFilePresentationFormat;
+import br.upe.ppsw.jabberpoint.controle.XMLFormat;
+import br.upe.ppsw.jabberpoint.modelo.Presentation;
+import br.upe.ppsw.jabberpoint.modelo.PresentationDemo;
 
 @SpringBootApplication
 public class JabberPointApplication implements CommandLineRunner {
 
-	protected static final String IOERR = "IO Error: ";
-	protected static final String JABERR = "Jabberpoint Error ";
-	protected static final String JABVERSION = "Jabberpoint 1.6 -";
+  protected static final String IOERR = "IO Error: ";
+  protected static final String JABERR = "Jabberpoint Error ";
+  protected static final String JABVERSION = "Jabberpoint 1.6 -";
 
-	public static void main(String[] argv) {
-		SpringApplicationBuilder builder = new SpringApplicationBuilder(JabberPointApplication.class);
-		builder.headless(false);
-		builder.web(WebApplicationType.NONE);
-		builder.run(argv);
-	}
+  public static final int WIDTH = 1200;
+  public static final int HEIGHT = 800;
+  
+  private Presentation presentation;
+  private static IFilePresentationFormat fileFormat = new XMLFormat();
+  
+  public static void main(String[] argv) {
+    SpringApplicationBuilder builder = new SpringApplicationBuilder(JabberPointApplication.class);
+    builder.headless(false);
+    builder.web(WebApplicationType.NONE);
+    builder.run(argv);
+  }
 
-	@Override
-	public void run(String... args) throws Exception {
-		Style.createStyles();
+  public static final IFilePresentationFormat getFileManager() {
+    return fileFormat;
+  }
+  
+  /**
+   * Inicializa os dados da apresentação. Caso não seja informada uma apresentação em específico
+   * através do parâmetro de argumento da aplicação será carregada uma apresentação padrão.
+   */
+  @Override
+  public void run(String... args) throws Exception {
+    try {
+      
+      Style.createStyles();
+      String file = args == null || args.length == 0 ? null : args[0];
+      //String file = "/home/helainelins/Ensino/2021.2/ppsw/projeto/base/ppsw-2021.2/src/main/resources/test.xml";
 
-		Presentation presentation = new Presentation();
-
-		try {
-			if (args.length == 0) {
-				DataAccessor.getDemoAccessor().loadFile(presentation, "");
-			} else {
-				new XMLAccessor().loadFile(presentation, args[0]);
-			}
-
-			presentation.setSlideNumber(0);
-			
-			new SlideViewerFrame(JABVERSION, presentation);
-
-		} catch (IOException ex) {
-			JOptionPane.showMessageDialog(null, IOERR + ex, JABERR, JOptionPane.ERROR_MESSAGE);
-		}
-	}
+      if (StringUtils.hasLength(file)) {
+        this.presentation = fileFormat.load(file);
+      } else {
+        this.presentation = new PresentationDemo();
+      }
+      
+      new PresentationViewer(this.presentation);
+      
+    } catch (Exception ex) {
+      JOptionPane.showMessageDialog(null, IOERR + ex, JABERR, JOptionPane.ERROR_MESSAGE);
+    }
+  }
 
 }
