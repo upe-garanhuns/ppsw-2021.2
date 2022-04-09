@@ -21,21 +21,20 @@
 
 package br.upe.ppsw.jabberpoint;
 
-import java.io.IOException;
 import javax.swing.JOptionPane;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
-import br.upe.ppsw.jabberpoint.apresentacao.Accessor;
-import br.upe.ppsw.jabberpoint.apresentacao.Presentation;
-import br.upe.ppsw.jabberpoint.apresentacao.SlideViewerFrame;
-import br.upe.ppsw.jabberpoint.apresentacao.Style;
-import br.upe.ppsw.jabberpoint.apresentacao.XMLAccessor;
+import org.springframework.util.StringUtils;
 
-/**
- * Classe principal que inicializa a aplicação de apresentação de slides
- */
+import br.upe.ppsw.jabberpoint.control.IFilePresentationFormat;
+import br.upe.ppsw.jabberpoint.control.XMLFormat;
+import br.upe.ppsw.jabberpoint.model.Presentation;
+import br.upe.ppsw.jabberpoint.model.PresentationDemo;
+import br.upe.ppsw.jabberpoint.presentation.Style;
+import br.upe.ppsw.jabberpoint.presentation.viewer.PresentationViewer;
+
 @SpringBootApplication
 public class JabberPointApplication implements CommandLineRunner {
 
@@ -43,6 +42,12 @@ public class JabberPointApplication implements CommandLineRunner {
   protected static final String JABERR = "Jabberpoint Error ";
   protected static final String JABVERSION = "Jabberpoint 1.6 -";
 
+  public static final int WIDTH = 1200;
+  public static final int HEIGHT = 800;
+  
+  private Presentation presentation;
+  private static IFilePresentationFormat fileFormat = new XMLFormat();
+  
   public static void main(String[] argv) {
     SpringApplicationBuilder builder = new SpringApplicationBuilder(JabberPointApplication.class);
     builder.headless(false);
@@ -50,28 +55,31 @@ public class JabberPointApplication implements CommandLineRunner {
     builder.run(argv);
   }
 
+  public static final IFilePresentationFormat getFileManager() {
+    return fileFormat;
+  }
+  
   /**
    * Inicializa os dados da apresentação. Caso não seja informada uma apresentação em específico
    * através do parâmetro de argumento da aplicação será carregada uma apresentação padrão.
    */
   @Override
   public void run(String... args) throws Exception {
-    Style.createStyles();
-
-    Presentation presentation = new Presentation();
-
-    new SlideViewerFrame(JABVERSION, presentation);
-
     try {
-      if (args.length == 0) {
-        Accessor.getDemoAccessor().loadFile(presentation, "");
+      
+      Style.createStyles();
+      String file = args == null || args.length == 0 ? null : args[0];
+      //String file = "/home/helainelins/Ensino/2021.2/ppsw/projeto/base/ppsw-2021.2/src/main/resources/test.xml";
+
+      if (StringUtils.hasLength(file)) {
+        this.presentation = fileFormat.load(file);
       } else {
-        new XMLAccessor().loadFile(presentation, args[0]);
+        this.presentation = new PresentationDemo();
       }
-
-      presentation.setSlideNumber(0);
-
-    } catch (IOException ex) {
+      
+      new PresentationViewer(this.presentation);
+      
+    } catch (Exception ex) {
       JOptionPane.showMessageDialog(null, IOERR + ex, JABERR, JOptionPane.ERROR_MESSAGE);
     }
   }
