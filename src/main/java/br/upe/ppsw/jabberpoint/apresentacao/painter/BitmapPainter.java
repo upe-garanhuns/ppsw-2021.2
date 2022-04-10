@@ -29,6 +29,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import br.upe.ppsw.jabberpoint.apresentacao.Style;
 import br.upe.ppsw.jabberpoint.base.JabberPointException;
+import br.upe.ppsw.jabberpoint.modelo.SlideItem;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -39,8 +40,10 @@ public class BitmapPainter {
 	}
 
 	public static int draw(int x, int y, float scale, Graphics g, Style myStyle, ImageObserver observer,
-			byte[] imageByte) {
+			SlideItem item) {
 
+		byte[] imageByte = item.getMedia(); 
+		
 		try {
 			int width = x + (int) (myStyle.getIndent() * scale);
 			int height = y + (int) (myStyle.getLeading() * scale);

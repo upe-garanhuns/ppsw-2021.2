@@ -37,6 +37,7 @@ import java.util.List;
 import org.springframework.util.StringUtils;
 
 import br.upe.ppsw.jabberpoint.apresentacao.Style;
+import br.upe.ppsw.jabberpoint.modelo.SlideItem;
 
 public class TextPainter {
 
@@ -44,7 +45,10 @@ public class TextPainter {
 
 	}
 	
-	public static int draw(int x, int y, float scale, Graphics g, Style myStyle, String text) {
+	public static int draw(int x, int y, float scale, Graphics g, Style myStyle, SlideItem item) {
+		
+		String text = item.getText();
+		
 		if (StringUtils.hasLength(text)) {
 
 			List<TextLayout> layouts = getLayouts(g, myStyle, scale, text);

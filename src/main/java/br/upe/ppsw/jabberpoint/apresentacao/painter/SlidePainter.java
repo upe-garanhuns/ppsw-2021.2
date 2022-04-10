@@ -23,16 +23,18 @@ public class SlidePainter {
 		int y = area.y;
 
 		Style style = Style.getStyle(0);
+		
+		SlideItem slideTitle = new SlideItem(0, this.slide.getTitle());
 
-		y += TextPainter.draw(area.x, area.y, scale, g, style, this.slide.getTitle());
+		y += TextPainter.draw(area.x, area.y, scale, g, style, slideTitle);
 
 		for (SlideItem item : this.slide.getItems()) {
 			style = Style.getStyle(item.getLevel());
 
 			if (SlideItemType.TEXT.equals(item.getType())) {
-				y += TextPainter.draw(area.x, y, scale, g, style, item.getText());
+				y += TextPainter.draw(area.x, y, scale, g, style, item);
 			} else {
-				y += BitmapPainter.draw(area.x, y, scale, g, style, view, item.getMedia());
+				y += BitmapPainter.draw(area.x, y, scale, g, style, view, item);
 			}
 		}
 	}
