@@ -31,78 +31,82 @@ import br.upe.ppsw.jabberpoint.modelo.Presentation;
 import br.upe.ppsw.jabberpoint.modelo.Slide;
 
 /**
- * Representa a janela de exibição ao usuário dos {@link Slide} de uma {@link Presentation};
+ * Representa a janela de exibição ao usuário dos {@link Slide} de uma
+ * {@link Presentation};
  */
 public class PresentationViewer extends JFrame {
 
-  private static final long serialVersionUID = 3227L;
+	private static final long serialVersionUID = 3227L;
 
-  private static final String JABTITLE = "Jabberpoint 1.6";
+	private static final String JABTITLE = "Jabberpoint 1.6";
 
-  private Presentation presentation;
-  private SlideViewer slideViewer;
+	private Presentation presentation;
+	private SlideViewer slideViewer;
 
-  public PresentationViewer(Presentation presentation) {
-    super();
+	public PresentationViewer(Presentation presentation) {
+		super();
 
-    this.presentation = presentation;
-    this.slideViewer = new SlideViewer();
-    
-    setupWindow();
-  }
+		this.presentation = presentation;
+		this.slideViewer = new SlideViewer();
 
-  public final Presentation currentPresentation() {
-    return this.presentation;
-  }
+		setupWindow();
+	}
 
-  /**
-   * Configura a interface com o usuário para a exibição de uma {@link Presentation}
-   * 
-   * @param slideViewerComponent A instância de {@link SlideViewer}, o componente de controle da
-   *        visualização e navegação dos {@link Slide} de uma {@link Presentation}
-   * @param presentation A instância de {@link Presentation} que contém os dados da apresentação.
-   */
-  private void setupWindow() {
-    setTitle(JABTITLE + " => " + this.presentation.getTitle());
+	public final Presentation currentPresentation() {
+		return this.presentation;
+	}
 
-    addWindowListener(new WindowAdapter() {
-      @Override
-      public void windowClosing(WindowEvent e) {
-        System.exit(0);
-      }
-    });
+	/**
+	 * Configura a interface com o usuário para a exibição de uma
+	 * {@link Presentation}
+	 * 
+	 * @param slideViewerComponent A instância de {@link SlideViewer}, o componente
+	 *                             de controle da visualização e navegação dos
+	 *                             {@link Slide} de uma {@link Presentation}
+	 * @param presentation         A instância de {@link Presentation} que contém os
+	 *                             dados da apresentação.
+	 */
+	private void setupWindow() {
+		setTitle(JABTITLE + " => " + this.presentation.getTitle());
 
-    super.getContentPane().add(this.slideViewer);
-    
-    addKeyListener(new KeyController(this));
-    setMenuBar(new MenuController(this));
-    
-    setSize(new Dimension(JabberPointApplication.WIDTH, JabberPointApplication.HEIGHT));
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				System.exit(0);
+			}
+		});
 
-    this.slideViewer.update(this.presentation.getCurrentSlide(), this.presentation.currentStatus());
+		super.getContentPane().add(this.slideViewer);
 
-    setVisible(true);
-  }
+		addKeyListener(new KeyController(this));
+		setMenuBar(new MenuController(this));
 
-  public final void loadPresentation(Presentation presentation) {
-	  this.presentation = presentation;
-	  
-	  presentation.setCurrentSlideNumber(0);
-	  this.slideViewer.update(this.presentation.getCurrentSlide(), this.presentation.currentStatus());
-	  
-	  this.repaint();
-  }
-  
-  public final void nextSlide() {
-	  this.slideViewer.update(presentation.nextSlide(), presentation.currentStatus());
-  }
-  
-  public final void previousSlide() {
-	  this.slideViewer.update(presentation.prevSlide(), presentation.currentStatus());
-  }
-  
-  public final void goToSlide(int slide) {
-	  presentation.setCurrentSlideNumber(--slide);
-	  this.slideViewer.update(presentation.getCurrentSlide(), presentation.currentStatus());
-  }
+		setSize(new Dimension(JabberPointApplication.WIDTH, JabberPointApplication.HEIGHT));
+
+		this.slideViewer.update(this.presentation.getCurrentSlide(), this.presentation.currentStatus());
+
+		setVisible(true);
+	}
+
+	public final void loadPresentation(Presentation presentation) {
+		this.presentation = presentation;
+
+		presentation.setCurrentSlideNumber(0);
+		this.slideViewer.update(this.presentation.getCurrentSlide(), this.presentation.currentStatus());
+
+		this.repaint();
+	}
+
+	public final void nextSlide() {
+		this.slideViewer.update(presentation.nextSlide(), presentation.currentStatus());
+	}
+
+	public final void previousSlide() {
+		this.slideViewer.update(presentation.prevSlide(), presentation.currentStatus());
+	}
+
+	public final void goToSlide(int slide) {
+		presentation.setCurrentSlideNumber(--slide);
+		this.slideViewer.update(presentation.getCurrentSlide(), presentation.currentStatus());
+	}
 }

@@ -145,7 +145,7 @@ public final class XMLFormat implements IFilePresentationFormat {
 				PCE_SLIDES_ELEMENT_NOT_INFORMED);
 
 		extractSlides(presentation, elementItens);
-		
+
 		return presentation;
 	}
 
@@ -153,7 +153,7 @@ public final class XMLFormat implements IFilePresentationFormat {
 		Slide slide = null;
 		Element xmlSlide = null;
 		NodeList elementItens = null;
-		
+
 		for (int slideNumber = 0; slideNumber < slidesElements.getLength(); slideNumber++) {
 			xmlSlide = (Element) slidesElements.item(slideNumber);
 

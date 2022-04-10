@@ -40,9 +40,8 @@ import br.upe.ppsw.jabberpoint.apresentacao.Style;
 
 public class TextPainter {
 
-	
 	private TextPainter() {
-		
+
 	}
 	
 	public static int draw(int x, int y, float scale, Graphics g, Style myStyle, String text) {

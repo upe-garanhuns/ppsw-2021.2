@@ -32,58 +32,59 @@ import br.upe.ppsw.jabberpoint.modelo.Presentation;
 import br.upe.ppsw.jabberpoint.modelo.Slide;
 
 /**
- * Representa o componente de apresentação dos {@link Slide} de uma {@link Presentation}.
+ * Representa o componente de apresentação dos {@link Slide} de uma
+ * {@link Presentation}.
  */
 public class SlideViewer extends JComponent {
-  private static final long serialVersionUID = 227L;
+	private static final long serialVersionUID = 227L;
 
-  private static final Color BGCOLOR = Color.white;
-  private static final Color COLOR = Color.black;
-  private static final String FONTNAME = "Dialog";
-  private static final int FONTSTYLE = Font.BOLD;
-  private static final int FONTHEIGHT = 10;
-  private static final int XPOS = 1100;
-  private static final int YPOS = 20;
+	private static final Color BGCOLOR = Color.white;
+	private static final Color COLOR = Color.black;
+	private static final String FONTNAME = "Dialog";
+	private static final int FONTSTYLE = Font.BOLD;
+	private static final int FONTHEIGHT = 10;
+	private static final int XPOS = 1100;
+	private static final int YPOS = 20;
 
-  private Slide slide;
-  private String status;
-  private Font labelFont = null;
+	private Slide slide;
+	private String status;
+	private Font labelFont = null;
 
-  public SlideViewer() {
-    setBackground(BGCOLOR);
-    labelFont = new Font(FONTNAME, FONTSTYLE, FONTHEIGHT);
-  }
+	public SlideViewer() {
+		setBackground(BGCOLOR);
+		labelFont = new Font(FONTNAME, FONTSTYLE, FONTHEIGHT);
+	}
 
-  public void update(Slide slide, String status) {
-    this.slide = slide;
-    this.status = status;
-    repaint();
-  }
+	public void update(Slide slide, String status) {
+		this.slide = slide;
+		this.status = status;
+		repaint();
+	}
 
-  /**
-   * Renderiza os elementos do componente com os dados do slide atual.
-   * 
-   * @param g A instância que receberá os itens do slide a serem exibidos na tela.
-   */
-  @Override
-  public void paintComponent(Graphics g) {
-    g.setColor(BGCOLOR);
-    g.fillRect(0, 0, getSize().width, getSize().height);
+	/**
+	 * Renderiza os elementos do componente com os dados do slide atual.
+	 * 
+	 * @param g A instância que receberá os itens do slide a serem exibidos na tela.
+	 */
+	@Override
+	public void paintComponent(Graphics g) {
+		g.setColor(BGCOLOR);
+		g.fillRect(0, 0, getSize().width, getSize().height);
 
-    if (this.slide != null) {
-      g.setFont(labelFont);
-      g.setColor(COLOR);
-      g.drawString(this.status, XPOS, YPOS);
+		if (this.slide != null) {
+			g.setFont(labelFont);
+			g.setColor(COLOR);
+			g.drawString(this.status, XPOS, YPOS);
 
-      Rectangle area = new Rectangle(0, YPOS, getWidth(), (getHeight() - YPOS));
-      new SlidePainter(this.slide).draw(g, area, this);
-    }
-    
-  }
-  
-  @Override
-  public Dimension getPreferredSize() {
-    return new Dimension(JabberPointApplication.WIDTH, JabberPointApplication.HEIGHT);
-}
+			Rectangle area = new Rectangle(0, YPOS, getWidth(), (getHeight() - YPOS));
+			new SlidePainter(this.slide).draw(g, area, this);
+		}
+
+	}
+
+	@Override
+	public Dimension getPreferredSize() {
+		return new Dimension(JabberPointApplication.WIDTH, JabberPointApplication.HEIGHT);
+	}
 
 }

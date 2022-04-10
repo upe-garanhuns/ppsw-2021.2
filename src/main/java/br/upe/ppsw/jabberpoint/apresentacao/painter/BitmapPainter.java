@@ -35,12 +35,11 @@ import lombok.extern.slf4j.Slf4j;
 public class BitmapPainter {
 
 	private BitmapPainter() {
-		
+
 	}
-	
+
 	public static int draw(int x, int y, float scale, Graphics g, Style myStyle, ImageObserver observer,
 			byte[] imageByte) {
-
 
 		try {
 			int width = x + (int) (myStyle.getIndent() * scale);
