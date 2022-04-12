@@ -6,81 +6,85 @@ import org.junit.jupiter.api.Test;
 
 public class PresentationTest {
 	private Presentation presentationConstrutorVazio = null;
-	private Presentation presentationSetandoTitulo = null;
+	private Presentation presentation = null;
 	private Slide slide0 = null;
 	private Slide slide1 = null;
 	private Slide slide2 = null;
-	
+
 	@BeforeEach
 	private void init() {
 		this.presentationConstrutorVazio = new Presentation();
-		this.presentationSetandoTitulo = new Presentation("apresentacao-teste");
+		this.presentation = new Presentation("apresentacao-teste");
 		this.slide0 = new Slide();
 		this.slide1 = new Slide();
 		this.slide2 = new Slide();
-		
-		this.presentationSetandoTitulo.add(slide0);
-		this.presentationSetandoTitulo.add(slide1);
+
+		this.presentation.add(slide0);
+		this.presentation.add(slide1);
 	}
-	
+
 	@Test
 	public void testeClearPresentationComSucesso() {
 		this.presentationConstrutorVazio.clear();
 		Assertions.assertNotNull(presentationConstrutorVazio.getSlides(), "Os slides não deveriam estar nulos");
-		Assertions.assertEquals(-1, presentationConstrutorVazio.getCurrentSlideNumber(), "O slide atual deveria ser -1");
+		Assertions.assertEquals(-1, presentationConstrutorVazio.getCurrentSlideNumber(),
+				"O slide atual deveria ser -1");
 	}
-	
+
 	@Test
 	public void testePresentationComTituloPreenchido() {
-		Assertions.assertEquals("apresentacao-teste", this.presentationSetandoTitulo.getTitle(), "O título não deve estar nulo");
+		Assertions.assertEquals("apresentacao-teste", this.presentation.getTitle(), "O título não deve estar nulo");
 	}
-	
+
 	@Test
 	public void testeGetSlideSizeComSucesso() {
-		Assertions.assertEquals(2, this.presentationSetandoTitulo.getSlidesSize(), "O tamanho do array deve ser 1");
+		Assertions.assertEquals(2, this.presentation.getSlidesSize(), "O tamanho do array deve ser 1");
 	}
-	
+
 	@Test
 	public void testePrevSlideComSucesso() {
-		this.presentationSetandoTitulo.setCurrentSlideNumber(1);
-		this.presentationSetandoTitulo.prevSlide();
-		Assertions.assertEquals(0, presentationSetandoTitulo.getCurrentSlideNumber());
+		this.presentation.setCurrentSlideNumber(1);
+		this.presentation.prevSlide();
+		Assertions.assertEquals(0, presentation.getCurrentSlideNumber(), "O slide atual deve ser o 0");
 	}
-	
+
 	@Test
 	public void testeNextSlideComSucesso() {
-		this.presentationSetandoTitulo.setCurrentSlideNumber(0);
-		this.presentationSetandoTitulo.nextSlide();
-		Assertions.assertEquals(1, this.presentationSetandoTitulo.getCurrentSlideNumber());
+		this.presentation.setCurrentSlideNumber(0);
+		this.presentation.nextSlide();
+		Assertions.assertEquals(1, this.presentation.getCurrentSlideNumber(), "O slide atual deve ser o 1");
 	}
-	
+
 	@Test
-	public void testeGetCurrentSlideComSucesso(){
-		this.presentationSetandoTitulo.setCurrentSlideNumber(0);
-		Assertions.assertEquals(slide0, this.presentationSetandoTitulo.getCurrentSlide());
+	public void testeGetCurrentSlideComSucesso() {
+		this.presentation.setCurrentSlideNumber(0);
+		Assertions.assertEquals(slide0, this.presentation.getCurrentSlide(),
+				"O slide deve ser o slide atual da presentation");
 	}
-	
+
 	@Test
 	public void testeGetSlideComSucesso() {
-		Assertions.assertEquals(slide1, this.presentationSetandoTitulo.getSlide(1));
+		Assertions.assertEquals(slide1, this.presentation.getSlide(1), "O slide deve ser o segundo da lista de slide");
 	}
-	
+
 	@Test
 	public void testeAddSlideComSucesso() {
-		this.presentationSetandoTitulo.add(slide2);
-		Assertions.assertEquals(slide2, this.presentationSetandoTitulo.getSlide(2));
+		this.presentation.add(slide2);
+		Assertions.assertEquals(slide2, this.presentation.getSlide(2),
+				"O slide deve ser o que foi adicionado a presentation");
 	}
-	
+
 	@Test
 	public void testeCurrentStatusComSucesso() {
-		this.presentationSetandoTitulo.setCurrentSlideNumber(0);
-		Assertions.assertEquals("Slide 1 de 2", this.presentationSetandoTitulo.currentStatus());
+		this.presentation.setCurrentSlideNumber(0);
+		Assertions.assertEquals("Slide 1 de 2", this.presentation.currentStatus(),
+				"Deve retornar o current status da presentation");
 	}
-	
+
 	@Test
 	public void testeIsValidComSucesso() {
-		this.presentationSetandoTitulo.setCurrentSlideNumber(2);
-		Assertions.assertEquals(true, this.presentationSetandoTitulo.isValid());
+		this.presentation.setCurrentSlideNumber(2);
+		Assertions.assertEquals(true, this.presentation.isValid(), "Deve verificar se uma presentation é válida");
 	}
-	
+
 }
