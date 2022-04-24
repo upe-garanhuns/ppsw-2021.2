@@ -58,19 +58,12 @@ public class JabberPointApplication implements CommandLineRunner {
 		return fileFormat;
 	}
 
-	/**
-	 * Inicializa os dados da apresentação. Caso não seja informada uma apresentação
-	 * em específico através do parâmetro de argumento da aplicação será carregada
-	 * uma apresentação padrão.
-	 */
 	@Override
 	public void run(String... args) throws Exception {
 		try {
 
 			Style.createStyles();
 			String file = args == null || args.length == 0 ? null : args[0];
-			// String file =
-			// "/home/helainelins/Ensino/2021.2/ppsw/projeto/base/ppsw-2021.2/src/main/resources/test.xml";
 
 			if (StringUtils.hasLength(file)) {
 				this.presentation = fileFormat.load(file);
