@@ -18,25 +18,26 @@
  * 
  * @author Ian F. Darwin, hbarreiros
  */
-package br.upe.ppsw.jabberpoint.apresentacao;
+package br.upe.ppsw.jabberpoint.view;
 
 import java.awt.Color;
 import java.awt.Font;
 
-/**
- * Representa uma folha de estilos que é aplicado aos {@link SlideItem} dos {@link Slide} de uma
- * {@link Presentation}
- */
+import br.upe.ppsw.jabberpoint.model.Presentation;
+import br.upe.ppsw.jabberpoint.model.Slide;
+import br.upe.ppsw.jabberpoint.model.SlideItem;
+
+
 public class Style {
 
   private static Style[] styles;
 
   private static final String FONTNAME = "Helvetica";
-  int indent;
-  Color color;
+  public int indent;
+  public Color color;
   Font font;
   int fontSize;
-  int leading;
+  public int leading;
 
   public static void createStyles() {
     styles = new Style[5];

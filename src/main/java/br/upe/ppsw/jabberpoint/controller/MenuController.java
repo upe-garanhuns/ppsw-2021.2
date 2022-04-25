@@ -18,7 +18,7 @@
  * 
  * @author Ian F. Darwin, hbarreiros
  */
-package br.upe.ppsw.jabberpoint.apresentacao;
+package br.upe.ppsw.jabberpoint.controller;
 
 import java.awt.Frame;
 import java.awt.Menu;
@@ -31,16 +31,20 @@ import java.io.IOException;
 import javax.swing.JOptionPane;
 import org.springframework.util.ResourceUtils;
 
-/**
- * Implementação dos mecanismos de controle navegacional através de um menu superior de uma
- * {@link Presentation}.
- */
+import br.upe.ppsw.jabberpoint.model.Presentation;
+import br.upe.ppsw.jabberpoint.view.AboutBox;
+import br.upe.ppsw.jabberpoint.view.SlideViewerComponent;
+
+
+
 public class MenuController extends MenuBar {
 
   private static final long serialVersionUID = 227L;
 
   private Frame parent;
   private Presentation presentation;
+  private SlideViewerComponent slideViewerComponent;
+
 
   protected static final String ABOUT = "Sobre";
   protected static final String FILE = "Arquivo";
@@ -50,8 +54,8 @@ public class MenuController extends MenuBar {
   protected static final String NEW = "Novo";
   protected static final String NEXT = "Próximo";
   protected static final String OPEN = "Abrir";
-  protected static final String PAGENR = "Npumero do Slide?";
-  protected static final String PREV = "Anteior";
+  protected static final String PAGENR = "Número do Slide?";
+  protected static final String PREV = "Anterior";
   protected static final String SAVE = "Salvar";
   protected static final String VIEW = "Visualizar";
 
@@ -62,15 +66,10 @@ public class MenuController extends MenuBar {
   protected static final String LOADERR = "Erro ao carregar";
   protected static final String SAVEERR = "Erro ao salvar";
 
-  /**
-   * Representa o menu superior da tela de {@link Presentation}
-   * 
-   * @param frame A instância de {@link Frame} que contém os dados exibidos ao usuário.
-   * @param pres A instância da {@link Presentation} que está sendo exibida
-   */
-  public MenuController(Frame frame, Presentation pres) {
+	public MenuController(Frame frame, Presentation pres, SlideViewerComponent slideViewerComponent) {
     parent = frame;
     presentation = pres;
+	this.slideViewerComponent = slideViewerComponent;
 
     MenuItem menuItem;
 
@@ -121,8 +120,7 @@ public class MenuController extends MenuBar {
 
     menuItem.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent actionEvent) {
-        presentation.exit(0);
-      }
+    	  System.exit(0);      }
     });
 
     add(fileMenu);
@@ -133,6 +131,8 @@ public class MenuController extends MenuBar {
     menuItem.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent actionEvent) {
         presentation.nextSlide();
+		slideViewerComponent.update();
+
       }
     });
 
@@ -141,6 +141,8 @@ public class MenuController extends MenuBar {
     menuItem.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent actionEvent) {
         presentation.prevSlide();
+		slideViewerComponent.update();
+
       }
     });
 
@@ -150,8 +152,12 @@ public class MenuController extends MenuBar {
       public void actionPerformed(ActionEvent actionEvent) {
         String pageNumberStr = JOptionPane.showInputDialog((Object) PAGENR);
         int pageNumber = Integer.parseInt(pageNumberStr);
-        presentation.setSlideNumber(pageNumber - 1);
-      }
+        if (pageNumber <= presentation.getSize()) {
+        	presentation.setSlideNumber(pageNumber - 1);
+			slideViewerComponent.update();		} else {
+			JOptionPane.showMessageDialog(parent, "Não é possível navegar para esse slide.",
+					"Operação inválida", JOptionPane.ERROR_MESSAGE);
+		}      }
     });
 
     add(viewMenu);

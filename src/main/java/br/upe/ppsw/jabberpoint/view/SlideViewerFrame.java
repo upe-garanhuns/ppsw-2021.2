@@ -18,16 +18,19 @@
  * 
  * @author Ian F. Darwin, hbarreiros
  */
-package br.upe.ppsw.jabberpoint.apresentacao;
+package br.upe.ppsw.jabberpoint.view;
 
 import java.awt.Dimension;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 
-/**
- * Representa a janela de exibição ao usuário dos {@link Slide} de uma {@link Presentation};
- */
+import br.upe.ppsw.jabberpoint.controller.KeyController;
+import br.upe.ppsw.jabberpoint.controller.MenuController;
+import br.upe.ppsw.jabberpoint.model.Presentation;
+import br.upe.ppsw.jabberpoint.model.Slide;
+
+
 public class SlideViewerFrame extends JFrame {
 
   private static final long serialVersionUID = 3227L;
@@ -41,18 +44,12 @@ public class SlideViewerFrame extends JFrame {
     super(title);
 
     SlideViewerComponent slideViewerComponent = new SlideViewerComponent(presentation, this);
-    presentation.setShowView(slideViewerComponent);
+	slideViewerComponent.update();
 
     setupWindow(slideViewerComponent, presentation);
   }
 
-  /**
-   * Configura a interface com o usuário para a exibição de uma {@link Presentation}
-   * 
-   * @param slideViewerComponent A instância de {@link SlideViewerComponent}, o componente de
-   *        controle da visualização e navegação dos {@link Slide} de uma {@link Presentation}
-   * @param presentation A instância de {@link Presentation} que contém os dados da apresentação.
-   */
+ 
   public void setupWindow(SlideViewerComponent slideViewerComponent, Presentation presentation) {
     setTitle(JABTITLE);
 
@@ -63,8 +60,8 @@ public class SlideViewerFrame extends JFrame {
     });
 
     getContentPane().add(slideViewerComponent);
-    addKeyListener(new KeyController(presentation));
-    setMenuBar(new MenuController(this, presentation));
+    addKeyListener(new KeyController(presentation, slideViewerComponent));
+	setMenuBar(new MenuController(this, presentation, slideViewerComponent));
     setSize(new Dimension(WIDTH, HEIGHT));
 
     setVisible(true);
