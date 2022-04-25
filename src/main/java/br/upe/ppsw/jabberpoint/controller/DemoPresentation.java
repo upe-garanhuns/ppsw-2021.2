@@ -27,9 +27,7 @@ import br.upe.ppsw.jabberpoint.model.BitmapItem;
 import br.upe.ppsw.jabberpoint.model.Presentation;
 import br.upe.ppsw.jabberpoint.model.Slide;
 
-/**
- * Representa os dados de uma {@link Presentation} de demonstração.
- */
+
 public class DemoPresentation implements Accessor {
 
   public void loadFile(Presentation presentation, String unusedFilename)

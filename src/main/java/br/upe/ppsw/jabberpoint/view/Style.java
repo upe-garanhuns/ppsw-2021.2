@@ -27,10 +27,7 @@ import br.upe.ppsw.jabberpoint.model.Presentation;
 import br.upe.ppsw.jabberpoint.model.Slide;
 import br.upe.ppsw.jabberpoint.model.SlideItem;
 
-/**
- * Representa uma folha de estilos que é aplicado aos {@link SlideItem} dos {@link Slide} de uma
- * {@link Presentation}
- */
+
 public class Style {
 
   private static Style[] styles;

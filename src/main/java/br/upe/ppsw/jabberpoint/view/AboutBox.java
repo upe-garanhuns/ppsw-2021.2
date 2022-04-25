@@ -23,9 +23,7 @@ package br.upe.ppsw.jabberpoint.view;
 import java.awt.Frame;
 import javax.swing.JOptionPane;
 
-/**
- * Representa a apresentação de informações sobre a aplicação na interface com o usuário
- */
+
 public class AboutBox {
 
   public static void show(Frame parent) {

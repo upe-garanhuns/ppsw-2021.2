@@ -40,14 +40,12 @@ import br.upe.ppsw.jabberpoint.model.Slide;
 import br.upe.ppsw.jabberpoint.model.SlideItem;
 import br.upe.ppsw.jabberpoint.model.TextItem;
 
-/**
- * Representação XML de um arquivo de {@link Presentation}
- */
+
 public class XMLAccessor implements Accessor {
 
   protected static final String DEFAULT_API_TO_USE = "dom";
 
-  /** nomeclatura dos itens de um slide */
+ 
   protected static final String SHOWTITLE = "showtitle";
   protected static final String SLIDETITLE = "title";
   protected static final String SLIDE = "slide";
@@ -68,9 +66,7 @@ public class XMLAccessor implements Accessor {
 
   }
 
-  /**
-   * @see Accessor#loadFile(Presentation, String)
-   */
+ 
   public void loadFile(Presentation presentation, String filename) throws IOException {
     int slideNumber, itemNumber, max = 0, maxItems = 0;
 
@@ -138,9 +134,7 @@ public class XMLAccessor implements Accessor {
     }
   }
 
-  /**
-   * @see Accessor#saveFile(Presentation, String)
-   */
+  
   public void saveFile(Presentation presentation, String filename) throws IOException {
     PrintWriter out = new PrintWriter(new FileWriter(filename));
 
@@ -156,8 +150,7 @@ public class XMLAccessor implements Accessor {
       Slide slide = presentation.getSlide(slideNumber);
 
       out.println("<slide>");
-      out.println("<title>" + slide.getTitle() + "</title>");
-
+		out.println("<title>" + slide.getTitleText() + "</title>");
       Vector<SlideItem> slideItems = slide.getSlideItems();
       for (int itemNumber = 0; itemNumber < slideItems.size(); itemNumber++) {
         SlideItem slideItem = (SlideItem) slideItems.elementAt(itemNumber);

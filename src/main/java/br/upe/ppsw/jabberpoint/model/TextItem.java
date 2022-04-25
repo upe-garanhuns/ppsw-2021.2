@@ -38,52 +38,29 @@ import java.util.List;
 import br.upe.ppsw.jabberpoint.view.SlideViewerFrame;
 import br.upe.ppsw.jabberpoint.view.Style;
 
-/**
- * Representa a informação de texto de um {@link Slide} em um {@link Slide}
- */
 public class TextItem extends SlideItem {
 
   private String text;
 
   private static final String EMPTYTEXT = "No Text Given";
 
-  /**
-   * Cria uma nova instância de item de slide do tipo texto, indicando sua posição em nível no
-   * slide.
-   * 
-   * @param level o nível ocupado pelo item
-   * @param string o texto associado
-   */
+  
   public TextItem(int level, String string) {
     super(level);
     text = string;
   }
 
-  /**
-   * Inicializa um item do tipo texto no nível mais externo.
-   */
+  
   public TextItem() {
     this(0, EMPTYTEXT);
   }
 
-  /**
-   * Recupera o texto de um item de slide.
-   * 
-   * @return Uma {@link String} contendo o conteúdo de texto do item.
-   */
+  
   public String getText() {
     return text == null ? "" : text;
   }
 
-  /**
-   * Cria uma instãncia de {@link AttributedString} para a interface do usuário de acordo com o
-   * texto e estilo correspondente ao item no {@link Slide}
-   * 
-   * @param style A instância do {@link Style} associado a posição do item no slide.
-   * @param scale A escala de propoção do item
-   * 
-   * @return A instância de {@link AttributedString}
-   */
+  
   public AttributedString getAttributedString(Style style, float scale) {
     AttributedString attrStr = new AttributedString(getText());
 
@@ -92,9 +69,7 @@ public class TextItem extends SlideItem {
     return attrStr;
   }
 
-  /**
-   * @see SlideItem#getBoundingBox(Graphics, ImageObserver, float, Style)
-   */
+  
   public Rectangle getBoundingBox(Graphics g, ImageObserver observer, float scale, Style myStyle) {
     List<TextLayout> layouts = getLayouts(g, myStyle, scale);
 
@@ -119,9 +94,7 @@ public class TextItem extends SlideItem {
     return new Rectangle((int) (myStyle.indent * scale), 0, xsize, ysize);
   }
 
-  /**
-   * @see SlideItem#draw(int, int, float, Graphics, Style, ImageObserver)
-   */
+  
   public void draw(int x, int y, float scale, Graphics g, Style myStyle, ImageObserver o) {
     if (text == null || text.length() == 0) {
       return;
