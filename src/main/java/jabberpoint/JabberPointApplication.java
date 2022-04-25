@@ -19,7 +19,7 @@
  * @author Ian F. Darwin, hbarreiros
  */
 
-package br.upe.ppsw.jabberpoint.apresentacao.controller;
+package jabberpoint;
 
 import java.io.IOException;
 import javax.swing.JOptionPane;
@@ -28,6 +28,8 @@ import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 
+import br.upe.ppsw.jabberpoint.apresentacao.controller.DemoPresentation;
+import br.upe.ppsw.jabberpoint.apresentacao.controller.XMLPresentation;
 import br.upe.ppsw.jabberpoint.apresentacao.model.Presentation;
 import br.upe.ppsw.jabberpoint.apresentacao.view.SlideViewerFrame;
 import br.upe.ppsw.jabberpoint.apresentacao.view.Style;

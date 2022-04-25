@@ -51,7 +51,7 @@ public class Presentation {
    */
   public Presentation(SlideViewerComponent slideViewerComponent) {
    this.slideViewComponent = slideViewerComponent;
-    clear();
+   clear();
   }
 
   /**
