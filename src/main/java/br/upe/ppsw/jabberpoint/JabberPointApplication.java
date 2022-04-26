@@ -30,6 +30,7 @@ import org.springframework.util.StringUtils;
 import br.upe.ppsw.jabberpoint.apresentacao.Style;
 import br.upe.ppsw.jabberpoint.apresentacao.visualizador.PresentationViewer;
 import br.upe.ppsw.jabberpoint.controle.IFilePresentationFormat;
+import br.upe.ppsw.jabberpoint.controle.JSONFormat;
 import br.upe.ppsw.jabberpoint.controle.XMLFormat;
 import br.upe.ppsw.jabberpoint.modelo.Presentation;
 import br.upe.ppsw.jabberpoint.modelo.PresentationDemo;
