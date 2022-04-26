@@ -74,8 +74,6 @@ public final class XMLFormat implements IFilePresentationFormat {
 		Presentation presentation = null;
 
 		try {
-			validateObject(filename, "The file path was not informed.", PCE_FILE_NOT_INFORMED);
-
 			DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
 			Document xmlDocument = builder.parse(new File(filename));
 
@@ -95,12 +93,6 @@ public final class XMLFormat implements IFilePresentationFormat {
 
 	public void save(Presentation presentation, String filename) {
 		try {
-			validateObject(presentation, "Could not save presentation to XML file, the presentation is null",
-					PCE_PRESENTATION_NOT_INFORMED);
-
-			validateObject(presentation, "Could not save presentation to XML file, the presentation file name is null",
-					PCE_FILE_NOT_INFORMED);
-
 			PrintWriter xmlFile = new PrintWriter(new FileWriter(filename + ".xml"));
 
 			xmlFile.println("<?xml version=\"1.0\"?>");
