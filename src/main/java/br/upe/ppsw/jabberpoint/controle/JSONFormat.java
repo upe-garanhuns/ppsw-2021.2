@@ -6,7 +6,6 @@ public class JSONFormat implements IFilePresentationFormat{
 
 	@Override
 	public Presentation load(String fileName) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
