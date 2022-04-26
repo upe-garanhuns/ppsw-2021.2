@@ -24,15 +24,16 @@ import java.io.FileNotFoundException;
 import org.springframework.util.ResourceUtils;
 
 import br.upe.ppsw.jabberpoint.apresentacao.model.BitmapItem;
+import br.upe.ppsw.jabberpoint.apresentacao.model.IData;
 import br.upe.ppsw.jabberpoint.apresentacao.model.Presentation;
 import br.upe.ppsw.jabberpoint.apresentacao.model.Slide;
 
 /**
  * Representa os dados de uma {@link Presentation} de demonstração.
  */
-public class DemoPresentation implements Accessor {
+public class DemoPresentation implements IData {
 
-  public void loadFile(Presentation presentation, String unusedFilename)
+  public void load(Presentation presentation, String unusedFilename)
       throws FileNotFoundException {
 
     presentation.setTitle("Apresentação de Demonstração");
@@ -75,8 +76,12 @@ public class DemoPresentation implements Accessor {
     presentation.append(slide);
   }
 
-  public void saveFile(Presentation presentation, String unusedFilename) {
+  public void save(Presentation presentation, String unusedFilename) {
     throw new IllegalStateException("Não é possível salvar arquivo na versão demo!");
+  }
+  
+  public String getExtension() {
+	  return "";
   }
 
 }

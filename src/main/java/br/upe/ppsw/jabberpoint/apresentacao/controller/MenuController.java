@@ -85,7 +85,7 @@ public class MenuController extends MenuBar {
 
         XMLPresentation xmlPresentation = new XMLPresentation();
         try {
-          xmlPresentation.loadFile(presentation, ResourceUtils.getFile(TESTFILE).getAbsolutePath());
+          xmlPresentation.load(presentation, ResourceUtils.getFile(TESTFILE).getAbsolutePath());
           presentation.setSlideNumber(0);
         } catch (IOException exception) {
           JOptionPane.showMessageDialog(parent, IOEX + exception, LOADERR, JOptionPane.ERROR_MESSAGE);
@@ -110,7 +110,7 @@ public class MenuController extends MenuBar {
       public void actionPerformed(ActionEvent event) {
         XMLPresentation xmlPresentation = new XMLPresentation();
         try {
-          xmlPresentation.saveFile(presentation, SAVEFILE);
+          xmlPresentation.save(presentation, SAVEFILE);
         } catch (IOException exception) {
           JOptionPane.showMessageDialog(parent, IOEX + exception, SAVEERR, JOptionPane.ERROR_MESSAGE);
         }

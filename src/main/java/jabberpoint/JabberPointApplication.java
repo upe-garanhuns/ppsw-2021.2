@@ -28,8 +28,9 @@ import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 
-import br.upe.ppsw.jabberpoint.apresentacao.controller.DemoPresentation;
-import br.upe.ppsw.jabberpoint.apresentacao.controller.XMLPresentation;
+
+import br.upe.ppsw.jabberpoint.apresentacao.controller.TemplatePresentation;
+
 import br.upe.ppsw.jabberpoint.apresentacao.model.Presentation;
 import br.upe.ppsw.jabberpoint.apresentacao.view.SlideViewerFrame;
 import br.upe.ppsw.jabberpoint.apresentacao.view.Style;
@@ -65,9 +66,9 @@ public class JabberPointApplication implements CommandLineRunner {
 
     try {
       if (args.length == 0) {
-        new DemoPresentation().loadFile(presentation, "");
+        new TemplatePresentation().load(presentation, "");
       } else {
-        new XMLPresentation().loadFile(presentation, args[0]);
+        new TemplatePresentation().load(presentation, args[0]);
       }
 
       presentation.setSlideNumber(0);
