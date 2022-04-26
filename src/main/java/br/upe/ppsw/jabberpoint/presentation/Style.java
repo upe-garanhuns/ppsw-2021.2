@@ -18,10 +18,14 @@
  * 
  * @author Ian F. Darwin, hbarreiros
  */
-package br.upe.ppsw.jabberpoint.apresentacao;
+package br.upe.ppsw.jabberpoint.presentation;
 
 import java.awt.Color;
 import java.awt.Font;
+
+import br.upe.ppsw.jabberpoint.model.Presentation;
+import br.upe.ppsw.jabberpoint.model.Slide;
+import br.upe.ppsw.jabberpoint.model.SlideItem;
 
 /**
  * Representa uma folha de estilos que é aplicado aos {@link SlideItem} dos {@link Slide} de uma
@@ -32,11 +36,11 @@ public class Style {
   private static Style[] styles;
 
   private static final String FONTNAME = "Helvetica";
-  int indent;
-  Color color;
+  public int indent;// FIXME:hslb- avaliar no futuro remover esse atributo publico
+  public Color color; // FIXME:hslb- avaliar no futuro remover esse atributo publico
   Font font;
   int fontSize;
-  int leading;
+  public int leading; // FIXME:hslb- avaliar no futuro remover esse atributo publico
 
   public static void createStyles() {
     styles = new Style[5];
@@ -69,5 +73,17 @@ public class Style {
 
   public Font getFont(float scale) {
     return font.deriveFont(fontSize * scale);
+  }
+
+  public int getIndent() {
+    return indent;
+  }
+
+  public Color getColor() {
+    return color;
+  }
+
+  public int getLeading() {
+    return leading;
   }
 }

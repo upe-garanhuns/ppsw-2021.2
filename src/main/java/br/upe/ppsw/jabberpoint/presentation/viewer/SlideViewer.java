@@ -18,7 +18,7 @@
  * 
  * @author Ian F. Darwin, hbarreiros
  */
-package br.upe.ppsw.jabberpoint.apresentacao;
+package br.upe.ppsw.jabberpoint.presentation.viewer;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -26,12 +26,15 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import javax.swing.JComponent;
-import javax.swing.JFrame;
+import br.upe.ppsw.jabberpoint.JabberPointApplication;
+import br.upe.ppsw.jabberpoint.model.Presentation;
+import br.upe.ppsw.jabberpoint.model.Slide;
+import br.upe.ppsw.jabberpoint.presentation.painter.SlidePainter;
 
 /**
  * Representa o componente de apresentação dos {@link Slide} de uma {@link Presentation}.
  */
-public class SlideViewerComponent extends JComponent {
+public class SlideViewer extends JComponent {
   private static final long serialVersionUID = 227L;
 
   private static final Color BGCOLOR = Color.white;
@@ -43,49 +46,18 @@ public class SlideViewerComponent extends JComponent {
   private static final int YPOS = 20;
 
   private Slide slide;
+  private String status;
   private Font labelFont = null;
-  private Presentation presentation = null;
-  private JFrame frame = null;
 
-  /**
-   * Inicializa o mecanismo de visualização dos {@link Slide} de uma {@link Presentation}.
-   * 
-   * @param pres a instância de {@link Presentation} contendo os dados da apresentação
-   * @param frame A instância de {@link JFrame} que ira receber os itens do {@link Slide}
-   */
-  public SlideViewerComponent(Presentation pres, JFrame frame) {
+  public SlideViewer() {
     setBackground(BGCOLOR);
-    presentation = pres;
     labelFont = new Font(FONTNAME, FONTSTYLE, FONTHEIGHT);
-    this.frame = frame;
   }
 
-  /**
-   * Realiza o ajuste de exibição do componente de acordo com as dimensões especificadas.
-   * 
-   * @return {@link Dimension} A instãncia com as dimensões preferidas de exibição.
-   */
-  public Dimension getPreferredSize() {
-    return new Dimension(Slide.WIDTH, Slide.HEIGHT);
-  }
-
-  /**
-   * Atualiza os dados de visualização de um {@link Slide} de uma {@link Presentation}. Caso o slide
-   * atual não seja informado a apresentação é inicializada.
-   * 
-   * @param presentation A instância de {@link Presentation} que contém os dados da apresentação
-   * @param data A instância de {@link Slide} que representa o slide atual.
-   */
-  public void update(Presentation presentation, Slide data) {
-    if (data == null) {
-      repaint();
-      return;
-    }
-
-    this.presentation = presentation;
-    this.slide = data;
+  public void update(Slide slide, String status) {
+    this.slide = slide;
+    this.status = status;
     repaint();
-    frame.setTitle(presentation.getTitle());
   }
 
   /**
@@ -93,22 +65,25 @@ public class SlideViewerComponent extends JComponent {
    * 
    * @param g A instância que receberá os itens do slide a serem exibidos na tela.
    */
+  @Override
   public void paintComponent(Graphics g) {
     g.setColor(BGCOLOR);
     g.fillRect(0, 0, getSize().width, getSize().height);
 
-    if (presentation.getSlideNumber() < 0 || slide == null) {
-      return;
+    if (this.slide != null) {
+      g.setFont(labelFont);
+      g.setColor(COLOR);
+      g.drawString(this.status, XPOS, YPOS);
+
+      Rectangle area = new Rectangle(0, YPOS, getWidth(), (getHeight() - YPOS));
+      new SlidePainter(this.slide).draw(g, area, this);
     }
-
-    g.setFont(labelFont);
-    g.setColor(COLOR);
-    g.drawString("Slide " + (1 + presentation.getSlideNumber()) + " of " + presentation.getSize(),
-        XPOS, YPOS);
-
-    Rectangle area = new Rectangle(0, YPOS, getWidth(), (getHeight() - YPOS));
-
-    slide.draw(g, area, this);
+    
   }
+  
+  @Override
+  public Dimension getPreferredSize() {
+    return new Dimension(JabberPointApplication.WIDTH, JabberPointApplication.HEIGHT);
+}
 
 }
