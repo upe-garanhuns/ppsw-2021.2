@@ -18,10 +18,13 @@
  * 
  * @author Ian F. Darwin, hbarreiros
  */
-package br.upe.ppsw.jabberpoint.apresentacao;
+package br.upe.ppsw.jabberpoint.apresentacao.controller;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+
+import br.upe.ppsw.jabberpoint.apresentacao.model.Presentation;
+import br.upe.ppsw.jabberpoint.apresentacao.model.Slide;
 
 /**
  * Implementação dos mecanismos de controle navegacional entre os {@link Slide} de uma
@@ -36,8 +39,8 @@ public class KeyController extends KeyAdapter {
    * 
    * @param p A instância de {@link Presentation} que será controlada.
    */
-  public KeyController(Presentation p) {
-    presentation = p;
+  public KeyController(Presentation presentation) {
+    this.presentation = presentation;
   }
 
   /**

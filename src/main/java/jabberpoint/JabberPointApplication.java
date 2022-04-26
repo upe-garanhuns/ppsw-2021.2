@@ -19,7 +19,7 @@
  * @author Ian F. Darwin, hbarreiros
  */
 
-package br.upe.ppsw.jabberpoint;
+package jabberpoint;
 
 import java.io.IOException;
 import javax.swing.JOptionPane;
@@ -27,11 +27,13 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
-import br.upe.ppsw.jabberpoint.apresentacao.Accessor;
-import br.upe.ppsw.jabberpoint.apresentacao.Presentation;
-import br.upe.ppsw.jabberpoint.apresentacao.SlideViewerFrame;
-import br.upe.ppsw.jabberpoint.apresentacao.Style;
-import br.upe.ppsw.jabberpoint.apresentacao.XMLAccessor;
+
+
+import br.upe.ppsw.jabberpoint.apresentacao.controller.TemplatePresentation;
+
+import br.upe.ppsw.jabberpoint.apresentacao.model.Presentation;
+import br.upe.ppsw.jabberpoint.apresentacao.view.SlideViewerFrame;
+import br.upe.ppsw.jabberpoint.apresentacao.view.Style;
 
 /**
  * Classe principal que inicializa a aplicação de apresentação de slides
@@ -64,15 +66,15 @@ public class JabberPointApplication implements CommandLineRunner {
 
     try {
       if (args.length == 0) {
-        Accessor.getDemoAccessor().loadFile(presentation, "");
+        new TemplatePresentation().load(presentation, "");
       } else {
-        new XMLAccessor().loadFile(presentation, args[0]);
+        new TemplatePresentation().load(presentation, args[0]);
       }
 
       presentation.setSlideNumber(0);
 
-    } catch (IOException ex) {
-      JOptionPane.showMessageDialog(null, IOERR + ex, JABERR, JOptionPane.ERROR_MESSAGE);
+    } catch (IOException exeption) {
+      JOptionPane.showMessageDialog(null, IOERR + exeption, JABERR, JOptionPane.ERROR_MESSAGE);
     }
   }
 

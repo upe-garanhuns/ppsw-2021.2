@@ -18,11 +18,13 @@
  * 
  * @author Ian F. Darwin, hbarreiros
  */
-package br.upe.ppsw.jabberpoint.apresentacao;
+package br.upe.ppsw.jabberpoint.apresentacao.model;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.ImageObserver;
+
+import br.upe.ppsw.jabberpoint.apresentacao.view.Style;
 
 /**
  * Representação abstrata de um item de {@link Slide} em uma {@link Presentation}
@@ -37,8 +39,8 @@ public abstract class SlideItem {
    * 
    * @param lev
    */
-  public SlideItem(int lev) {
-    level = lev;
+  public SlideItem(int level) {
+    this.level = level;
   }
 
   /**
@@ -69,7 +71,7 @@ public abstract class SlideItem {
    * 
    * @return Uma instância de {@link Rectangle} contendo os itens {@link SlideItem} do {@link Slide}
    */
-  public abstract Rectangle getBoundingBox(Graphics g, ImageObserver observer, float scale,
+  public abstract Rectangle getBoundingBox(Graphics graphics, ImageObserver observer, float scale,
       Style style);
 
   /**
@@ -82,7 +84,7 @@ public abstract class SlideItem {
    * @param style o estilo a ser aplicado ao item
    * @param observer o observer que receberá a notificação do item.
    */
-  public abstract void draw(int x, int y, float scale, Graphics g, Style style,
+  public abstract void draw(int x, int y, float scale, Graphics graphics, Style style,
       ImageObserver observer);
 
 }

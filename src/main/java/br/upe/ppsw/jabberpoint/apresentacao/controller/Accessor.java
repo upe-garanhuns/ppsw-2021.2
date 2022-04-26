@@ -18,29 +18,18 @@
  * 
  * @author Ian F. Darwin, hbarreiros
  */
-package br.upe.ppsw.jabberpoint.apresentacao;
+package br.upe.ppsw.jabberpoint.apresentacao.controller;
 
 import java.io.IOException;
+
+import br.upe.ppsw.jabberpoint.apresentacao.model.Presentation;
 
 /**
  * Representação mais abstrata de um arquivo que armazena os dados de uma {@link Presentation}
  */
-public abstract class Accessor {
+public interface Accessor {
 
-  public static final String DEMO_NAME = "Apresentação de Demonstração";
-  public static final String DEFAULT_EXTENSION = ".xml";
 
-  /**
-   * Inicializa uma apresentação padrão de demonstração.
-   * 
-   * @return uma instância de {@link Accessor} que contém os dados de uma {@link Presentation}
-   *         configurada com os dados armazenados pelo {@link Accessor}.
-   */
-  public static Accessor getDemoAccessor() {
-    return new DemoPresentation();
-  }
-
-  public Accessor() {}
 
   /**
    * Implementa a recuperação de dados salvas no arquivo que serão carregadas na apresentação.
@@ -52,7 +41,7 @@ public abstract class Accessor {
    * @throws IOException caso ocorra algum erro ao localizar ou carregar os dados da
    *         {@link Presentation}
    */
-  abstract public void loadFile(Presentation presentation, String fileName) throws IOException;
+   void loadFile(Presentation presentation, String fileName) throws IOException;
 
   /**
    * Salva os dados da apresentação em um arquivo.
@@ -63,6 +52,6 @@ public abstract class Accessor {
    *        armazenar[a os dados da apresentação.
    * @throws IOException caso ocorra algum erro ao salvar os dados da {@link Presentation}s
    */
-  abstract public void saveFile(Presentation presentation, String fileName) throws IOException;
+   void saveFile(Presentation presentation, String fileName) throws IOException;
 
 }

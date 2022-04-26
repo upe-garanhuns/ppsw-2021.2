@@ -18,15 +18,21 @@
  * 
  * @author Ian F. Darwin, hbarreiros
  */
-package br.upe.ppsw.jabberpoint.apresentacao;
+package br.upe.ppsw.jabberpoint.apresentacao.view;
 
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.awt.image.ImageObserver;
+
 import javax.swing.JComponent;
 import javax.swing.JFrame;
+
+import br.upe.ppsw.jabberpoint.apresentacao.model.Presentation;
+import br.upe.ppsw.jabberpoint.apresentacao.model.Slide;
+import br.upe.ppsw.jabberpoint.apresentacao.model.SlideItem;
 
 /**
  * Representa o componente de apresentação dos {@link Slide} de uma {@link Presentation}.
@@ -53,9 +59,9 @@ public class SlideViewerComponent extends JComponent {
    * @param pres a instância de {@link Presentation} contendo os dados da apresentação
    * @param frame A instância de {@link JFrame} que ira receber os itens do {@link Slide}
    */
-  public SlideViewerComponent(Presentation pres, JFrame frame) {
+  public SlideViewerComponent(Presentation presentation, JFrame frame) {
     setBackground(BGCOLOR);
-    presentation = pres;
+    this.presentation = presentation;
     labelFont = new Font(FONTNAME, FONTSTYLE, FONTHEIGHT);
     this.frame = frame;
   }
@@ -66,7 +72,7 @@ public class SlideViewerComponent extends JComponent {
    * @return {@link Dimension} A instãncia com as dimensões preferidas de exibição.
    */
   public Dimension getPreferredSize() {
-    return new Dimension(Slide.WIDTH, Slide.HEIGHT);
+    return new Dimension(1200, 800);
   }
 
   /**
@@ -93,22 +99,50 @@ public class SlideViewerComponent extends JComponent {
    * 
    * @param g A instância que receberá os itens do slide a serem exibidos na tela.
    */
-  public void paintComponent(Graphics g) {
-    g.setColor(BGCOLOR);
-    g.fillRect(0, 0, getSize().width, getSize().height);
+  public void paintComponent(Graphics graphics) {
+    graphics.setColor(BGCOLOR);
+    graphics.fillRect(0, 0, getSize().width, getSize().height);
 
     if (presentation.getSlideNumber() < 0 || slide == null) {
       return;
     }
 
-    g.setFont(labelFont);
-    g.setColor(COLOR);
-    g.drawString("Slide " + (1 + presentation.getSlideNumber()) + " of " + presentation.getSize(),
+    graphics.setFont(labelFont);
+    graphics.setColor(COLOR);
+    graphics.drawString("Slide " + (1 + presentation.getSlideNumber()) + " of " + presentation.getSize(),
         XPOS, YPOS);
 
     Rectangle area = new Rectangle(0, YPOS, getWidth(), (getHeight() - YPOS));
 
-    slide.draw(g, area, this);
+    draw(graphics, area, this);
+  }
+  
+  public void draw(Graphics graphics, Rectangle area, ImageObserver view) {
+	    float scale = getScale(area);
+
+	    int y = area.y;
+
+	    SlideItem slideItem = slide.getTextTitle();
+	    Style style = Style.getStyle(slideItem.getLevel());
+	    slideItem.draw(area.x, y, scale, graphics, style, view);
+
+	    y += slideItem.getBoundingBox(graphics, view, scale, style).height;
+
+	    for (int number = 0; number < slide.getSize(); number++) {
+	      slideItem = (SlideItem) slide.getSlideItems().elementAt(number);
+
+	      style = Style.getStyle(slideItem.getLevel());
+	      slideItem.draw(area.x, y, scale, graphics, style, view);
+
+	      y += slideItem.getBoundingBox(graphics, view, scale, style).height;
+	    }
   }
 
+  private float getScale(Rectangle area) {
+	    return Math.min(((float) area.width) / ((float) 1200),
+	        ((float) area.height) / ((float) 800));
+	  } 
+  
 }
+
+

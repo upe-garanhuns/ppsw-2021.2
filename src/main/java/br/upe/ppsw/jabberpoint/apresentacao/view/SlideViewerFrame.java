@@ -18,12 +18,17 @@
  * 
  * @author Ian F. Darwin, hbarreiros
  */
-package br.upe.ppsw.jabberpoint.apresentacao;
+package br.upe.ppsw.jabberpoint.apresentacao.view;
 
 import java.awt.Dimension;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
+
+import br.upe.ppsw.jabberpoint.apresentacao.controller.KeyController;
+import br.upe.ppsw.jabberpoint.apresentacao.controller.MenuController;
+import br.upe.ppsw.jabberpoint.apresentacao.model.Presentation;
+import br.upe.ppsw.jabberpoint.apresentacao.model.Slide;
 
 /**
  * Representa a janela de exibição ao usuário dos {@link Slide} de uma {@link Presentation};
@@ -57,7 +62,7 @@ public class SlideViewerFrame extends JFrame {
     setTitle(JABTITLE);
 
     addWindowListener(new WindowAdapter() {
-      public void windowClosing(WindowEvent e) {
+      public void windowClosing(WindowEvent event) {
         System.exit(0);
       }
     });

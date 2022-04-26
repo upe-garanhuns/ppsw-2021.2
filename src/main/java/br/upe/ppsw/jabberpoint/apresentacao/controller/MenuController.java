@@ -18,7 +18,7 @@
  * 
  * @author Ian F. Darwin, hbarreiros
  */
-package br.upe.ppsw.jabberpoint.apresentacao;
+package br.upe.ppsw.jabberpoint.apresentacao.controller;
 
 import java.awt.Frame;
 import java.awt.Menu;
@@ -30,6 +30,8 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import javax.swing.JOptionPane;
 import org.springframework.util.ResourceUtils;
+
+import br.upe.ppsw.jabberpoint.apresentacao.model.Presentation;
 
 /**
  * Implementação dos mecanismos de controle navegacional através de um menu superior de uma
@@ -50,8 +52,8 @@ public class MenuController extends MenuBar {
   protected static final String NEW = "Novo";
   protected static final String NEXT = "Próximo";
   protected static final String OPEN = "Abrir";
-  protected static final String PAGENR = "Npumero do Slide?";
-  protected static final String PREV = "Anteior";
+  protected static final String PAGENR = "Número do Slide?";
+  protected static final String PREV = "Anterior";
   protected static final String SAVE = "Salvar";
   protected static final String VIEW = "Visualizar";
 
@@ -68,9 +70,9 @@ public class MenuController extends MenuBar {
    * @param frame A instância de {@link Frame} que contém os dados exibidos ao usuário.
    * @param pres A instância da {@link Presentation} que está sendo exibida
    */
-  public MenuController(Frame frame, Presentation pres) {
+  public MenuController(Frame frame, Presentation presentation) {
     parent = frame;
-    presentation = pres;
+    this.presentation = presentation;
 
     MenuItem menuItem;
 
@@ -81,12 +83,12 @@ public class MenuController extends MenuBar {
       public void actionPerformed(ActionEvent actionEvent) {
         presentation.clear();
 
-        Accessor xmlAccessor = new XMLAccessor();
+        XMLPresentation xmlPresentation = new XMLPresentation();
         try {
-          xmlAccessor.loadFile(presentation, ResourceUtils.getFile(TESTFILE).getAbsolutePath());
+          xmlPresentation.load(presentation, ResourceUtils.getFile(TESTFILE).getAbsolutePath());
           presentation.setSlideNumber(0);
-        } catch (IOException exc) {
-          JOptionPane.showMessageDialog(parent, IOEX + exc, LOADERR, JOptionPane.ERROR_MESSAGE);
+        } catch (IOException exception) {
+          JOptionPane.showMessageDialog(parent, IOEX + exception, LOADERR, JOptionPane.ERROR_MESSAGE);
         }
 
         parent.repaint();
@@ -105,12 +107,12 @@ public class MenuController extends MenuBar {
     fileMenu.add(menuItem = mkMenuItem(SAVE));
 
     menuItem.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        Accessor xmlAccessor = new XMLAccessor();
+      public void actionPerformed(ActionEvent event) {
+        XMLPresentation xmlPresentation = new XMLPresentation();
         try {
-          xmlAccessor.saveFile(presentation, SAVEFILE);
-        } catch (IOException exc) {
-          JOptionPane.showMessageDialog(parent, IOEX + exc, SAVEERR, JOptionPane.ERROR_MESSAGE);
+          xmlPresentation.save(presentation, SAVEFILE);
+        } catch (IOException exception) {
+          JOptionPane.showMessageDialog(parent, IOEX + exception, SAVEERR, JOptionPane.ERROR_MESSAGE);
         }
       }
     });
@@ -161,7 +163,7 @@ public class MenuController extends MenuBar {
 
     menuItem.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent actionEvent) {
-        AboutBox.show(parent);
+        showAboutBox(parent);
       }
     });
 
@@ -171,4 +173,19 @@ public class MenuController extends MenuBar {
   public MenuItem mkMenuItem(String name) {
     return new MenuItem(name, new MenuShortcut(name.charAt(0)));
   }
+
+  public void showAboutBox(Frame parent) {
+	    JOptionPane.showMessageDialog(parent,
+	        "JabberPoint é um programa de apresentação de slides básico escrito em Java(tm).\n"
+	            + "Ele é disponibilizado como uma cópia livre desde que você mantenha esta informação de splash screen intacta.\n"
+	            + "Copyright (c) 1995-now by Ian F. Darwin, ian@darwinsys.com.\n"
+	            + "Adaptada por Helaine Barreiros fpara Universidade de Pernambuco, 2021 -- now.\n"
+	            + "A cópia original do autor está disponível em http://www.darwinsys.com/",
+	        "Sobre JabberPoint", JOptionPane.INFORMATION_MESSAGE);
+	  }
+
+
+
 }
+
+
