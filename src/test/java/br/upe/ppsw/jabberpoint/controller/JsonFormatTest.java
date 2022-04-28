@@ -19,6 +19,6 @@ public class JsonFormatTest {
 	
 	@Test
 	public void testeCriacaoArquivoJson() {
-		this.jsonFormat.save(presentation, "src/main/resources/oi.json");
+		this.jsonFormat.save(presentation, "src/main/resources/ppsw.json");
 	}
 }
