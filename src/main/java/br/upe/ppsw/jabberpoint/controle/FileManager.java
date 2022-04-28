@@ -27,10 +27,10 @@ public class FileManager {
 	}
 	
 	public void save(Presentation presentation, String filePath ) {
-		validateObject(presentation, "Could not save presentation to XML file, the presentation is null",
+		validateObject(presentation, "Could not save presentation, the presentation is null",
 				PCE_PRESENTATION_NOT_INFORMED);
 
-		validateObject(presentation, "Could not save presentation to XML file, the presentation file name is null",
+		validateObject(presentation, "Could not save presentation, the presentation file name is null",
 				PCE_FILE_NOT_INFORMED);
 		
 		getInstanceFile(filePath);
