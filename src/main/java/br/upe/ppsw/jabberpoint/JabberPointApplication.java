@@ -29,6 +29,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.util.StringUtils;
 import br.upe.ppsw.jabberpoint.apresentacao.Style;
 import br.upe.ppsw.jabberpoint.apresentacao.visualizador.PresentationViewer;
+import br.upe.ppsw.jabberpoint.controle.HTMLFormat;
 import br.upe.ppsw.jabberpoint.controle.IFilePresentationFormat;
 import br.upe.ppsw.jabberpoint.controle.JSONFormat;
 import br.upe.ppsw.jabberpoint.controle.XMLFormat;
@@ -68,6 +69,7 @@ public class JabberPointApplication implements CommandLineRunner {
 
 			if (StringUtils.hasLength(file)) {
 				this.presentation = fileFormat.load(file);
+
 			} else {
 				this.presentation = new PresentationDemo();
 			}
