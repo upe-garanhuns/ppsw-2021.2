@@ -3,7 +3,7 @@
   "title": "qualquer coisa",
   "slides": [
     {
-      "title": "JabberPoint: Apresentação Slides em Java",
+      "title": "JabberPoint: Apresentação carregada via json",
       "items": [
         {
           "level": 1,
@@ -22,7 +22,7 @@
         },
         {
           "level": 4,
-          "text": "prof@ - Helaine Barreiros",
+          "text": "Feito por Kvojps monitorado por Helaine Barreiros.",
           "type": "TEXT"
         },
         {

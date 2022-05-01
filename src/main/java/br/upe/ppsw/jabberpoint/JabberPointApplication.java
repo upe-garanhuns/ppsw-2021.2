@@ -22,13 +22,16 @@
 package br.upe.ppsw.jabberpoint;
 
 import javax.swing.JOptionPane;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.util.StringUtils;
+
 import br.upe.ppsw.jabberpoint.apresentacao.Style;
 import br.upe.ppsw.jabberpoint.apresentacao.visualizador.PresentationViewer;
+import br.upe.ppsw.jabberpoint.controle.FileManager;
 import br.upe.ppsw.jabberpoint.controle.HTMLFormat;
 import br.upe.ppsw.jabberpoint.controle.IFilePresentationFormat;
 import br.upe.ppsw.jabberpoint.controle.JSONFormat;
@@ -66,11 +69,24 @@ public class JabberPointApplication implements CommandLineRunner {
 
 			Style.createStyles();
 			String file = args == null || args.length == 0 ? null : args[0];
+//			// o file abaixo é para verificar o funcionamento do file manager
+//			String file = "src/main/resources/ppsw.json";
 
 			if (StringUtils.hasLength(file)) {
+//				//Executando o FileManager
+//				FileManager manager = new FileManager();
+//				this.presentation = manager.load(file);
 				this.presentation = fileFormat.load(file);
 
 			} else {
+//				//Teste do load do Html
+//				HTMLFormat html = new HTMLFormat();
+//				this.presentation = html.load("src/main/resources/teste.html");
+//				
+//				//Teste do load do Json
+//				JSONFormat json = new JSONFormat();
+//				this.presentation = json.load("src/main/resources/ppsw.json");
+				
 				this.presentation = new PresentationDemo();
 			}
 
