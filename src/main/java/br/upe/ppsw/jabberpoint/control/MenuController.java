@@ -63,6 +63,7 @@ public class MenuController extends MenuBar {
 	protected static final String LOADERR = "Erro ao carregar";
 	protected static final String SAVEERR = "Erro ao salvar";
 
+	protected FileManager manager = new FileManager();
 	/**
 	 * Representa o menu superior da tela de {@link Presentation}
 	 * 
@@ -85,7 +86,7 @@ public class MenuController extends MenuBar {
 
 		menuItem = createMenuItem(OPEN);
 		menuItem.addActionListener(actionEvent -> {
-			parent.loadPresentation(JabberPointApplication.getFileManager().load(TESTFILE));
+			parent.loadPresentation(manager.load(TESTFILE));
 		});
 
 		fileMenu.add(menuItem);
@@ -100,7 +101,7 @@ public class MenuController extends MenuBar {
 		menuItem = createMenuItem(SAVE);
 		menuItem.addActionListener(actionEvent -> {
 			String fileName = JOptionPane.showInputDialog("Enter the file name", "demo");
-			JabberPointApplication.getFileManager().save(parent.currentPresentation(), SAVEFILE + fileName);
+			manager.save(parent.currentPresentation(), SAVEFILE + fileName);
 			JOptionPane.showMessageDialog(parent,"Your presentation was saved in src/main/resources directory");
 		});
 
