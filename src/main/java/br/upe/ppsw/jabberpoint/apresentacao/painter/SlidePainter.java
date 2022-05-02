@@ -23,7 +23,7 @@ public class SlidePainter {
 		int y = area.y;
 
 		Style style = Style.getStyle(0);
-		
+
 		SlideItem slideTitle = new SlideItem(0, this.slide.getTitle());
 
 		y += TextPainter.draw(area.x, area.y, scale, g, style, slideTitle);

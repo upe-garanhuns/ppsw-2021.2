@@ -32,9 +32,7 @@ import org.springframework.util.StringUtils;
 import br.upe.ppsw.jabberpoint.apresentacao.Style;
 import br.upe.ppsw.jabberpoint.apresentacao.visualizador.PresentationViewer;
 import br.upe.ppsw.jabberpoint.controle.FileManager;
-import br.upe.ppsw.jabberpoint.controle.HTMLFormat;
 import br.upe.ppsw.jabberpoint.controle.IFilePresentationFormat;
-import br.upe.ppsw.jabberpoint.controle.JSONFormat;
 import br.upe.ppsw.jabberpoint.controle.XMLFormat;
 import br.upe.ppsw.jabberpoint.modelo.Presentation;
 import br.upe.ppsw.jabberpoint.modelo.PresentationDemo;
@@ -69,7 +67,7 @@ public class JabberPointApplication implements CommandLineRunner {
 
 			Style.createStyles();
 			String file = args == null || args.length == 0 ? null : args[0];
-//			String file = "src/main/resources/teste.html";
+//			String file = "src/main/resources/ppsw.json";
 
 			if (StringUtils.hasLength(file)) {
 				FileManager manager = new FileManager();

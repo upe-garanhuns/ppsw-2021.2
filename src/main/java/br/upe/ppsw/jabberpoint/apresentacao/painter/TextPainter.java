@@ -44,11 +44,11 @@ public class TextPainter {
 	private TextPainter() {
 
 	}
-	
+
 	public static int draw(int x, int y, float scale, Graphics g, Style myStyle, SlideItem item) {
-		
+
 		String text = item.getText();
-		
+
 		if (StringUtils.hasLength(text)) {
 
 			List<TextLayout> layouts = getLayouts(g, myStyle, scale, text);

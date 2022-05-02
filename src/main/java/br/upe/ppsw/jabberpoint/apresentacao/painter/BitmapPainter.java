@@ -42,8 +42,8 @@ public class BitmapPainter {
 	public static int draw(int x, int y, float scale, Graphics g, Style myStyle, ImageObserver observer,
 			SlideItem item) {
 
-		byte[] imageByte = item.getMedia(); 
-		
+		byte[] imageByte = item.getMedia();
+
 		try {
 			int width = x + (int) (myStyle.getIndent() * scale);
 			int height = y + (int) (myStyle.getLeading() * scale);
