@@ -46,8 +46,6 @@ public class HTMLFormat implements IFilePresentationFormat {
 
 	@Override
 	public void save(Presentation presentation, String fileName) {
-		// TODO Auto-generated method stub
-
+		//TODO
 	}
-
 }
