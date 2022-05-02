@@ -69,24 +69,13 @@ public class JabberPointApplication implements CommandLineRunner {
 
 			Style.createStyles();
 			String file = args == null || args.length == 0 ? null : args[0];
-//			// o file abaixo é para verificar o funcionamento do file manager
-//			String file = "src/main/resources/ppsw.json";
+//			String file = "src/main/resources/teste.html";
 
 			if (StringUtils.hasLength(file)) {
-//				//Executando o FileManager
-//				FileManager manager = new FileManager();
-//				this.presentation = manager.load(file);
-				this.presentation = fileFormat.load(file);
+				FileManager manager = new FileManager();
+				this.presentation = manager.load(file);
 
 			} else {
-//				//Teste do load do Html
-//				HTMLFormat html = new HTMLFormat();
-//				this.presentation = html.load("src/main/resources/teste.html");
-//				
-//				//Teste do load do Json
-//				JSONFormat json = new JSONFormat();
-//				this.presentation = json.load("src/main/resources/ppsw.json");
-				
 				this.presentation = new PresentationDemo();
 			}
 
