@@ -28,6 +28,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.util.StringUtils;
 
+import br.upe.ppsw.jabberpoint.control.FileManager;
 import br.upe.ppsw.jabberpoint.control.IFilePresentationFormat;
 import br.upe.ppsw.jabberpoint.control.XMLFormat;
 import br.upe.ppsw.jabberpoint.model.Presentation;
@@ -46,7 +47,6 @@ public class JabberPointApplication implements CommandLineRunner {
   public static final int HEIGHT = 800;
   
   private Presentation presentation;
-  private static IFilePresentationFormat fileFormat = new XMLFormat();
   
   public static void main(String[] argv) {
     SpringApplicationBuilder builder = new SpringApplicationBuilder(JabberPointApplication.class);
@@ -55,10 +55,7 @@ public class JabberPointApplication implements CommandLineRunner {
     builder.run(argv);
   }
 
-  public static final IFilePresentationFormat getFileManager() {
-    return fileFormat;
-  }
-  
+
   /**
    * Inicializa os dados da apresentação. Caso não seja informada uma apresentação em específico
    * através do parâmetro de argumento da aplicação será carregada uma apresentação padrão.
@@ -71,8 +68,10 @@ public class JabberPointApplication implements CommandLineRunner {
       String file = args == null || args.length == 0 ? null : args[0];
       //String file = "/home/helainelins/Ensino/2021.2/ppsw/projeto/base/ppsw-2021.2/src/main/resources/test.xml";
 
+      FileManager filemanager = new FileManager();
+      
       if (StringUtils.hasLength(file)) {
-        this.presentation = fileFormat.load(file);
+        this.presentation = filemanager.load(file);
       } else {
         this.presentation = new PresentationDemo();
       }

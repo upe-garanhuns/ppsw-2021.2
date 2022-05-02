@@ -30,7 +30,6 @@ import javax.swing.JOptionPane;
 
 import org.springframework.util.NumberUtils;
 
-import br.upe.ppsw.jabberpoint.JabberPointApplication;
 import br.upe.ppsw.jabberpoint.model.Presentation;
 import br.upe.ppsw.jabberpoint.model.PresentationDefault;
 import br.upe.ppsw.jabberpoint.presentation.viewer.PresentationViewer;
@@ -62,7 +61,7 @@ public class MenuController extends MenuBar {
 	protected static final String IOEX = "IO Exception: ";
 	protected static final String LOADERR = "Erro ao carregar";
 	protected static final String SAVEERR = "Erro ao salvar";
-
+	private FileManager filemanager = new FileManager();
 	/**
 	 * Representa o menu superior da tela de {@link Presentation}
 	 * 
@@ -85,7 +84,12 @@ public class MenuController extends MenuBar {
 
 		menuItem = createMenuItem(OPEN);
 		menuItem.addActionListener(actionEvent -> {
-			parent.loadPresentation(JabberPointApplication.getFileManager().load(TESTFILE));
+			try {
+				parent.loadPresentation(filemanager.load(TESTFILE));
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		});
 
 		fileMenu.add(menuItem);
@@ -100,7 +104,12 @@ public class MenuController extends MenuBar {
 		menuItem = createMenuItem(SAVE);
 		menuItem.addActionListener(actionEvent -> {
 			String fileName = JOptionPane.showInputDialog("Enter the file name", "demo");
-			JabberPointApplication.getFileManager().save(parent.currentPresentation(), SAVEFILE + fileName);
+			try {
+				filemanager.save(parent.currentPresentation(), SAVEFILE + fileName);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			JOptionPane.showMessageDialog(parent,"Your presentation was saved in src/main/resources directory");
 		});
 
