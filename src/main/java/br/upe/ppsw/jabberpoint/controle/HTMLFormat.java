@@ -1,6 +1,12 @@
 package br.upe.ppsw.jabberpoint.controle;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -8,9 +14,14 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+
 import br.upe.ppsw.jabberpoint.modelo.Presentation;
 import br.upe.ppsw.jabberpoint.modelo.Slide;
 import br.upe.ppsw.jabberpoint.modelo.SlideItem;
+import br.upe.ppsw.jabberpoint.modelo.SlideItemType;
 
 public class HTMLFormat implements IFilePresentationFormat {
 
@@ -46,6 +57,25 @@ public class HTMLFormat implements IFilePresentationFormat {
 
 	@Override
 	public void save(Presentation presentation, String fileName) {
-		// TODO
+		File file = new File(fileName);
+		
+		try {
+			BufferedWriter bw = new BufferedWriter(new FileWriter(file));
+			bw.write("<html><body>");
+			for (int i = 0; i < presentation.getSlidesSize(); i++) {
+				bw.write("<div>");
+				bw.write("<h1>" + presentation.getSlide(i).getTitle() + "</h1>");
+				for (SlideItem paragrafo : presentation.getSlide(i).getItems()) {
+					if (paragrafo.getType() == SlideItemType.TEXT) {
+						bw.write("<p>" + paragrafo.getText() + "</p>");						
+					}
+				}
+				bw.write("</div>");
+			}
+			bw.write("</body></html>");
+			bw.close();	
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 	}
 }
