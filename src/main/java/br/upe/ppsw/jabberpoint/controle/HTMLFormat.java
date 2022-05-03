@@ -63,11 +63,13 @@ public class HTMLFormat implements IFilePresentationFormat {
 			BufferedWriter bw = new BufferedWriter(new FileWriter(file));
 			bw.write("<html><body>");
 			for (int i = 0; i < presentation.getSlidesSize(); i++) {
-				bw.write("<div>");
-				bw.write("<h1>" + presentation.getSlide(i).getTitle() + "</h1>");
+				Integer contador = 0;
+				bw.write("<div class='slide" + i+ "'>");
+				bw.write("<h1 id='titulo" + i + "'>" + presentation.getSlide(i).getTitle() + "</h1>");
 				for (SlideItem paragrafo : presentation.getSlide(i).getItems()) {
 					if (paragrafo.getType() == SlideItemType.TEXT) {
-						bw.write("<p>" + paragrafo.getText() + "</p>");						
+						bw.write("<p id='paragrafo" + contador + "'>" + paragrafo.getText() + "</p>");						
+						contador ++;
 					}
 				}
 				bw.write("</div>");
@@ -75,7 +77,7 @@ public class HTMLFormat implements IFilePresentationFormat {
 			bw.write("</body></html>");
 			bw.close();	
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
 	}
 }

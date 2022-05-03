@@ -66,8 +66,8 @@ public class JabberPointApplication implements CommandLineRunner {
 		try {
 
 			Style.createStyles();
-			String file = args == null || args.length == 0 ? null : args[0];
-//			String file = "src/main/resources/ppsw.json";
+//			String file = args == null || args.length == 0 ? null : args[0];
+			String file = "src/main/resources/ppsw.html";
 
 			if (StringUtils.hasLength(file)) {
 				FileManager manager = new FileManager();
