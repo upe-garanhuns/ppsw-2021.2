@@ -36,7 +36,6 @@ import br.upe.ppsw.jabberpoint.presentation.painter.SlidePainter;
  */
 public class SlideViewer extends JComponent {
   private static final long serialVersionUID = 227L;
-
   private static final Color BGCOLOR = Color.white;
   private static final Color COLOR = Color.black;
   private static final String FONTNAME = "Dialog";

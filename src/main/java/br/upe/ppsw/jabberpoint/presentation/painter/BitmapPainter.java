@@ -30,9 +30,7 @@ import javax.imageio.ImageIO;
 
 import br.upe.ppsw.jabberpoint.base.JabberPointException;
 import br.upe.ppsw.jabberpoint.presentation.Style;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 public class BitmapPainter {
 
 	private BitmapPainter() {
@@ -53,7 +51,6 @@ public class BitmapPainter {
 					(int) (bufferedImage.getHeight(observer) * scale), observer);
 
 		} catch (Exception e) {
-			log.error("Error when read image bytes to mount SlideItem", e);
 			throw new JabberPointException("Error when read image bytes to mount SlideItem", e);
 		}
 

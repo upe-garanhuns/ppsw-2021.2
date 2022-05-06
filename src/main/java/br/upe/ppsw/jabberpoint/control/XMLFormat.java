@@ -40,9 +40,7 @@ import br.upe.ppsw.jabberpoint.model.Presentation;
 import br.upe.ppsw.jabberpoint.model.Slide;
 import br.upe.ppsw.jabberpoint.model.SlideItem;
 import br.upe.ppsw.jabberpoint.model.SlideItemType;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 public final class XMLFormat implements IFilePresentationFormat {
 
 	protected static final String DEFAULT_API_TO_USE = "dom";
@@ -86,7 +84,6 @@ public final class XMLFormat implements IFilePresentationFormat {
 		} catch (JabberPointException e) {
 			throw e;
 		} catch (Exception e) {
-			log.error("One unexpected error when loading presentation XML file.", e);
 			throw new JabberPointException(PCE, e);
 		}
 
@@ -113,7 +110,6 @@ public final class XMLFormat implements IFilePresentationFormat {
 		} catch (JabberPointException e) {
 			throw e;
 		} catch (Exception e) {
-			log.error("One unexpected error when saving presentation to XML file.", e);
 			throw new JabberPointException(PCE, e);
 		}
 	}
@@ -202,7 +198,6 @@ public final class XMLFormat implements IFilePresentationFormat {
 		try {
 			level = Integer.parseInt(node.getTextContent());
 		} catch (NumberFormatException x) {
-			log.error("The slide item level is not an integer number." + node.getTextContent());
 			throw new JabberPointException(PCE + " - " + PCE_SLIDE_LEVEL_INVALID);
 		}
 
@@ -220,7 +215,6 @@ public final class XMLFormat implements IFilePresentationFormat {
 			break;
 
 		default:
-			log.error("The slide item kind was not filled with valid type." + node.getTextContent());
 			throw new JabberPointException(PCE + " - " + PCE_SLIDE_KIND_UNKNOWN_TYPE);
 		}
 
@@ -234,7 +228,6 @@ public final class XMLFormat implements IFilePresentationFormat {
 	}
 
 	private void throwException(String logMessage, String systemMessage) {
-		log.error(logMessage);
 		throw new JabberPointException(PCE + " - " + systemMessage);
 	}
 
