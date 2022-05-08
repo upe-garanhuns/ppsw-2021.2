@@ -24,8 +24,12 @@ import java.awt.Frame;
 import java.awt.Menu;
 import java.awt.MenuBar;
 import java.awt.MenuItem;
+import java.io.File;
 
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.filechooser.FileSystemView;
 
 import org.springframework.util.NumberUtils;
 
@@ -84,7 +88,22 @@ public class MenuController extends MenuBar {
 
 		menuItem = createMenuItem(OPEN);
 		menuItem.addActionListener(actionEvent -> {
-			parent.loadPresentation(JabberPointApplication.getFileManager().load(TESTFILE));
+			JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+			FileNameExtensionFilter filter = new FileNameExtensionFilter("Xml, Json e Html", "xml", "json", "html");
+			
+			jfc.setFileSelectionMode(JFileChooser.FILES_ONLY);
+			jfc.setAcceptAllFileFilterUsed(false);
+			jfc.addChoosableFileFilter(filter);
+			
+			int returnValue = jfc.showOpenDialog(parent);
+			
+			if (returnValue == JFileChooser.APPROVE_OPTION) {
+				File selectedFile = jfc.getSelectedFile();
+				String path = selectedFile.getAbsolutePath();
+				
+				FileManager manager = new FileManager();
+				parent.loadPresentation(manager.load(path));
+			}
 		});
 
 		fileMenu.add(menuItem);
