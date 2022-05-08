@@ -90,17 +90,17 @@ public class MenuController extends MenuBar {
 		menuItem.addActionListener(actionEvent -> {
 			JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
 			FileNameExtensionFilter filter = new FileNameExtensionFilter("Xml, Json e Html", "xml", "json", "html");
-			
+
 			jfc.setFileSelectionMode(JFileChooser.FILES_ONLY);
 			jfc.setAcceptAllFileFilterUsed(false);
 			jfc.addChoosableFileFilter(filter);
-			
+
 			int returnValue = jfc.showOpenDialog(parent);
-			
+
 			if (returnValue == JFileChooser.APPROVE_OPTION) {
 				File selectedFile = jfc.getSelectedFile();
 				String path = selectedFile.getAbsolutePath();
-				
+
 				FileManager manager = new FileManager();
 				parent.loadPresentation(manager.load(path));
 			}
@@ -117,9 +117,25 @@ public class MenuController extends MenuBar {
 
 		menuItem = createMenuItem(SAVE);
 		menuItem.addActionListener(actionEvent -> {
-			String fileName = JOptionPane.showInputDialog("Enter the file name", "demo");
-			JabberPointApplication.getFileManager().save(parent.currentPresentation(), SAVEFILE + fileName);
-			JOptionPane.showMessageDialog(parent, "Your presentation was saved in src/main/resources directory");
+
+			JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+			FileNameExtensionFilter filter = new FileNameExtensionFilter("Xml, Json e Html", "xml", "json", "html");
+
+			jfc.setDialogTitle("Escolha um diretório para salvar seu arquivo");
+			jfc.setAcceptAllFileFilterUsed(false);
+			jfc.addChoosableFileFilter(filter);
+
+			int returnValue = jfc.showSaveDialog(parent);
+
+			if (returnValue == JFileChooser.APPROVE_OPTION) {
+				File selectedFile = jfc.getSelectedFile();
+				String path = selectedFile.getAbsolutePath();
+
+				FileManager manager = new FileManager();
+				manager.save(parent.currentPresentation(), path);
+				JOptionPane.showMessageDialog(parent, "Sua apresentação foi salva em " + path);
+			}
+
 		});
 
 		fileMenu.add(menuItem);
