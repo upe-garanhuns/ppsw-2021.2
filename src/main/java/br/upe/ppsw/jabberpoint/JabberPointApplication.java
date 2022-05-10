@@ -29,8 +29,6 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.util.StringUtils;
 
 import br.upe.ppsw.jabberpoint.control.FileManager;
-import br.upe.ppsw.jabberpoint.control.IFilePresentationFormat;
-import br.upe.ppsw.jabberpoint.control.XMLFormat;
 import br.upe.ppsw.jabberpoint.model.Presentation;
 import br.upe.ppsw.jabberpoint.model.PresentationDemo;
 import br.upe.ppsw.jabberpoint.presentation.Style;

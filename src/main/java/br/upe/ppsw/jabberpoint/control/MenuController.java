@@ -55,7 +55,7 @@ public class MenuController extends MenuBar {
 	protected static final String SAVE = "Salvar";
 	protected static final String VIEW = "Visualizar";
 
-	protected static final String TESTFILE = "src/main/resources/test.xml";
+	protected static final String TESTFILE = "src/main/resources/test.json";
 	protected static final String SAVEFILE = "src/main/resources/";
 
 	protected static final String IOEX = "IO Exception: ";
@@ -103,7 +103,7 @@ public class MenuController extends MenuBar {
 
 		menuItem = createMenuItem(SAVE);
 		menuItem.addActionListener(actionEvent -> {
-			String fileName = JOptionPane.showInputDialog("Enter the file name", "demo");
+			String fileName = JOptionPane.showInputDialog("Enter the file name", "demo.json");
 			try {
 				filemanager.save(parent.currentPresentation(), SAVEFILE + fileName);
 			} catch (Exception e) {

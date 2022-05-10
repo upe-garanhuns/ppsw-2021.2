@@ -2,6 +2,8 @@ package br.upe.ppsw.jabberpoint.control;
 
 import java.util.HashMap;
 
+import org.apache.commons.io.FilenameUtils;
+
 import br.upe.ppsw.jabberpoint.model.Presentation;
 
 public class FileManager {
@@ -13,6 +15,12 @@ public class FileManager {
 
 			XMLFormat xml = new XMLFormat();
 			formats.put(xml.getExtension(), xml);
+			
+			JSONFormat json = new JSONFormat();
+			formats.put(json.getExtension(), json);
+			
+			
+			
 		}
 
 		public Presentation load( String filename) throws Exception {
@@ -24,24 +32,10 @@ public class FileManager {
 			getTemplate(filename).save(presentation, filename);
 		}
 		
-		public String getFileExtension(String fileName) {
-	        if (fileName == null) {
-	            throw new IllegalArgumentException("fileName must not be null!");
-	        }
-
-	        String extension = "";
-
-	        int index = fileName.lastIndexOf('.');
-	        if (index > 0) {
-	            extension = fileName.substring(index + 1);
-	        }
-
-	        return extension;
-
-	    }
+		
 		
 		public IFilePresentationFormat getTemplate(String filename) {
-			String extension = getFileExtension(filename);
+			String extension = FilenameUtils.getExtension(filename);
 			return formats.get(extension);
 		}
 }
