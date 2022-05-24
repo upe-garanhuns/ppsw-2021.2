@@ -19,6 +19,8 @@ public class FileManager {
 			JSONFormat json = new JSONFormat();
 			formats.put(json.getExtension(), json);
 			
+			HTMLFormat html = new HTMLFormat();
+			formats.put(html.getExtension(), html);
 			
 			
 		}

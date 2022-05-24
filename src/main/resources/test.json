@@ -118,13 +118,7 @@
           "level": 1,
           "text": "Fim da Apresentação",
           "type": "TEXT"
-        },
-        {
-          "level": 1,
-          "text": "demo.jpg",
-          "type": "IMAGE"
-         
-    }
+        }
 ]
     }
     ]
