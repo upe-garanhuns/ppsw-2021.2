@@ -1,6 +1,8 @@
 package br.upe.ppsw.jabberpoint.control;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 
 import org.jsoup.Jsoup;
@@ -23,11 +25,11 @@ public class HTMLFormat implements IFilePresentationFormat {
 
         try {
             Document document = Jsoup.parse(new File(fileName), "utf-8");
-            
+            presentation.setTitle(document.getElementsByTag("title").text());
             Integer countSlides = 0;
-            for (Element item : document.getElementsByTag("slide")) {
+            for (Element item : document.getElementsByTag("div")) {
             	Slide slide = new Slide();
-            	slide.setTitle(document.getElementsByClass("title" + countSlides).text());   
+            	slide.setTitle(item.getElementsByClass("title" + countSlides).text());   
             	countSlides ++;
             	presentation.add(slide);
             }
@@ -42,7 +44,21 @@ public class HTMLFormat implements IFilePresentationFormat {
 
 	
 	public void save(Presentation presentation, String fileName) {
-		
+		File file = new File(fileName);
+        
+        try {
+            BufferedWriter textHtml = new BufferedWriter(new FileWriter(file));
+            textHtml.write("<html lang=\"pt-br\"> <body>");
+            for (int i = 0; i < presentation.getSlidesSize(); i++) {
+                textHtml.write("<div>");
+                textHtml.write("<h1 class=\"title" + i + "\">" + presentation.getSlide(i).getTitle() + "</h1>");
+                textHtml.write("</div>");
+            }
+            textHtml.write("</body></html>");
+            textHtml.close();    
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 		
 	}
 
