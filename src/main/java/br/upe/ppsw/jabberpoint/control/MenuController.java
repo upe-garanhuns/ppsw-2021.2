@@ -25,8 +25,11 @@ import java.awt.Menu;
 import java.awt.MenuBar;
 import java.awt.MenuItem;
 import java.awt.MenuShortcut;
+import javax.swing.JFileChooser;
+import java.io.File;
 
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import org.springframework.util.NumberUtils;
 
@@ -55,7 +58,6 @@ public class MenuController extends MenuBar {
 	protected static final String SAVE = "Salvar";
 	protected static final String VIEW = "Visualizar";
 
-	protected static final String TESTFILE = "src/main/resources/test.html";
 	protected static final String SAVEFILE = "src/main/resources/";
 
 	protected static final String IOEX = "IO Exception: ";
@@ -85,7 +87,8 @@ public class MenuController extends MenuBar {
 		menuItem = createMenuItem(OPEN);
 		menuItem.addActionListener(actionEvent -> {
 			try {
-				parent.loadPresentation(filemanager.load(TESTFILE));
+				String filename = openDialog();
+				parent.loadPresentation(filemanager.load(filename));
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -175,6 +178,20 @@ public class MenuController extends MenuBar {
 	
 	private MenuItem createMenuItem(String name) {
 		return new MenuItem(name, new MenuShortcut(name.charAt(0)));
+	}
+	
+	private String openDialog() {
+		JFileChooser fileChooser = new JFileChooser();
+		fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+		FileNameExtensionFilter filter = new FileNameExtensionFilter("formatos suportados", "xml", "json", "html");
+		fileChooser.setAcceptAllFileFilterUsed(false);
+		fileChooser.addChoosableFileFilter(filter);
+		int result = fileChooser.showOpenDialog(null);
+		if (result == JFileChooser.APPROVE_OPTION) {
+		    File selectedFile = fileChooser.getSelectedFile();
+		  return selectedFile.getAbsolutePath();
+		}
+		return "";
 	}
 
 }
