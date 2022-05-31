@@ -25,8 +25,11 @@ import java.awt.Menu;
 import java.awt.MenuBar;
 import java.awt.MenuItem;
 import java.awt.MenuShortcut;
+import java.io.File;
 
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import org.springframework.util.NumberUtils;
 
@@ -35,10 +38,7 @@ import br.upe.ppsw.jabberpoint.model.Presentation;
 import br.upe.ppsw.jabberpoint.model.PresentationDefault;
 import br.upe.ppsw.jabberpoint.presentation.viewer.PresentationViewer;
 
-/**
- * Implementação dos mecanismos de controle navegacional através de um menu
- * superior de uma {@link Presentation}.
- */
+
 public class MenuController extends MenuBar {
 
 	private static final long serialVersionUID = 227L;
@@ -64,13 +64,7 @@ public class MenuController extends MenuBar {
 	protected static final String SAVEERR = "Erro ao salvar";
 
 	protected FileManager manager = new FileManager();
-	/**
-	 * Representa o menu superior da tela de {@link Presentation}
-	 * 
-	 * @param frame A instância de {@link Frame} que contém os dados exibidos ao
-	 *              usuário.
-	 * @param pres  A instância da {@link Presentation} que está sendo exibida
-	 */
+
 	public MenuController(PresentationViewer parent) {
 		super();
 
@@ -86,7 +80,13 @@ public class MenuController extends MenuBar {
 
 		menuItem = createMenuItem(OPEN);
 		menuItem.addActionListener(actionEvent -> {
-			parent.loadPresentation(manager.load(TESTFILE));
+			
+			try {
+			String fileName = DialogBox();
+			parent.loadPresentation(FileManager.load(fileName));
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
 		});
 
 		fileMenu.add(menuItem);
@@ -169,4 +169,19 @@ public class MenuController extends MenuBar {
 		return new MenuItem(name, new MenuShortcut(name.charAt(0)));
 	}
 
+	
+	
+	private String DialogBox() {
+		JFileChooser fileChooser = new JFileChooser();
+		fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+		FileNameExtensionFilter filter = new FileNameExtensionFilter("formatos suportados", "xml", "json", "html");
+		fileChooser.setAcceptAllFileFilterUsed(false);
+		fileChooser.addChoosableFileFilter(filter);
+		int result = fileChooser.showOpenDialog(null);
+		if (result == JFileChooser.APPROVE_OPTION) {
+		    File selectedFile = fileChooser.getSelectedFile();
+		  return selectedFile.getAbsolutePath();
+		}
+		return "";
+	}
 }

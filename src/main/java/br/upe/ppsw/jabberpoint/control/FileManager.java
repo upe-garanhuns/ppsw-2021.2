@@ -9,7 +9,7 @@ import br.upe.ppsw.jabberpoint.model.Presentation;
 
 public class FileManager {
 	
-	private Map<String, IFilePresentationFormat> fileFormato = new HashMap<String, IFilePresentationFormat>();
+	private static Map<String, IFilePresentationFormat> fileFormato = new HashMap<String, IFilePresentationFormat>();
 	
 	public FileManager( ) {
 		XMLFormat xml = new XMLFormat();
@@ -20,7 +20,7 @@ public class FileManager {
 		fileFormato.put(html.getExtension(), html);
 	}
 	
-	   public Presentation load(String fileName) {
+	   public static  Presentation load(String fileName) {
 		String extensionName =  FilenameUtils.getExtension(fileName); 
 		return getTemplate(fileName).load(fileName);	
 		}
@@ -31,7 +31,7 @@ public class FileManager {
 		}
 	
 
-		public IFilePresentationFormat getTemplate(String filename) {
+		public static IFilePresentationFormat getTemplate(String filename) {
 			String extension = FilenameUtils.getExtension(filename);
 			return fileFormato.get(extension);
 		}
