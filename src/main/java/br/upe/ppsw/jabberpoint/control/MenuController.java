@@ -30,7 +30,7 @@ import javax.swing.JOptionPane;
 
 import org.springframework.util.NumberUtils;
 
-import br.upe.ppsw.jabberpoint.JabberPointApplication;
+
 import br.upe.ppsw.jabberpoint.model.Presentation;
 import br.upe.ppsw.jabberpoint.model.PresentationDefault;
 import br.upe.ppsw.jabberpoint.presentation.viewer.PresentationViewer;
@@ -56,7 +56,7 @@ public class MenuController extends MenuBar {
 	protected static final String SAVE = "Salvar";
 	protected static final String VIEW = "Visualizar";
 
-	protected static final String TESTFILE = "src/main/resources/test.xml";
+	protected static final String TESTFILE = "src/main/resources/testJson.json";
 	protected static final String SAVEFILE = "src/main/resources/";
 
 	protected static final String IOEX = "IO Exception: ";

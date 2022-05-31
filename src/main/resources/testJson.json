@@ -1,0 +1,89 @@
+{
+  "title": "Apresentação em JSON",
+  "slides": [
+    {
+      "title": "JabberPoint: Apresentação em JSON",
+      "items": [
+        {
+          "level": 1,
+          "text": "Jabber Point Ferramenta de Apresentação de Slides",
+          "type": "TEXT"
+        },
+        {
+          "level": 2,
+          "text": "Copyright (c) 1996-now: Ian Darwin",
+          "type": "TEXT"
+        },
+        {
+          "level": 4,
+          "text": "Disciplina Padrões de Projeto de SW (UPE-Garanhuns)",
+          "type": "TEXT"
+        },  
+        {
+          "level": 4,
+          "text": "Apresentação Demo com padrão NullObject",
+          "type": "TEXT"
+        },
+        {
+          "level": 1,
+          "text": "Para Navegar:",
+          "type": "TEXT"
+        },
+        {
+          "level": 3,
+          "text": "Próximo slide: Up ou Enter",
+          "type": "TEXT"
+        },
+        {
+          "level": 3,
+          "text": "Slide Anterior: Down",
+          "type": "TEXT"
+        },
+        {
+          "level": 3,
+          "text": "Parar: q ou Q",
+          "type": "TEXT"
+        }
+      ]
+    },
+    {
+      "title": "Demonstração dos níveis e estilos de uma apresentação",
+      "items": [
+        {
+          "level": 1,
+          "text": "Nível 1",
+          "type": "TEXT"
+        },
+        {
+          "level": 2,
+          "text": "Nível 2",
+          "type": "TEXT"
+        },
+        {
+          "level": 1,
+          "text": "Novamente um item de Nível 1",
+          "type": "TEXT"
+        },
+        {
+          "level": 1,
+          "text": "Nível 1 tem Estilo número 1",
+          "type": "TEXT"
+        },
+        {
+          "level": 2,
+          "text": "Nível 2 tem Estilo número 2",
+          "type": "TEXT"
+        },
+        {
+          "level": 3,
+          "text": "Este é um ítem de Nível 3",
+          "type": "TEXT"
+        },
+        {
+          "level": 4,
+          "text": "E este é um ítem de Nível 4",
+          "type": "TEXT"
+        }
+      ]
+    },
+    {

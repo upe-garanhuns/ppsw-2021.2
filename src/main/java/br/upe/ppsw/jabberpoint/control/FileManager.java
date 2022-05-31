@@ -22,13 +22,18 @@ public class FileManager {
 	
 	   public Presentation load(String fileName) {
 		String extensionName =  FilenameUtils.getExtension(fileName); 
-		return fileFormato.get(extensionName).load(fileName);
-	}
+		return getTemplate(fileName).load(fileName);	
+		}
 
 	   public void save(Presentation presentation, String fileName) {
 		String extensionName =  FilenameUtils.getExtension(fileName); 
-		fileFormato.get(extensionName).save(presentation, fileName);
-	}
+		getTemplate(fileName).save(presentation, fileName);	
+		}
 	
+
+		public IFilePresentationFormat getTemplate(String filename) {
+			String extension = FilenameUtils.getExtension(filename);
+			return fileFormato.get(extension);
+		}
 	
 }
